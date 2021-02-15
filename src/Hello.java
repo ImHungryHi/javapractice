@@ -32,6 +32,11 @@ public class Hello {
                 "\n" +
                 "Twas brillig and the slithy toves\n" +
                 "did gyre and gimble in the wabe.\n" +
-                "All mimsy were the borogoves\nand the mome raths outgrabe.");
+                "All mimsy were the borogoves\nand the mome raths outgrabe.\n" +
+                "\n" +
+                "Lewis Carroll - Jabberwocky");
+        //TestCase.tafelVanTien();
+        //TestCase.nestedLoops();
+        //TestCase.timing();
     }
 }
