@@ -2,15 +2,42 @@ package strings;
 
 public class LeString3 {
     public static void main(String[] args) {
-        System.out.println("mixString :\n");
+        /*System.out.println("mixString :");
         System.out.println("abc;xyz = " + mixString("abc", "xyz"));
         System.out.println("Hi;There = " + mixString("Hi", "There"));
         System.out.println("xxxx;There = " + mixString("xxxx", "There"));
+
+        System.out.println("\nrepeatEnd :");
+        System.out.println("Hello;3 = " + repeatEnd("Hello", 3));
+        System.out.println("Hello;2 = " + repeatEnd("Hello", 2));
+        System.out.println("Hello;1 = " + repeatEnd("Hello", 1));
+
+        System.out.println("\nrepeatFront :");
+        System.out.println("Chocolate;4 = " + repeatFront("Chocolate", 4));
+        System.out.println("Chocolate;3 = " + repeatFront("Chocolate", 3));
+        System.out.println("Ice Cream;2 = " + repeatFront("Ice Cream", 2));
+
+        System.out.println("\nrepeatSeparator :");
+        System.out.println("Word;X;3 = " + repeatSeparator("Word", "X", 3));
+        System.out.println("This;And;2 = " + repeatSeparator("This", "And", 2));
+        System.out.println("This;And;1 = " + repeatSeparator("This", "And", 1));
+
+        System.out.println("\nxyzMiddle :");
+        System.out.println("AAxyzBB = " + xyzMiddle("AAxyzBB"));
+        System.out.println("AxyzBB = " + xyzMiddle("AxyzBB"));
+        System.out.println("AxyzBB = " + xyzMiddle("AxyzBBB"));*/
+
+        System.out.println("\ngetSandwich :");
+        System.out.println("breadjambread = " + getSandwich("breadjambread"));
+        System.out.println("xxbreadjambreadyy = " + getSandwich("xxbreadjambreadyy"));
+        System.out.println("xxbreadyy = " + getSandwich("xxbreadyy"));
+
         /*
-        System.out.println(" :\n");
-        System.out.println(" = " + ());
-        System.out.println(" = " + ());
-        System.out.println(" = " + ());
+
+        System.out.println("\n :");
+        System.out.println(" = " + );
+        System.out.println(" = " + );
+        System.out.println(" = " + );
         */
     }
 
@@ -26,9 +53,25 @@ public class LeString3 {
     mixString("xxxx", "There") → "xTxhxexre"
     */
     public static String mixString(String a, String b) {
-        return "";
-    }
+        StringBuilder builder = new StringBuilder();
+        int largestLength = a.length();
 
+        if (b.length() > largestLength) {
+            largestLength = b.length();
+        }
+
+        for (int i = 0; i < largestLength; i++) {
+            if (i < a.length()) {
+                builder.append(a.charAt(i));
+            }
+
+            if (i < b.length()) {
+                builder.append(b.charAt(i));
+            }
+        }
+
+        return builder.toString();
+    }
 
     /*
     repeatEnd
@@ -39,7 +82,16 @@ public class LeString3 {
     repeatEnd("Hello", 2) → "lolo"
     repeatEnd("Hello", 1) → "o"
     */
+    public static String repeatEnd(String str, int n) {
+        String subString = str.substring(str.length() - n);
+        StringBuilder builder = new StringBuilder();
 
+        for (int i = 0; i < n; i++) {
+            builder.append(subString);
+        }
+
+        return builder.toString();
+    }
 
     /*
     repeatFront
@@ -52,7 +104,16 @@ public class LeString3 {
     repeatFront("Chocolate", 3) → "ChoChC"
     repeatFront("Ice Cream", 2) → "IcI"
     */
+    public static String repeatFront(String str, int n) {
+        StringBuilder builder = new StringBuilder();
 
+        for (int i = 0; i < n; i++) {
+            String subString = str.substring(0, (n - i));
+            builder.append(subString);
+        }
+
+        return builder.toString();
+    }
 
     /*
     repeatSeparator
@@ -64,7 +125,19 @@ public class LeString3 {
     repeatSeparator("This", "And", 2) → "ThisAndThis"
     repeatSeparator("This", "And", 1) → "This"
     */
+    public static String repeatSeparator(String str, String delim, int n) {
+        StringBuilder builder = new StringBuilder();
 
+        if (n > 0) {
+            builder.append(str);
+        }
+
+        for (int i = 1; i < n; i++) {
+            builder.append(delim).append(str);
+        }
+
+        return builder.toString();
+    }
 
     /*
     xyzMiddle
@@ -77,6 +150,23 @@ public class LeString3 {
     xyzMiddle("AxyzBB") → true
     xyzMiddle("AxyzBBB") → false
     */
+    public static boolean xyzMiddle(String str) {
+        int xyzIndex = str.indexOf("xyz");
+
+        if (xyzIndex > 0) {
+            String prefix = str.substring(0, xyzIndex);
+            String suffix = str.substring(xyzIndex + 3);
+
+            switch (prefix.length() - suffix.length()) {
+                case 1:
+                case 0:
+                case -1:
+                    return true;
+            }
+        }
+
+        return false;
+    }
 
     /*
     getSandwich
@@ -89,7 +179,9 @@ public class LeString3 {
     getSandwich("xxbreadjambreadyy") → "jam"
     getSandwich("xxbreadyy") → ""
     */
-
+    public static String getSandwich(String str) {
+        return "";
+    }
 
     /*
     oneTwo
