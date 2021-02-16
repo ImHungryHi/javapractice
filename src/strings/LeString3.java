@@ -2,7 +2,7 @@ package strings;
 
 public class LeString3 {
     public static void main(String[] args) {
-        /*System.out.println("mixString :");
+        System.out.println("mixString :");
         System.out.println("abc;xyz = " + mixString("abc", "xyz"));
         System.out.println("Hi;There = " + mixString("Hi", "There"));
         System.out.println("xxxx;There = " + mixString("xxxx", "There"));
@@ -25,20 +25,34 @@ public class LeString3 {
         System.out.println("\nxyzMiddle :");
         System.out.println("AAxyzBB = " + xyzMiddle("AAxyzBB"));
         System.out.println("AxyzBB = " + xyzMiddle("AxyzBB"));
-        System.out.println("AxyzBB = " + xyzMiddle("AxyzBBB"));*/
+        System.out.println("AxyzBB = " + xyzMiddle("AxyzBBB"));
 
         System.out.println("\ngetSandwich :");
         System.out.println("breadjambread = " + getSandwich("breadjambread"));
         System.out.println("xxbreadjambreadyy = " + getSandwich("xxbreadjambreadyy"));
         System.out.println("xxbreadyy = " + getSandwich("xxbreadyy"));
 
-        /*
+        System.out.println("\noneTwo :");
+        System.out.println("abc = " + oneTwo("abc"));
+        System.out.println("tca = " + oneTwo("tca"));
+        System.out.println("tcagdo = " + oneTwo("tcagdo"));
+        System.out.println("rvedyod = " + oneTwo("rvedyod"));
 
-        System.out.println("\n :");
-        System.out.println(" = " + );
-        System.out.println(" = " + );
-        System.out.println(" = " + );
-        */
+        System.out.println("\nzipZap :");
+        System.out.println("zipXzap = " + zipZap("zipXzap"));
+        System.out.println("zopzop = " + zipZap("zopzop"));
+        System.out.println("zzzopzop = " + zipZap("zzzopzop"));
+
+        System.out.println("\nstarOut :");
+        System.out.println("ab*cd = " + starOut("ab*cd"));
+        System.out.println("ab**cd = " + starOut("ab**cd"));
+        System.out.println("sm*eilly = " + starOut("sm*eilly"));
+        System.out.println("sim*ulta*neousl* = " + starOut("sim*ulta**neousl*"));
+
+        System.out.println("\nplusOut :");
+        System.out.println("12xy34;xy = " + plusOut("12xy34", "xy"));
+        System.out.println("12xy34;1 = " + plusOut("12xy34", "1"));
+        System.out.println("12xy34xyabcxy;xy = " + plusOut("12xy34xyabcxy", "xy"));
     }
 
     /*
@@ -153,7 +167,7 @@ public class LeString3 {
     public static boolean xyzMiddle(String str) {
         int xyzIndex = str.indexOf("xyz");
 
-        if (xyzIndex > 0) {
+        if (xyzIndex >= 0) {
             String prefix = str.substring(0, xyzIndex);
             String suffix = str.substring(xyzIndex + 3);
 
@@ -180,6 +194,13 @@ public class LeString3 {
     getSandwich("xxbreadyy") → ""
     */
     public static String getSandwich(String str) {
+        int idxFirst = str.indexOf("bread");
+        int idxSecond = str.indexOf("bread", (idxFirst + 1));
+
+        if (idxSecond >= 0) {
+            return str.substring((idxFirst + 5), idxSecond);
+        }
+
         return "";
     }
 
@@ -194,6 +215,20 @@ public class LeString3 {
     oneTwo("tca") → "cat"
     oneTwo("tcagdo") → "catdog"
     */
+    public static String oneTwo (String str) { //oneTwo, andThrough, andThrough! theVorpalBlade("wentSnickerSnack");
+        if (str.length() >= 3) {
+            StringBuilder builder = new StringBuilder();
+
+            for (int x = 0; x < (str.length() / 3); x++) {
+                int whichTrio = x * 3;
+                builder.append(str.charAt(1 + whichTrio)).append(str.charAt(2 + whichTrio)).append(str.charAt(0 + whichTrio));
+            }
+
+            return builder.toString();
+        }
+
+        return "";
+    }
 
     /*
     zipZap
@@ -204,7 +239,92 @@ public class LeString3 {
     zipZap("zopzop") → "zpzp"
     zipZap("zzzopzop") → "zzzpzp"
     */
+    public static String zipZap(String str) {
+        StringBuilder builder = new StringBuilder();
+        String lower = str.toLowerCase();
+        boolean start = true;
+        int idxZ = str.indexOf("z");
+        /*int idxP = str.indexOf("p", idxZ);
 
+        if (idxZ < 0 || idxP < 0) {
+            return str;
+        }
+
+        for (int i = idxZ; i < str.length(); i++) {
+            if (idxZ >= 0 && idxP >= 0) {
+                if (start) {
+                    builder.append(str.substring(0, idxZ));
+                    start = false;
+                }
+
+                if (idxZ == (idxP - 1) || idxZ == (idxP - 2)) {
+                    builder.append("zp");
+                }
+                else {
+                    builder.append(str.substring(idxZ, (idxP + 1)));
+                }
+
+                idxZ = str.indexOf("z", idxP);
+
+                if (idxZ > (idxP + 1)) {
+                    builder.append(str.substring((idxP + 1), idxZ));
+                }
+
+                idxP = str.indexOf("p", idxZ);
+
+                if (idxZ > 0) {
+                    i = idxZ;
+                }
+            }
+        }
+
+        if (idxP > 0 && idxP < (str.length() - 1)) {
+            //builder.append(str.substring(++idxP));
+        }*/
+
+        if (idxZ > 0) {
+            builder.append(str.substring(0, idxZ));
+        }
+
+        while (idxZ >= 0) {
+            if (idxZ <= (str.length() - 3)) {
+                String sub = str.substring(idxZ, (idxZ + 3));
+                boolean charAt2IsZ = sub.toLowerCase().charAt(2) == 'z';
+
+                if (sub.toLowerCase().charAt(1) == 'z') {
+                    if (charAt2IsZ) {
+                        idxZ++;
+                    }
+
+                    sub = str.substring(++idxZ, (idxZ + 3));
+                }
+                else if (charAt2IsZ) {
+                    idxZ += 2;
+                }
+
+                int idxP = lower.indexOf("p", idxZ);
+                int nextZ = lower.indexOf("z", idxP);
+
+                if (sub.toLowerCase().charAt(2) == 'p') {
+                    builder.append("zp");
+                }
+                else {
+                    builder.append(sub);
+                }
+
+                if (idxP > 0 && nextZ > 0) {
+                    builder.append(str.substring((idxP + 1), nextZ));
+                }
+            }
+            else {
+                builder.append(str.substring(idxZ));
+            }
+
+            idxZ = lower.indexOf("z", (idxZ + 1));
+        }
+
+        return builder.toString();
+    }
 
     /*
     starOut
@@ -216,7 +336,30 @@ public class LeString3 {
     starOut("ab**cd") → "ad"
     starOut("sm*eilly") → "silly"
     */
+    public static String starOut(String str) {
+        int idxStar = str.indexOf("*");
+        StringBuilder builder = new StringBuilder();
+        builder.append(str.substring(0, (idxStar - 1)));
 
+        while (idxStar >= 0 && idxStar < str.length()) {
+            while (idxStar < (str.length() - 1) && str.charAt((idxStar + 1)) == '*') {
+                idxStar++;
+            }
+
+            int nextStar = str.indexOf("*", (idxStar + 1));
+
+            if (nextStar > (idxStar + 2)) {
+                builder.append(str.substring((idxStar + 2), (nextStar - 1)));
+            }
+            else if (nextStar < 0 && idxStar < (str.length() - 2)) {
+                builder.append(str.substring((idxStar + 2)));
+            }
+
+            idxStar = nextStar;
+        }
+
+        return builder.toString();
+    }
 
     /*
     plusOut
@@ -228,4 +371,32 @@ public class LeString3 {
     plusOut("12xy34", "1") → "1+++++"
     plusOut("12xy34xyabcxy", "xy") → "++xy++xy+++xy"
     */
+    public static String plusOut(String str, String delim) {
+        StringBuilder builder = new StringBuilder();
+        int idxDelim = str.indexOf(delim);
+        int idxStart = 0;
+
+        while (idxDelim >= 0 && idxDelim < (str.length() - delim.length())) {
+            String sub = str.substring (idxStart, idxDelim);
+            int nextDelim = str.indexOf(delim, (idxDelim + 1));
+
+            for (char c : sub.toCharArray()) {
+                builder.append("+");
+            }
+
+            builder.append(delim);
+
+            if (nextDelim < 0) {
+                sub = str.substring(idxDelim + (delim.length()));
+
+                for (char c : sub.toCharArray()) {
+                    builder.append("+");
+                }
+            }
+
+            idxDelim = nextDelim;
+        }
+
+        return builder.toString();
+    }
 }
