@@ -2,7 +2,7 @@ package strings;
 
 public class LeString3 {
     public static void main(String[] args) {
-        System.out.println("mixString :");
+        /*System.out.println("mixString :");
         System.out.println("abc;xyz = " + mixString("abc", "xyz"));
         System.out.println("Hi;There = " + mixString("Hi", "There"));
         System.out.println("xxxx;There = " + mixString("xxxx", "There"));
@@ -39,9 +39,10 @@ public class LeString3 {
         System.out.println("rvedyod = " + oneTwo("rvedyod"));
 
         System.out.println("\nzipZap :");
-        System.out.println("zipXzap = " + zipZap("zipXzap"));
+        */System.out.println("zipXzap = " + zipZap("zipXzap"));
         System.out.println("zopzop = " + zipZap("zopzop"));
         System.out.println("zzzopzop = " + zipZap("zzzopzop"));
+        System.out.println("zzzzzopzop = " + zipZap("zzzzzopzop"));/*
 
         System.out.println("\nstarOut :");
         System.out.println("ab*cd = " + starOut("ab*cd"));
@@ -52,7 +53,7 @@ public class LeString3 {
         System.out.println("\nplusOut :");
         System.out.println("12xy34;xy = " + plusOut("12xy34", "xy"));
         System.out.println("12xy34;1 = " + plusOut("12xy34", "1"));
-        System.out.println("12xy34xyabcxy;xy = " + plusOut("12xy34xyabcxy", "xy"));
+        System.out.println("12xy34xyabcxy;xy = " + plusOut("12xy34xyabcxy", "xy"));*/
     }
 
     /*
@@ -242,85 +243,28 @@ public class LeString3 {
     public static String zipZap(String str) {
         StringBuilder builder = new StringBuilder();
         String lower = str.toLowerCase();
-        boolean start = true;
-        int idxZ = str.indexOf("z");
-        /*int idxP = str.indexOf("p", idxZ);
+        int idxZ = lower.indexOf("z");
+        int nextZ = lower.indexOf("z", (idxZ + 1));
 
-        if (idxZ < 0 || idxP < 0) {
-            return str;
-        }
-
-        for (int i = idxZ; i < str.length(); i++) {
-            if (idxZ >= 0 && idxP >= 0) {
-                if (start) {
-                    builder.append(str.substring(0, idxZ));
-                    start = false;
-                }
-
-                if (idxZ == (idxP - 1) || idxZ == (idxP - 2)) {
-                    builder.append("zp");
-                }
-                else {
-                    builder.append(str.substring(idxZ, (idxP + 1)));
-                }
-
-                idxZ = str.indexOf("z", idxP);
-
-                if (idxZ > (idxP + 1)) {
-                    builder.append(str.substring((idxP + 1), idxZ));
-                }
-
-                idxP = str.indexOf("p", idxZ);
-
-                if (idxZ > 0) {
-                    i = idxZ;
-                }
-            }
-        }
-
-        if (idxP > 0 && idxP < (str.length() - 1)) {
-            //builder.append(str.substring(++idxP));
-        }*/
-
-        if (idxZ > 0) {
-            builder.append(str.substring(0, idxZ));
-        }
-
-        while (idxZ >= 0) {
-            if (idxZ <= (str.length() - 3)) {
-                String sub = str.substring(idxZ, (idxZ + 3));
-                boolean charAt2IsZ = sub.toLowerCase().charAt(2) == 'z';
-
-                if (sub.toLowerCase().charAt(1) == 'z') {
-                    if (charAt2IsZ) {
-                        idxZ++;
-                    }
-
-                    sub = str.substring(++idxZ, (idxZ + 3));
-                }
-                else if (charAt2IsZ) {
-                    idxZ += 2;
-                }
-
-                int idxP = lower.indexOf("p", idxZ);
-                int nextZ = lower.indexOf("z", idxP);
-
-                if (sub.toLowerCase().charAt(2) == 'p') {
-                    builder.append("zp");
-                }
-                else {
-                    builder.append(sub);
-                }
-
-                if (idxP > 0 && nextZ > 0) {
-                    builder.append(str.substring((idxP + 1), nextZ));
-                }
-            }
-            else {
-                builder.append(str.substring(idxZ));
+        while(idxZ >= 0 && idxZ < str.length()) {
+            while (nextZ >= 0 && nextZ < str.length() && nextZ == (idxZ + 1)) {
+                builder.append(str.charAt(idxZ));
+                idxZ = nextZ;
+                nextZ = lower.indexOf("z", (idxZ + 1));
             }
 
-            idxZ = lower.indexOf("z", (idxZ + 1));
+            if (lower.charAt(idxZ + 2) == 'p') {
+                builder.append(str.charAt(idxZ)).append(str.charAt(idxZ + 2));
+            }
+
+            int idxP = lower.indexOf("p", idxZ);
+
+            if (nextZ > (idxZ + 3) && nextZ > idxP && idxZ <= (idxP - 2)) {
+                builder.append(str.substring((idxP + 1), nextZ));
+            }
+
+            idxZ = nextZ;
+            nextZ = lower.indexOf("z", (idxZ + 1));
         }
 
         return builder.toString();
