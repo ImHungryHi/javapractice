@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Hello {
     public static void main(String[] args) {
         System.out.println("Twas brillig and the slithy toves\n" +
@@ -38,5 +41,16 @@ public class Hello {
         //TestCase.tafelVanTien();
         //TestCase.nestedLoops();
         //TestCase.timing();
+        String s = "Twas brillig and the slithy toves did gyre and gimble in the wabe.";
+
+        for (int x = 0; x < s.length(); x++) {
+            int idx = x % 10;
+            System.out.print(idx);
+        }
+
+        System.out.println("\n" + s + ";'b' can be found at idx " + TestCase.indexOf(s, 'b', false));
+        System.out.println("'b' can be found at indexes " + Arrays.toString(TestCase.indexOfAll(s, 'b', false)));
+        System.out.println("And the count of 't' is " + TestCase.countChar(s, 't'));
+        System.out.println("Substring 4-10 = \"" + TestCase.substr(s, 4, 10) + "\"");
     }
 }

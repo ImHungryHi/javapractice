@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class TestCase {
     public static void nestedLoops() {
         int x = 0, y = 0;
@@ -148,5 +150,70 @@ public class TestCase {
 
             System.out.println();
         }
+    }
+
+    public static int indexOf(String s, char c, boolean caseSensitive) {
+        if (!caseSensitive) {
+            s = s.toLowerCase();
+            c = Character.toLowerCase(c);
+        }
+
+        char[] arr = s.toCharArray();
+
+        for (int x = 0; x < arr.length; x++) {
+            if (arr[x] == c) {
+                return x;
+            }
+        }
+
+        return -1;
+    }
+
+    public static int[] indexOfAll(String s, char c, boolean caseSensitive) {
+        if (!caseSensitive) {
+            s = s.toLowerCase();
+            c = Character.toLowerCase(c);
+        }
+
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        char[] arr = s.toCharArray();
+        int[] retArray;
+
+        for (int x = 0; x < arr.length; x++) {
+            if (arr[x] == c) {
+                list.add(x);
+            }
+        }
+
+        retArray = new int[list.size()];
+
+        for (int x = 0; x < list.size(); x++) {
+            retArray[x] = list.get(x);
+        }
+
+        return retArray;
+    }
+
+    public static int countChar(String s, char c) {
+        char[] arr = s.toLowerCase().toCharArray();
+        int count = 0;
+
+        for (int x = 0; x < arr.length; x++) {
+            if (arr[x] == c) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    public static String substr(String s, int start, int end) {
+        String retValue = "";
+
+        for (int x = start; x < end; x++) {
+            retValue += s.charAt(x);
+        }
+
+        return retValue;
     }
 }
