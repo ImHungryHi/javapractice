@@ -1,6 +1,4 @@
-package strings;
-
-import java.util.Locale;
+package string;
 
 public class String2 {
     /*
