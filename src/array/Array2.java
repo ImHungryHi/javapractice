@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Array2 {
     public static void main(String[] args) {
-        /*System.out.println("makeEnds :");
+        System.out.println("makeEnds :");
         System.out.println("[1, 2, 3] = " + Arrays.toString(makeEnds(new int[]{1, 2, 3})));
         System.out.println("[1, 2, 3, 4] = " + Arrays.toString(makeEnds(new int[]{1, 2, 3, 4})));
         System.out.println("[7, 4, 6, 2] = " + Arrays.toString(makeEnds(new int[]{7, 4, 6, 2})));
@@ -34,7 +34,7 @@ public class Array2 {
         System.out.println("[2, 3, 5] = " + Arrays.toString(fix23(new int[]{2, 3, 5})));
         System.out.println("[1, 2, 1] = " + Arrays.toString(fix23(new int[]{1, 2, 1})));
 
-        */System.out.println("\nstart1 :");
+        System.out.println("\nstart1 :");
         System.out.println("[1, 2, 3];[1, 3] = " + start1(new int[] {1, 2, 3}, new int[] {1, 3}));
         System.out.println("[7, 2, 3];[1] = " + start1(new int[] {7, 2, 3}, new int[] {1}));
         System.out.println("[1, 2];[] = " + start1(new int[] {1, 2}, new int[] {}));
