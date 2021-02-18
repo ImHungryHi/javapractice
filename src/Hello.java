@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Hello {
     public static void main(String[] args) {
@@ -53,5 +54,9 @@ public class Hello {
         System.out.println("And the count of 't' is " + TestCase.countChar(s, 't'));
         System.out.println("Substring 4-10 = \"" + TestCase.substr(s, 4, 10) + "\"");
         System.out.println("Substring from 5 onward = \"" + TestCase.substr(s, 5) + "\"");
+
+        HashMap<Character, Integer> counts = TestCase.countLettersAlternative(s);
+        System.out.println(counts.toString());
+        System.out.println(TestCase.sieveOfEratosthenes(100).toString());
     }
 }

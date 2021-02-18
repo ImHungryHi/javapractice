@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Random;
 
 public class TestCase {
     public static void nestedLoops() {
@@ -175,7 +177,7 @@ public class TestCase {
             c = Character.toLowerCase(c);
         }
 
-        ArrayList<Integer> list = new ArrayList<Integer>();
+        ArrayList<Integer> list = new ArrayList<>();
         char[] arr = s.toCharArray();
         int[] retArray;
 
@@ -198,8 +200,8 @@ public class TestCase {
         char[] arr = s.toLowerCase().toCharArray();
         int count = 0;
 
-        for (int x = 0; x < arr.length; x++) {
-            if (arr[x] == c) {
+        for (char value : arr) {
+            if (value == c) {
                 count++;
             }
         }
@@ -225,5 +227,115 @@ public class TestCase {
         }
 
         return retValue;
+    }
+
+    public static int[] randomArray(int size) {
+        Random random = new Random();
+        int[] result = new int[size];
+
+        for (int x = 0; x < size; x++) {
+            result[x] = random.nextInt();
+        }
+
+        return result;
+    }
+
+    public static int[] randomArray(int size, int bound) {
+        Random random = new Random();
+        int[] result = new int[size];
+
+        for (int x = 0; x < size; x++) {
+            result[x] = random.nextInt(bound);
+        }
+
+        return result;
+    }
+
+    public static int inRange(int[] array, int low, int high) {
+        int count = 0;
+
+        for (int x : array) {
+            if (x >= low && x <= high) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    public static int[] makeHistogram(int[] arr) {
+        int[] result = new int[10];
+
+        for (int x = 0; x < result.length; x++) {
+            result[x] = inRange(arr, x * 10, (x * 10) + 10);
+        }
+
+        return result;
+    }
+
+    public static int[] countLetters(String str) {
+        int[] counts = new int[26];
+        char[] chars = str.toLowerCase().toCharArray();
+
+        for (char c : chars) {
+            // places an index between 0 and 25 (incl) as 'a' has value 97 and 'z' has value 122
+            int index = c - 'a';
+            counts[index]++;
+        }
+
+        return counts;
+    }
+
+    public static HashMap<Character, Integer> countLettersAlternative(String str) {
+        HashMap<Character, Integer> counts = new HashMap<>();
+        char[] chars = str.toLowerCase().toCharArray();
+
+        for (char c : chars) {
+            int indexer = c - 'a';
+
+            // Only count a-z
+            if (indexer >= 0 && indexer <= 25) {
+                if (counts.containsKey(c)) {
+                    int val = counts.get(c) + 1;
+                    counts.put(c, val);
+                } else {
+                    counts.put(c, 1);
+                }
+            }
+        }
+
+        return counts;
+    }
+
+    // Get an array of prime numbers up to a limit, based on Eratosthenes' method
+    public static ArrayList<Integer> sieveOfEratosthenes(int limit) {
+        ArrayList<Integer> primes = new ArrayList<>();
+
+        // Fill up, we'll go through a process of elimination later
+        for (int x = 2; x <= limit; x++) {
+            primes.add(x);
+        }
+
+        // Now for the real deal - loop through all numbers and cross off any numbers later on in the list
+        // that aren't considered a prime number.
+        // The rules are simple - a prime number is greater than 1 and divisible by only 1 and itself.
+        // Any number prime number can be multiplied up to a certain limit to mark other non-prime numbers for deletion
+        // Eg: 2 eliminates 4, 6, 8, 10, 12 and so on. The next unmarked number is 3, which in turn WOULD eliminate 6
+        // if it hadn't already been deleted and moves on to 9, 15, 21 and so on. Repeat for 5, 13, ...
+        for (int x = 0; x < primes.size(); x++) {
+            int currentPrime = primes.get(x);
+
+            for (int y = x + 1; y < primes.size(); y++) {
+                int numCompare = primes.get(y);
+
+                if (numCompare % currentPrime == 0) {
+                    primes.remove(y);
+                    // Offset the index, since all the others move forward 1 space
+                    y--;
+                }
+            }
+        }
+
+        return primes;
     }
 }
