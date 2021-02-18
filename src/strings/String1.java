@@ -1,6 +1,6 @@
 package strings;
 
-public class LeString {
+public class String1 {
     public static void main(String[] args) {
         System.out.println("helloName:");
         System.out.println("Charel = " + helloName("Charel"));

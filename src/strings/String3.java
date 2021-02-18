@@ -1,6 +1,6 @@
 package strings;
 
-public class LeString3 {
+public class String3 {
     public static void main(String[] args) {
         /*System.out.println("mixString :");
         System.out.println("abc;xyz = " + mixString("abc", "xyz"));

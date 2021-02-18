@@ -52,5 +52,6 @@ public class Hello {
         System.out.println("'b' can be found at indexes " + Arrays.toString(TestCase.indexOfAll(s, 'b', false)));
         System.out.println("And the count of 't' is " + TestCase.countChar(s, 't'));
         System.out.println("Substring 4-10 = \"" + TestCase.substr(s, 4, 10) + "\"");
+        System.out.println("Substring from 5 onward = \"" + TestCase.substr(s, 5) + "\"");
     }
 }

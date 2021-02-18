@@ -2,7 +2,7 @@ package strings;
 
 import java.util.Locale;
 
-public class LeString2 {
+public class String2 {
     /*
     Implement all methods as public static
      */

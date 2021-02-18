@@ -207,6 +207,16 @@ public class TestCase {
         return count;
     }
 
+    public static String substr(String s, int start) {
+        String retValue = "";
+
+        for (int x = start; x < s.length(); x++) {
+            retValue += s.charAt(x);
+        }
+
+        return retValue;
+    }
+
     public static String substr(String s, int start, int end) {
         String retValue = "";
 
