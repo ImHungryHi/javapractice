@@ -1,84 +1,68 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Random;
 
 public class TestCase {
-    public static void nestedLoops() {
-        int x = 0, y = 0;
-        System.out.println("----------------------------------------------");
+    /*
+     * -----------------------------------------------------------------------------------------
+     * -------------------------------------- INTRIGUING ---------------------------------------
+     * -----------------------------------------------------------------------------------------
+     */
+    // Get an array of prime numbers up to a limit, based on Eratosthenes' method
+    public static ArrayList<Integer> sieveOfEratosthenes(int limit) {
+        ArrayList<Integer> primes = new ArrayList<>();
 
-        while (x++ < 10) {
-            while (y++ < 10) System.out.printf("%4d", x * y);
-
-            System.out.println();
-            y = 0;
+        // Fill up, we'll go through a process of elimination later
+        for (int x = 2; x <= limit; x++) {
+            primes.add(x);
         }
 
-        System.out.println("----------------------------------------------");
+        // Now for the real deal - loop through all numbers and cross off any numbers later on in the list
+        // that aren't considered a prime number.
+        // The rules are simple - a prime number is greater than 1 and divisible by only 1 and itself.
+        // Any number prime number can be multiplied up to a certain limit to mark other non-prime numbers for deletion
+        // Eg: 2 eliminates 4, 6, 8, 10, 12 and so on. The next unmarked number is 3, which in turn WOULD eliminate 6
+        // if it hadn't already been deleted and moves on to 9, 15, 21 and so on. Repeat for 5, 13, ...
+        for (int x = 0; x < primes.size(); x++) {
+            int currentPrime = primes.get(x);
 
-        for (x = 0; x++ < 10;) {
-            for (y = 0; y++ < 10;)
-                    System.out.printf("%4d", x * y);
+            for (int y = x + 1; y < primes.size(); y++) {
+                int numCompare = primes.get(y);
 
-            System.out.println();
+                if (numCompare % currentPrime == 0) {
+                    primes.remove(y);
+                    // Offset the index, since all the others move forward 1 space
+                    y--;
+                }
+            }
         }
 
-        System.out.println("----------------------------------------------");
+        return primes;
     }
 
-    public static void whileLoops() {
-        int x = 0;
+    public static boolean[] eratosthenesAlternative(int limit) {
+        // Create an array of booleans from 0 to limit (incl) where all are defaulted to false (=prime so to speak)
+        // Cross off a number as being "no prime" by setting to true
+        boolean[] numbers = new boolean[limit + 1];
+        numbers[0] = true;
+        numbers[1] = true;
 
-        // LOOP 10 TIMES FROM 0-9
-        while (x < 10) {
-            System.out.printf("%3d", x);
-            x++;
+        for (int n = 2; n < (limit + 1); n++) {
+            if (!numbers[n]) {
+                for (int i = n * 2; i < (limit + 1); i += n) {
+                    numbers[i] = true;
+                }
+            }
         }
 
-        x = 0;
-        System.out.println();
-
-        // LOOP 10 TIMES FROM 0-9, PRINT 1-10
-        while (x++ < 10) System.out.printf("%3d", x);
-
-        x = 0;
-        System.out.println();
-
-        // LOOP 9 TIMES FROM 1-9, PRINT 1-9
-        while (++x < 10) System.out.printf("%3d", x);
-
-        x = 0;
-        System.out.println();
-
-        // LOOP 10 TIMES FROM 0-9, PRINT 1-10
-        while (10 > x++) System.out.printf("%3d", x);
-
-        x = 0;
-        System.out.println();
-
-        // LOOP 9 TIMES FROM 1-9, PRINT 1-9
-        while (10 > ++x) System.out.printf("%3d", x);
-        System.out.println();
+        return numbers;
     }
 
-    public static void forLoops() {
-        for (int x = 1; x <= 10; x++) System.out.printf("%3d", x);
-        System.out.println();
-
-        // For all 4 of the below situations, the index STARTS 1 index later than the initialization
-        // For these, you'll have to lower the threshold as x is incremented 1 index beyond
-        for (int x = 0; 9 >= x++;) System.out.printf("%3d", x);
-        System.out.println();
-        for (int x = 0; x++ <= 9;) System.out.printf("%3d", x);
-        System.out.println();
-
-        // These 2 will have 1 less loop
-        for (int x = 0; 10 >= ++x;) System.out.printf("%3d", x);
-        System.out.println();
-        for (int x = 0; ++x <= 10;) System.out.printf("%3d", x);
-        System.out.println();
-    }
-
+    /*
+     * -----------------------------------------------------------------------------------------
+     * ------------------------------------ OUT OF INTEREST ------------------------------------
+     * -----------------------------------------------------------------------------------------
+     */
     public static void demoOperands() {
         int a = 20, b = 20;
 
@@ -128,19 +112,69 @@ public class TestCase {
         else System.out.println(a + " ; " + b + " ; OR, both false - else");
     }
 
-    public static void timing() {
-        try {
-            System.out.println(Experiment.getIntervalTime());
-            Experiment.startTimer();
-            // println will add time to your total processing time
-            System.out.println(Experiment.getIntervalTime());
-            Thread.sleep(100);
-            System.out.println(Experiment.getIntervalTime());
-            System.out.println(Experiment.endTimer());
+    public static void printEratosthenesAlt() {
+        boolean[] eratosthenes = TestCase.eratosthenesAlternative(100);
+        for (int i = 0; i < eratosthenes.length; i++) System.out.print(i % 10);
+        System.out.println();
+        for (int i = 0; i < eratosthenes.length; i++) System.out.print((eratosthenes[i] ? 1 : 0));
+        System.out.println();
+        for (int i = 0; i < eratosthenes.length; i++) System.out.print((eratosthenes[i] ? "" : i + ";"));
+    }
+
+    public static void sayHello() {
+        System.out.println("Twas brillig and the slithy toves\n" +
+                "did gyre and gimble in the wabe.\n" +
+                "All mimsy were the borogoves\n" +
+                "and the mome raths outgrabe.\n" +
+                "\n" +
+                "Beware the Jabberwock, my son.\n" +
+                "The jaws that bite, the claws that catch.\n" +
+                "Beware the Jubjub bird and shun\n" +
+                "the frumious Bandersnatch.\n" +
+                "\n" +
+                "He took his vorpal sword in hand.\n" +
+                "Long time the manxome foe he sought.\n" +
+                "So rested he by the Tumtum tree\n" +
+                "and stood awhile in thought.\n" +
+                "\n" +
+                "And as in uffish thought he stood;\n" +
+                "the Bandersnatch, with eyes of flame,\n" +
+                "came whiffling through the Tulgey wood\n" +
+                "and burbled as it came.\n" +
+                "\n" +
+                "One, two! One, two! And through! And Through!\n" +
+                "His vorpal blade went snicker-snack.\n" +
+                "He left it dead, and with its head\n" +
+                "he went galumphing back.\n" +
+                "\n" +
+                "And hast thou slain the Jabberwock?\n" +
+                "Come to my arms, my beamish boy.\n" +
+                "Oh frabjous day! Calloo, callay!\n" +
+                "He chortled in his joy.\n" +
+                "\n" +
+                "Twas brillig and the slithy toves\n" +
+                "did gyre and gimble in the wabe.\n" +
+                "All mimsy were the borogoves\nand the mome raths outgrabe.\n" +
+                "\n" +
+                "Lewis Carroll - Jabberwocky");
+    }
+
+    public static void stringOperations() {
+        String s = "Twas brillig and the slithy toves did gyre and gimble in the wabe.";
+
+        for (int x = 0; x < s.length(); x++) {
+            int idx = x % 10;
+            System.out.print(idx);
         }
-        catch (Exception ex) {
-            // Thread.sleep won't allow for uncaught exceptions, even if no exception will occur
-        }
+
+        System.out.println("\n" + s + ";'b' can be found at idx " + Utilities.indexOf(s, 'b', false));
+        System.out.println("'b' can be found at indexes " + Arrays.toString(Utilities.indexOfAll(s, 'b', false)));
+        System.out.println("And the count of 't' is " + Utilities.countChar(s, 't'));
+        System.out.println("Substring 4-10 = \"" + Utilities.substr(s, 4, 10) + "\"");
+        System.out.println("Substring from 5 onward = \"" + Utilities.substr(s, 5) + "\"");
+
+        HashMap<Character, Integer> counts = Utilities.countLettersAlternative(s);
+        System.out.println(counts.toString());
     }
 
     public static void tafelVanTien() {
@@ -154,188 +188,123 @@ public class TestCase {
         }
     }
 
-    public static int indexOf(String s, char c, boolean caseSensitive) {
-        if (!caseSensitive) {
-            s = s.toLowerCase();
-            c = Character.toLowerCase(c);
+    public static void timing() {
+        try {
+            System.out.println(Utilities.getIntervalTime());
+            Utilities.startTimer();
+            // println will add time to your total processing time
+            System.out.println(Utilities.getIntervalTime());
+            Thread.sleep(100);
+            System.out.println(Utilities.getIntervalTime());
+            System.out.println(Utilities.endTimer());
         }
-
-        char[] arr = s.toCharArray();
-
-        for (int x = 0; x < arr.length; x++) {
-            if (arr[x] == c) {
-                return x;
-            }
+        catch (Exception ex) {
+            // Thread.sleep won't allow for uncaught exceptions, even if no exception will occur
         }
-
-        return -1;
     }
 
-    public static int[] indexOfAll(String s, char c, boolean caseSensitive) {
-        if (!caseSensitive) {
-            s = s.toLowerCase();
-            c = Character.toLowerCase(c);
-        }
+    /*
+     * -----------------------------------------------------------------------------------------
+     * ----------------------------------------- LOOPS -----------------------------------------
+     * -----------------------------------------------------------------------------------------
+     */
+    public static void forLoops() {
+        for (int x = 1; x <= 10; x++) System.out.printf("%3d", x);
+        System.out.println();
 
-        ArrayList<Integer> list = new ArrayList<>();
-        char[] arr = s.toCharArray();
-        int[] retArray;
+        // For all 4 of the below situations, the index STARTS 1 index later than the initialization
+        // For these, you'll have to lower the threshold as x is incremented 1 index beyond
+        for (int x = 0; 9 >= x++;) System.out.printf("%3d", x);
+        System.out.println();
+        for (int x = 0; x++ <= 9;) System.out.printf("%3d", x);
+        System.out.println();
 
-        for (int x = 0; x < arr.length; x++) {
-            if (arr[x] == c) {
-                list.add(x);
-            }
-        }
-
-        retArray = new int[list.size()];
-
-        for (int x = 0; x < list.size(); x++) {
-            retArray[x] = list.get(x);
-        }
-
-        return retArray;
+        // These 2 will have 1 less loop
+        for (int x = 0; 10 >= ++x;) System.out.printf("%3d", x);
+        System.out.println();
+        for (int x = 0; ++x <= 10;) System.out.printf("%3d", x);
+        System.out.println();
     }
 
-    public static int countChar(String s, char c) {
-        char[] arr = s.toLowerCase().toCharArray();
-        int count = 0;
+    public static void nestedLoops() {
+        int x = 0, y = 0;
+        System.out.println("----------------------------------------------");
 
-        for (char value : arr) {
-            if (value == c) {
-                count++;
-            }
+        while (x++ < 10) {
+            while (y++ < 10) System.out.printf("%4d", x * y);
+
+            System.out.println();
+            y = 0;
         }
 
-        return count;
+        System.out.println("----------------------------------------------");
+
+        for (x = 0; x++ < 10;) {
+            for (y = 0; y++ < 10;)
+                System.out.printf("%4d", x * y);
+
+            System.out.println();
+        }
+
+        System.out.println("----------------------------------------------");
     }
 
-    public static String substr(String s, int start) {
-        String retValue = "";
+    public static void whileLoops() {
+        int x = 0;
 
-        for (int x = start; x < s.length(); x++) {
-            retValue += s.charAt(x);
+        // LOOP 10 TIMES FROM 0-9
+        while (x < 10) {
+            System.out.printf("%3d", x);
+            x++;
         }
 
-        return retValue;
+        x = 0;
+        System.out.println();
+
+        // LOOP 10 TIMES FROM 0-9, PRINT 1-10
+        while (x++ < 10) System.out.printf("%3d", x);
+
+        x = 0;
+        System.out.println();
+
+        // LOOP 9 TIMES FROM 1-9, PRINT 1-9
+        while (++x < 10) System.out.printf("%3d", x);
+
+        x = 0;
+        System.out.println();
+
+        // LOOP 10 TIMES FROM 0-9, PRINT 1-10
+        while (10 > x++) System.out.printf("%3d", x);
+
+        x = 0;
+        System.out.println();
+
+        // LOOP 9 TIMES FROM 1-9, PRINT 1-9
+        while (10 > ++x) System.out.printf("%3d", x);
+        System.out.println();
     }
 
-    public static String substr(String s, int start, int end) {
-        String retValue = "";
+    /*
+     * -----------------------------------------------------------------------------------------
+     * ------------------------------- CODEGYM USEFUL TO REMEMBER ------------------------------
+     * -----------------------------------------------------------------------------------------
+     */
 
-        for (int x = start; x < end; x++) {
-            retValue += s.charAt(x);
-        }
-
-        return retValue;
+    public static double getDistance(int x1, int x2, int y1, int y2) {
+        return Math.sqrt(Math.pow((double) (x1 - x2), 2) + Math.pow((double) (y1 - y2), 2));
     }
 
-    public static int[] randomArray(int size) {
-        Random random = new Random();
-        int[] result = new int[size];
+    public static int sumDigitsInNumber(int number) {
+        int digits = String.valueOf(number).length();
+        int sum = 0, intermediary = number;
+        int[] numbers = new int[digits];
 
-        for (int x = 0; x < size; x++) {
-            result[x] = random.nextInt();
+        for (int x = (digits - 1); x >= 0; x--) {
+            int temp = (int) (number / Math.pow(10, x));
+            number = number - (int) (temp * Math.pow(10, x));
+            sum += temp;
         }
 
-        return result;
-    }
-
-    public static int[] randomArray(int size, int bound) {
-        Random random = new Random();
-        int[] result = new int[size];
-
-        for (int x = 0; x < size; x++) {
-            result[x] = random.nextInt(bound);
-        }
-
-        return result;
-    }
-
-    public static int inRange(int[] array, int low, int high) {
-        int count = 0;
-
-        for (int x : array) {
-            if (x >= low && x <= high) {
-                count++;
-            }
-        }
-
-        return count;
-    }
-
-    public static int[] makeHistogram(int[] arr) {
-        int[] result = new int[10];
-
-        for (int x = 0; x < result.length; x++) {
-            result[x] = inRange(arr, x * 10, (x * 10) + 10);
-        }
-
-        return result;
-    }
-
-    public static int[] countLetters(String str) {
-        int[] counts = new int[26];
-        char[] chars = str.toLowerCase().toCharArray();
-
-        for (char c : chars) {
-            // places an index between 0 and 25 (incl) as 'a' has value 97 and 'z' has value 122
-            int index = c - 'a';
-            counts[index]++;
-        }
-
-        return counts;
-    }
-
-    public static HashMap<Character, Integer> countLettersAlternative(String str) {
-        HashMap<Character, Integer> counts = new HashMap<>();
-        char[] chars = str.toLowerCase().toCharArray();
-
-        for (char c : chars) {
-            int indexer = c - 'a';
-
-            // Only count a-z
-            if (indexer >= 0 && indexer <= 25) {
-                if (counts.containsKey(c)) {
-                    int val = counts.get(c) + 1;
-                    counts.put(c, val);
-                } else {
-                    counts.put(c, 1);
-                }
-            }
-        }
-
-        return counts;
-    }
-
-    // Get an array of prime numbers up to a limit, based on Eratosthenes' method
-    public static ArrayList<Integer> sieveOfEratosthenes(int limit) {
-        ArrayList<Integer> primes = new ArrayList<>();
-
-        // Fill up, we'll go through a process of elimination later
-        for (int x = 2; x <= limit; x++) {
-            primes.add(x);
-        }
-
-        // Now for the real deal - loop through all numbers and cross off any numbers later on in the list
-        // that aren't considered a prime number.
-        // The rules are simple - a prime number is greater than 1 and divisible by only 1 and itself.
-        // Any number prime number can be multiplied up to a certain limit to mark other non-prime numbers for deletion
-        // Eg: 2 eliminates 4, 6, 8, 10, 12 and so on. The next unmarked number is 3, which in turn WOULD eliminate 6
-        // if it hadn't already been deleted and moves on to 9, 15, 21 and so on. Repeat for 5, 13, ...
-        for (int x = 0; x < primes.size(); x++) {
-            int currentPrime = primes.get(x);
-
-            for (int y = x + 1; y < primes.size(); y++) {
-                int numCompare = primes.get(y);
-
-                if (numCompare % currentPrime == 0) {
-                    primes.remove(y);
-                    // Offset the index, since all the others move forward 1 space
-                    y--;
-                }
-            }
-        }
-
-        return primes;
+        return sum;
     }
 }

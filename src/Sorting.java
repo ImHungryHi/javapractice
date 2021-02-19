@@ -1,12 +1,42 @@
-import java.util.Date;
-import java.util.Collections;
 import java.util.ArrayList;
+import java.util.Collections;
 
-public class Experiment {
-    private static long startTime = 0;
-    private static long timeMS = 0;
-    private static boolean timerStarted = false;
+public class Sorting {
+    public static void sort(String[] array) {
+        ArrayList<String> strings = new ArrayList<String>();
+        ArrayList<Integer> numbers = new ArrayList<Integer>();
 
+        for (String s : array) {
+            // try-catch turned into an if-else
+            try {
+                int num = Integer.parseInt(s);
+                numbers.add(num);
+            } catch (NumberFormatException ex) {
+                // item is String, not Integer
+                strings.add(s);
+            }
+        }
+
+        Collections.sort(strings);
+        numbers.sort(Collections.reverseOrder());
+        int stringId = 0, numId = 0;
+
+        for (int i = 0; i < array.length; i++) {
+            try {
+                int num = Integer.parseInt(array[i]);
+                array[i] = numbers.get(numId++).toString();
+            }
+            catch (NumberFormatException ex) {
+                array[i] = strings.get(stringId++);
+            }
+        }
+    }
+
+    /*
+     * -----------------------------------------------------------------------------------------
+     * ------------------------------------- KNOWN METHODS -------------------------------------
+     * -----------------------------------------------------------------------------------------
+     */
     public static void bubbleSort () {
         boolean notFinished = true, stoppedSwitching;
         int[] arrToSort = { 7, 3, 4, 1, 2, 8, 9 };
@@ -96,71 +126,5 @@ public class Experiment {
 
     public static void radixSort() {
         //
-    }
-
-    public static void startTimer() {
-        if (!timerStarted) {
-            startTime = System.currentTimeMillis();
-            timeMS = 0;
-            timerStarted = true;
-        }
-    }
-
-    public static long getIntervalTime() {
-        if (timerStarted) return (new Date()).getTime() - startTime;
-
-        // Default FUBAR value
-        return 0;
-    }
-
-    public static long endTimer() {
-        if (timerStarted) {
-            timeMS = (new Date()).getTime() - startTime;
-            timerStarted = false;
-        }
-        else timeMS = 0;
-
-        return timeMS;
-    }
-
-    public static void sort(String[] array) {
-        ArrayList<String> strings = new ArrayList();
-        ArrayList<Integer> numbers = new ArrayList();
-
-        for (String s : array) {
-            // try-catch turned into an if-else
-            try {
-                int num = Integer.parseInt(s);
-                numbers.add(num);
-            } catch (NumberFormatException ex) {
-                // item is String, not Integer
-                strings.add(s);
-            }
-        }
-
-        Collections.sort(strings);
-        numbers.sort(Collections.reverseOrder());
-        int stringId = 0, numId = 0;
-
-        for (int i = 0; i < array.length; i++) {
-            try {
-                int num = Integer.parseInt(array[i]);
-                array[i] = numbers.get(numId++).toString();
-            }
-            catch (NumberFormatException ex) {
-                array[i] = strings.get(stringId++);
-            }
-        }
-    }
-
-    public static boolean isNumeric(String s) {
-        try {
-            int num = Integer.parseInt(s);
-        }
-        catch (NumberFormatException ex) {
-            return false;
-        }
-
-        return true;
     }
 }
