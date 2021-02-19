@@ -17,4 +17,29 @@ public class Recursive {
             samIAm(passThrough, prefix + arrInput[x]);
         }
     }
+
+    public static int getFactorial(int n) {
+        if (n == 2) return n;
+        return n * getFactorial(n - 1);
+    }
+
+    public static int getFactorialShort(int n) {
+        return (n == 2) ? n : n * getFactorial(n - 1);
+    }
+
+    public static int getFibonacci(int n, int m, int limit) {
+        System.out.print(n + ";");
+
+        if (m <= limit) {
+            return getFibonacci(m, (n + m), limit);
+        }
+        else {
+            System.out.print(m + ";");
+            return n;
+        }
+    }
+
+    public static int getFibonacciShort(int n, int m, int limit) {
+        return (m <= limit) ? getFibonacci(m, (n + m), limit) : n;
+    }
 }

@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 
 public class TestCase {
     /*
@@ -112,6 +110,18 @@ public class TestCase {
         else System.out.println(a + " ; " + b + " ; OR, both false - else");
     }
 
+    public static ArrayList<int[]> inlineArrays() {
+        ArrayList<int[]> list = new ArrayList<int[]>();
+
+        list.add(new int[]{1, 2, 3, 4, 5});
+        list.add(new int[]{1, 2});
+        list.add(new int[]{4, 3, 2, 1});
+        list.add(new int[]{0, 0, 0, 0, 0, 0, 0});
+        list.add(new int[0]);
+
+        return list;
+    }
+
     public static void printEratosthenesAlt() {
         boolean[] eratosthenes = TestCase.eratosthenesAlternative(100);
         for (int i = 0; i < eratosthenes.length; i++) System.out.print(i % 10);
@@ -119,6 +129,15 @@ public class TestCase {
         for (int i = 0; i < eratosthenes.length; i++) System.out.print((eratosthenes[i] ? 1 : 0));
         System.out.println();
         for (int i = 0; i < eratosthenes.length; i++) System.out.print((eratosthenes[i] ? "" : i + ";"));
+    }
+
+    public static void printFactorial(int n) {
+        System.out.println(Recursive.getFactorial(n));
+    }
+
+    public static void printFibonacci(int n) {
+        int fibo = Recursive.getFibonacci(0, 1, n);
+        System.out.println("\nBiggest Fibonacci number beneath " + n + " = " + fibo);
     }
 
     public static void sayHello() {
@@ -289,9 +308,19 @@ public class TestCase {
      * ------------------------------- CODEGYM USEFUL TO REMEMBER ------------------------------
      * -----------------------------------------------------------------------------------------
      */
-
     public static double getDistance(int x1, int x2, int y1, int y2) {
         return Math.sqrt(Math.pow((double) (x1 - x2), 2) + Math.pow((double) (y1 - y2), 2));
+    }
+
+    public static void hashSetDemo() {
+        Set<Collections.Cat> cats = Collections.createCats();
+        Set<Collections.Dog> dogs = Collections.createDogs();
+
+        Set<Object> pets = Collections.join(cats, dogs);
+        Collections.printPets(pets);
+
+        Collections.removeCats(pets, cats);
+        Collections.printPets(pets);
     }
 
     public static int sumDigitsInNumber(int number) {
