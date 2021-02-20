@@ -18,13 +18,19 @@ public class Recursive {
         }
     }
 
-    public static int getFactorial(int n) {
+    public static long getFactorial(long n) {
         if (n == 2) return n;
         return n * getFactorial(n - 1);
     }
 
-    public static int getFactorialShort(int n) {
-        return (n == 2) ? n : n * getFactorial(n - 1);
+    public static long getFactorialTail(long n, long a) {
+        if (n == 0) return a;
+        return getFactorialTail(n - 1, a * n);
+    }
+
+    // This method takes longer, don't use
+    public static long getFactorialShort(long n) {
+        return (n == 2) ? n : n * getFactorialShort(n - 1);
     }
 
     public static int getFibonacci(int n, int m, int limit) {
@@ -39,6 +45,7 @@ public class Recursive {
         }
     }
 
+    // Actually shorter runtime than the above
     public static int getFibonacciShort(int n, int m, int limit) {
         return (m <= limit) ? getFibonacci(m, (n + m), limit) : n;
     }

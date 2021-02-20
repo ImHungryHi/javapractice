@@ -61,6 +61,11 @@ public class TestCase {
      * ------------------------------------ OUT OF INTEREST ------------------------------------
      * -----------------------------------------------------------------------------------------
      */
+    public static void doBubbleSort() {
+        int[] list = { 8, 9, 15, 7, 1, 1};
+        Sorting.bubbleSortShort(list);
+    }
+
     public static void demoOperands() {
         int a = 20, b = 20;
 
@@ -220,6 +225,62 @@ public class TestCase {
         catch (Exception ex) {
             // Thread.sleep won't allow for uncaught exceptions, even if no exception will occur
         }
+    }
+
+    public static void compareBubbleSortTiming() {
+        System.out.println("Bubble sort comparison");
+
+        int[] arrInput = { 7, 3, 4, 1, 2, 8, 9 };
+        Utilities.startTimer();
+        Sorting.bubbleSort();   // 4ms
+        long myTime = Utilities.endTimer();
+        Utilities.startTimer();
+        Sorting.bubbleSortShort(arrInput);  // 0ms
+        long alternativeTime = Utilities.endTimer();
+
+        System.out.println("My time = " + myTime + "; Alternative time = " + alternativeTime + "\nDifference = " + (myTime - alternativeTime) + "\n");
+    }
+
+    public static void compareEratosthenesTiming() {
+        System.out.println("Eratosthenes comparison");
+
+        Utilities.startTimer();
+        sieveOfEratosthenes(1000);  // 8ms
+        long myTime = Utilities.endTimer();
+        Utilities.startTimer();
+        eratosthenesAlternative(1000);  // 0ms
+        long alternativeTime = Utilities.endTimer();
+
+        System.out.println("My time = " + myTime + "; Alternative time = " + alternativeTime + "\nDifference = " + (myTime - alternativeTime) + "\n");
+    }
+
+    public static void compareFactorialTiming() {
+        System.out.println("Factorial comparison");
+
+        Utilities.startTimer();
+        long fact = Recursive.getFactorial(20);   // 0ms
+        long myTime = Utilities.endTimer();
+        Utilities.startTimer();
+        long factShort = Recursive.getFactorialShort(20);  // 1ms
+        long alternativeTime = Utilities.endTimer();
+        Utilities.startTimer();
+        long factTail = Recursive.getFactorialTail(20, 1);
+        long tailTime = Utilities.endTimer();
+
+        System.out.println("My time = " + myTime + "; Alternative time = " + alternativeTime + "\nTail time = " + tailTime + "\n");
+    }
+
+    public static void compareFibonacciTiming() {
+        System.out.println("Fibonacci comparison");
+
+        Utilities.startTimer();
+        Recursive.getFibonacci(0, 1, 1000); // 0s
+        long myTime = Utilities.endTimer();
+        Utilities.startTimer();
+        Recursive.getFibonacciShort(0, 1, 1000);    // 17s
+        long alternativeTime = Utilities.endTimer();
+
+        System.out.println("\nMy time = " + myTime + "; Alternative time = " + alternativeTime + "\nDifference = " + (myTime - alternativeTime) + "\n");
     }
 
     /*

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class Sorting {
@@ -84,6 +85,8 @@ public class Sorting {
             // on the first run, the last and penultimate numbers will already be in the correct position
             // on the next runs, the "limit" we set for the last checks will come sooner and sooner
         }
+
+        System.out.println(Arrays.toString(arrToSort));
     }
 
     // Not my solution
@@ -99,6 +102,8 @@ public class Sorting {
                 }
             }
         }
+
+        System.out.println(Arrays.toString(list));
     }
 
     /* SO CALLED OPTIMAL SORTING METHOD
