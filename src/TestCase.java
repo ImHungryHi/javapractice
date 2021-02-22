@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.*;
 
 public class TestCase {
@@ -61,9 +62,31 @@ public class TestCase {
      * ------------------------------------ OUT OF INTEREST ------------------------------------
      * -----------------------------------------------------------------------------------------
      */
+    // Integers compare by using the reference to their value instead of their value itself.
+    // The edge case being that they can be compared correctly if they are not over 127... (auto-boxing)
+    // This is because the virtual machine optimizes the code because numbers up to 127 are stored in the cache.
+    // It is a preset limit that is just there, a decision was made for any weird reason.
+    // The reference will be the same for -128 to 127 because these are already stored in cache.
+    public static int compareAutoBoxing() {
+        Integer a = 100, b = 100;   // TRUE
+        //Integer a = 128, b = 128; // FALSE
+        if (a == b) return 0;
+        else if (a < b) return -1;
+        return 1;
+
+        // Use a.equals(b) instead
+    }
+
     public static void doBubbleSort() {
         int[] list = { 8, 9, 15, 7, 1, 1};
         Sorting.bubbleSortShort(list);
+    }
+
+    public static void doBubbleRecursive() {
+        int[] list = { 8, 9, 15, 7, 1, 1};
+        System.out.println(Arrays.toString(list));
+        Recursive.bubbleSort(list, list.length - 1);
+        System.out.println(Arrays.toString(list));
     }
 
     public static void demoOperands() {
@@ -125,6 +148,35 @@ public class TestCase {
         list.add(new int[0]);
 
         return list;
+    }
+
+    public static Integer parseInteger(String s) {
+        // There is no real performance difference between valueOf and parseInt.
+        // The only difference you'll find is when you want the object Integer - use valueOf - and when you
+        //   want the primitive int - use parseInt.
+        int a = Integer.parseInt(s);
+        Integer b = Integer.valueOf(s);
+        Integer c = Integer.valueOf(a); // You can also parse the primitive into an object
+        Integer d = a;                  //   or straight up put the value of a primitive into the object
+
+        // You can return any of the above
+        return a;
+    }
+
+    public static void pointingFingers() {
+        Point pnt = new Point(3, 4);
+        int x = pnt.x;
+        int y = pnt.y;
+    }
+
+    public static void pointFingers(Point point) {
+        point.x = 1;                    // These lines will actually change the values beyond this scope
+        point.y = 2;                    //    since we use the reference to point in the parameter to change the content
+        System.out.println(point);
+        point = new Point(5, 6);    // This will make it so that we overwrite the reference and change the scope
+        //    so that the values of point only change within this method. the object in the calling method
+        //    won't change
+        System.out.println(point);
     }
 
     public static void printEratosthenesAlt() {

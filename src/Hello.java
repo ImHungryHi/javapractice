@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class Hello {
     public static void main(String[] args) {
         //TestCase.sayHello();
@@ -13,9 +15,10 @@ public class Hello {
         //System.out.println(TestCase.sieveOfEratosthenes(100).toString());
         //TestCase.printFactorial(6);
         //TestCase.printFibonacci(100);
-        TestCase.compareBubbleSortTiming();
-        TestCase.compareEratosthenesTiming();
-        TestCase.compareFactorialTiming();
-        TestCase.compareFibonacciTiming();
+        //TestCase.compareBubbleSortTiming();
+        //TestCase.compareEratosthenesTiming();
+        //TestCase.compareFactorialTiming();
+        //TestCase.compareFibonacciTiming();
+        //TestCase.doBubbleRecursive();
     }
 }

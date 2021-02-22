@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Recursive {
     public static void samIAm(String[] arrInput, String prefix) {
         if (arrInput.length == 1)
@@ -48,5 +50,20 @@ public class Recursive {
     // Actually shorter runtime than the above
     public static int getFibonacciShort(int n, int m, int limit) {
         return (m <= limit) ? getFibonacci(m, (n + m), limit) : n;
+    }
+
+    public static void bubbleSort(int[] arr, int n) {
+        for (int j = 0; j <= n - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+
+        System.out.println(Arrays.toString(arr));
+
+        if (n == 2) return;
+        bubbleSort(arr, n - 1);
     }
 }
