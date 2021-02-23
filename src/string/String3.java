@@ -320,7 +320,7 @@ public class String3 {
         int idxDelim = str.indexOf(delim);
         int idxStart = 0;
 
-        while (idxDelim >= 0 && idxDelim < (str.length() - delim.length())) {
+        while (idxDelim >= 0 && idxDelim <= (str.length() - delim.length())) {
             String sub = str.substring (idxStart, idxDelim);
             int nextDelim = str.indexOf(delim, (idxDelim + 1));
 
@@ -338,6 +338,7 @@ public class String3 {
                 }
             }
 
+            idxStart = idxDelim + 2;
             idxDelim = nextDelim;
         }
 
