@@ -226,8 +226,8 @@ public class String1 {
             return "Nope!";
         }
 
-        String aNonStart = a.substring(1, a.length() - 1);
-        String bNonStart = b.substring(1, b.length() - 1);
+        String aNonStart = a.substring(1, a.length());
+        String bNonStart = b.substring(1, b.length());
 
         return aNonStart + bNonStart;
     }
