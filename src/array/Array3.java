@@ -62,6 +62,19 @@ public class Array3 {
     notAlone([3, 4], 3) → [3, 4]
      */
     public static int[] notAlone(int[] arr, int num) {
+        // Start at second value, since there's nothing before it
+        // End at the penultimate value, since there's nothing after it
+        for (int x = 1; x < (arr.length - 1); x++) {
+            if (arr[x] == num && arr[x - 1] != num && arr[x + 1] != num) {
+                if (arr[x - 1] > arr[x + 1]) {
+                    arr[x] = arr[x - 1];
+                }
+                else {
+                    arr[x] = arr[x + 1];
+                }
+            }
+        }
+
         return arr;
     }
 
