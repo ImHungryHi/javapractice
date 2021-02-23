@@ -24,6 +24,13 @@ public class Array3 {
     shiftLeft([1]) → [1]
      */
     public static int[] shiftLeft(int[] arr) {
+        int firstDigit = arr[0];
+
+        for (int x = 0; x < (arr.length - 1); x++) {
+            arr[x] = arr[x + 1];
+        }
+
+        arr[arr.length - 1] = firstDigit;
         return arr;
     }
 
