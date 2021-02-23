@@ -427,7 +427,7 @@ public class String1 {
     lastChars("hi", "") → "h@"
      */
     public static String lastChars(String a, String b) {
-        String aRet = (a.length() == 0 ? "@" : Character.toString(a.charAt(a.length() - 1)));
+        String aRet = (a.length() == 0 ? "@" : Character.toString(a.charAt(0)));
         String bRet = (b.length() == 0 ? "@" : Character.toString(b.charAt(b.length() - 1)));
         return aRet + bRet;
     }
