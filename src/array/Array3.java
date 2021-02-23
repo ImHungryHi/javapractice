@@ -12,7 +12,13 @@ public class Array3 {
     fizzArray3(1, 3) → [1, 2]
      */
     public static int[] fizzArray3(int start, int end) {
-        return new int[end-start];
+        int[] retArray = new int[end - start];
+
+        for (int x = 0; x < (end - start); x++) {
+            retArray[x] = x + start;
+        }
+
+        return retArray;
     }
 
     /*
