@@ -169,6 +169,10 @@ public class String1 {
     firstTwo("ab") → "ab"
      */
     public static String firstTwo(String str) {
+        if (str.length() < 2) {
+            return str.substring(0, str.length());
+        }
+
         return str.substring(0, 2);
     }
 
