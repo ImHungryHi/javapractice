@@ -1,6 +1,12 @@
 import java.awt.*;
+import java.util.Arrays;
 
 public class Hello {
+    // Om testmodules toe te voegen, maak je een subdirectory in de root (naast src) en markeer je deze als "test sources root"
+    //   Hierin kun je tests schrijven om je src te doorlopen, liefst gebruik makende van junit
+    // Om jUnit te gebruiken ga je naar de maven repositories, kijk je naar de nieuwste versie van junit en keer je terug naar IDEA.
+    //   In IntelliJ kun je dan via file > project structure > libraries een library toevoegen uit maven.
+    // Om tests te genereren vanuit een klasse, klik je rechts op de klassenaam, kies show context actions en daarna create tests
     public static void main(String[] args) {
         //TestCase.sayHello();
         //TestCase.tafelVanTien();
