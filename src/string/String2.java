@@ -144,12 +144,14 @@ public class String2 {
     public static boolean xyzThere(String str) {
         int idx = str.indexOf("xyz");
 
-        if (idx < 1) {
+        if (idx < 0) {
             return false;
         }
+        else if (idx == 0) {
+            return true;
+        }
 
-
-        return str.charAt(idx - 1) == '.';
+        return str.charAt(idx - 1) != '.';
     }
 
     /*
