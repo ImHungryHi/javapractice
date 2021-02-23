@@ -75,7 +75,19 @@ public class Array3 {
     zeroFront([1, 0]) → [0, 1]
      */
     public static int[] zeroFront(int[] arr) {
-        return arr;
+        int[] retArray = new int[arr.length];
+        int idxFront = 0, idxEnd = arr.length - 1;
+
+        for (int x : arr) {
+            if (x == 0) {
+                retArray[idxFront++] = x;
+            }
+            else {
+                retArray[idxEnd--] = x;
+            }
+        }
+
+        return retArray;
     }
 
     /*
@@ -156,7 +168,7 @@ public class Array3 {
                 retArray[idxFront++] = x;
             }
             else {
-                retArray[idxEnd++] = x;
+                retArray[idxEnd--] = x;
             }
         }
 
@@ -180,12 +192,13 @@ public class Array3 {
     public static String[] fizzBuzz(int start, int end) {
         String[] retArray = new String[end - 1];
 
-        for (int x = start; x < end; x++) {
-            int restOf3 = x % 3;
-            int restOf5 = x % 5;
+        for (int x = 0; x < (end - 1); x++) {
+            int restOf3 = (x + 1) % 3;
+            int restOf5 = (x + 1) % 5;
+            retArray[x] = "";
 
             if (restOf3 != 0 && restOf5 != 0) {
-                retArray[x] = Integer.toString(x);
+                retArray[x] = Integer.toString(x + 1);
             }
 
             if (restOf3 == 0) {
