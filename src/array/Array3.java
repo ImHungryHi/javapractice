@@ -36,6 +36,17 @@ public class Array3 {
     tenRun([10, 1, 9, 20]) → [10, 10, 10, 20]
      */
     public static int[] tenRun(int[] arr) {
+        int mult = 0;
+
+        for (int x = 0; x < arr.length; x++) {
+            if (arr[x] % 10 == 0) {
+                mult = arr[x];
+            }
+            else if (mult != 0) {
+                arr[x] = mult;
+            }
+        }
+
         return arr;
     }
 
