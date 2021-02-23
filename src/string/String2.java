@@ -94,12 +94,13 @@ public class String2 {
     countCode("cozexxcope") → 2
      */
     public static int countCode(String str) {
-        int count = 0, start = 0;
+        int count = 0;
         str = str.toLowerCase();
+        int idxOfCo = str.indexOf("co");
 
-        while (str.toLowerCase().indexOf("co", start) >= 0) {
-            if (str.charAt(start + 3) == 'e') count++;
-            start += 3;
+        while (idxOfCo >= 0) {
+            if (str.charAt(idxOfCo + 3) == 'e') count++;
+            idxOfCo = str.indexOf("co", (idxOfCo + 3));
         }
 
         return count;
