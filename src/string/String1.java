@@ -649,7 +649,7 @@ public class String1 {
         boolean checkSecond = str.toLowerCase().charAt(len) == 'x';
 
         if (checkFirst && checkSecond) {
-            return str.substring(1);
+            return str.substring(1, len);
         }
         else if (checkFirst) {
             return str.substring(1);
