@@ -259,7 +259,7 @@ public class String1 {
     right2("Hi") → "Hi"
      */
     public static String right2(String str) {
-        if (str.length() < 3) {
+        if (str.length() < 2) {
             return "Nope!";
         }
 
