@@ -49,7 +49,19 @@ public class Array3 {
     pre4([1, 4, 4]) → [1]
      */
     public static int[] pre4(int[] arr) {
-        return arr;
+        int idx = 0;
+
+        while (arr[idx] != 4) {
+            idx++;
+        }
+
+        int[] retArray = new int[idx];
+
+        while (--idx >= 0) {
+            retArray[idx] = arr[idx];
+        }
+
+        return retArray;
     }
 
     /*
