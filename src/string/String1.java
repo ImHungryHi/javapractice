@@ -388,18 +388,13 @@ public class String1 {
     hasBad("xxbadxx") → false
      */
     public static boolean hasBad(String str) {
-        boolean result = false;
-
-        if (str.length() > 3) {
-            boolean index0IsBad = str.substring(0, 3).equalsIgnoreCase("bad");
-            result = index0IsBad;
-        }
-        else if (str.length() > 4) {
-            boolean index1IsBad = str.substring(1, 4).equalsIgnoreCase("bad");
-            result = index1IsBad;
+        if (str.length() >= 3) {
+            if (str.toLowerCase().indexOf("bad") <= 1) {
+                return true;
+            }
         }
 
-        return result;
+        return false;
     }
 
     /*
