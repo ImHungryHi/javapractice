@@ -440,10 +440,12 @@ public class String1 {
     conCat("abc", "") → "abc"
      */
     public static String conCat(String a, String b) {
-        boolean stringsOverlapByOne = a.charAt(a.length() - 1) == b.charAt(0);
+        if (a.length() > 0 && b.length() > 0) {
+            boolean stringsOverlapByOne = a.charAt(a.length() - 1) == b.charAt(0);
 
-        if (stringsOverlapByOne) {
-            return a + b.substring(1);
+            if (stringsOverlapByOne) {
+                return a + b.substring(1);
+            }
         }
 
         return a + b;
