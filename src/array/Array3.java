@@ -139,7 +139,15 @@ public class Array3 {
 
         for (int x = 0; x < arr.length; x++) {
             if (arr[x] == 0 && x < (arr.length - 1)) {
-                retArray[x] = arr[x + 1];
+                int maxOdd = 0;
+
+                for (int y = x + 1; y < arr.length; y++) {
+                    if (arr[y] % 2 != 0 && arr[y] > maxOdd) {
+                        maxOdd = arr[y];
+                    }
+                }
+
+                retArray[x] = maxOdd;
             }
             else {
                 retArray[x] = arr[x];
