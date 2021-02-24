@@ -1,4 +1,6 @@
 import java.io.*;
+import java.nio.file.FileSystemException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -40,39 +42,28 @@ public class AuthorizedPersonnelOnly {
     private static StackTraceElement[] method1() {
         return method2();
     }
-
     private static StackTraceElement[] method2() {
         return method3();
     }
-
     private static StackTraceElement[] method3() {
         return method4();
     }
-
     private static StackTraceElement[] method4() {
         return method5();
     }
-
     private static StackTraceElement[] method5() {
         return method6();
     }
-
     private static StackTraceElement[] method6() {
         return method7();
     }
-
     private static StackTraceElement[] method7() {
         return method8();
     }
-
     private static StackTraceElement[] method8() {
         return method9();
     }
-
-    private static StackTraceElement[] method9() {
-        return method10();
-    }
-
+    private static StackTraceElement[] method9() { return method10(); }
     private static StackTraceElement[] method10() {
         return Thread.currentThread().getStackTrace();
     }
@@ -176,4 +167,93 @@ public class AuthorizedPersonnelOnly {
             }
         }
     }
+
+    /*
+     * --------- Creating your own exceptions, inheriting other Exception classes ---------
+     */
+    // Checked vs unchecked exceptions (checked at compile time) - first 2 are examples of the former
+    static class MyException extends IOException {}
+    static class MyException2 extends SQLException {}
+    static class MyException3 extends NullPointerException {}
+    static class MyException4 extends ArithmeticException {}
+
+    // You can further extend these Exceptions and they'll be instances of all parent Exception classes
+    static class Exception1 extends Exception {}
+    static class Exception2 extends Exception1 {}
+    static class Exception3 extends Exception2 {}
+
+    // Grouping and inheriting exception classes; when exceptions inherit one another, catch them
+    // from the lowest level all the way up to the root.
+    // Eg: Exception3 inherits from Exception2, Exception2 from 1, 1 from Exception, catch in this order
+    public static void throwExceptionByMethodSignature() throws Exception1, Exception2, Exception3 {
+        int i = (int) (Math.random() * 3);
+        if (i == 0)
+            throw new Exception1(); // No try-catch necessary because the method signature already throws one of these exceptions
+        if (i == 1)
+            throw new Exception2();
+        if (i == 2)
+            throw new Exception3();
+    }
+
+    public static void catchExceptionFromSignature() {
+        try {
+            throwExceptionByMethodSignature();
+        }
+        // This sequence will catch the specific Exception instance, so that Exception3 - being a child of 1 - doesn't catch 1
+        catch(Exception3 ex) {
+            //
+        }
+        catch(Exception2 ex) {
+            //
+        }
+        catch(Exception1 ex) {
+            //
+        }
+    }
+
+    // ++++++++++++++++++++++++++++++++++++ //
+    // Catch, log, rethrow and catch again to log
+    public static StatelessBean BEAN = new StatelessBean();
+
+    public static void catchLogRethrowCatchExceptions() {
+        try {
+            handleExceptions();
+        }
+        catch (FileSystemException ex) {
+            BEAN.log(ex);
+        }
+    }
+
+    public static void handleExceptions() throws FileSystemException {
+        try {
+            BEAN.throwExceptions();
+        }
+        catch (FileSystemException ex) {
+            BEAN.log(ex);
+            throw ex;
+        }
+        catch (CharConversionException ex) {
+            BEAN.log(ex);
+        }
+        catch (IOException ex) {
+            BEAN.log(ex);
+        }
+    }
+
+    public static class StatelessBean {
+        public void log(Exception exception) {
+            System.out.println(exception.getMessage() + ", " + exception.getClass().getSimpleName());
+        }
+
+        public void throwExceptions() throws CharConversionException, FileSystemException, IOException {
+            int i = (int) (Math.random() * 3);
+            if (i == 0)
+                throw new CharConversionException();
+            if (i == 1)
+                throw new FileSystemException("");
+            if (i == 2)
+                throw new IOException();
+        }
+    }
+    // ++++++++++++++++++++++++++++++++++ //
 }
