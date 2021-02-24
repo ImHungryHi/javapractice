@@ -115,6 +115,33 @@ public class Inheritance {
     static class Thriller extends Movie {}
 
     /*
+     * -- Some more super (!) parent manipulation code --
+     */
+    public static class BigAnimal {
+        protected String getSize() {
+            return "like a dinosaur";
+        }
+    }
+
+    public static class SmallAnimal {
+        String getSize() {
+            return "like a cat";
+        }
+    }
+
+    public static class Goose extends SmallAnimal {
+        public String getSize() {
+            return "A goose is small, " + super.getSize();
+        }
+    }
+
+    public static class Dragon extends BigAnimal {
+        public String getSize() {
+            return "A dragon is big, " + super.getSize();
+        }
+    }
+
+    /*
      * -- Implementation of an interface and identification of which child + acting on methods --
      */
     public interface Person {

@@ -1,3 +1,13 @@
+/*
+Access modifier help:
+Levels go as follows: private < default (no modifier) < protected < public
+            Within same class       Within same package     Within child classes        All classes
+private     x                       -                       -                           -
+empty       x                       x                       -                           -
+protected   x                       x                       x                           -
+public      x                       x                       x                           x
+*/
+
 // This is a collection of things to sort
 
 /*
