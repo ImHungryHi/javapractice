@@ -142,6 +142,82 @@ public class Inheritance {
     }
 
     /*
+     * -- Some more super (!) parent manipulation code --
+     */
+    public static class InfoManagementBook {
+        public InfoManagementBook(String forMoneyClasses) {
+            USD usd = new USD(100);
+            Ruble ruble = new Ruble(10);
+            Euro euro = new Euro(200);
+
+            System.out.println(usd.getCurrencyName() + ": " + usd.getAmount());
+            System.out.println(ruble.getCurrencyName() + ": " + ruble.getAmount());
+            System.out.println(euro.getCurrencyName() + ": " + euro.getAmount());
+        }
+    }
+
+    abstract static class Book {
+        private String author;
+
+        public Book(String author) {
+            this.author = author;
+        }
+
+        public abstract Book getBook();
+        public abstract String getTitle();
+
+        private String getOutputByBookType() {
+            String agathaChristieOutput = author + ": " + getBook().getTitle() + " is a detective";
+            String markTwainOutput = getBook().getTitle() + " was written by " + author;
+
+            String output = "output";
+
+            if (this instanceof MarkTwainBook) output = markTwainOutput;
+            else if (this instanceof AgathaChristieBook) output = agathaChristieOutput;
+
+            return output;
+        }
+
+        public String toString() {
+            return getOutputByBookType();
+        }
+    }
+
+    public static class MarkTwainBook extends Book {
+        private String title;
+
+        public MarkTwainBook(String title) {
+            super("Mark Twain");
+            this.title = title;
+        }
+
+        public MarkTwainBook getBook() {
+            return this;
+        }
+
+        public String getTitle() {
+            return this.title;
+        }
+    }
+
+    public static class AgathaChristieBook extends Book {
+        private String title;
+
+        public AgathaChristieBook(String title) {
+            super("Agatha Christie");
+            this.title = title;
+        }
+
+        public AgathaChristieBook getBook() {
+            return this;
+        }
+
+        public String getTitle() {
+            return this.title;
+        }
+    }
+
+    /*
      * -- Implementation of an interface and identification of which child + acting on methods --
      */
     public interface Person {
