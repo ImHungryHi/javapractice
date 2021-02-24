@@ -47,6 +47,13 @@ public class Recursive {
         }
     }
 
+    public static int fibonacciEven(int n, ArrayList<Integer> list) {
+        if (n < 1) return n + n + 1;
+        int result = fibonacciEven(n - 1, list) + fibonacciEven(n - 2, list);
+        if (result % 2 == 0 && !list.contains(result)) list.add(result);
+        return result;
+    }
+
     // Actually shorter runtime than the above
     public static int getFibonacciShort(int n, int m, int limit) {
         return (m <= limit) ? getFibonacci(m, (n + m), limit) : n;

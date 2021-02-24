@@ -197,6 +197,12 @@ public class TestCase {
         System.out.println("\nBiggest Fibonacci number beneath " + n + " = " + fibo);
     }
 
+    public static void printFibonacciEven(int n) {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        Recursive.fibonacciEven(n, list);
+        System.out.println(list.toString());
+    }
+
     public static void printNFibonacci(int n) {
         System.out.println("\nNumber " + n + " in the sequence of fibonacci = " + Recursive.getNFibonacci(n));
     }

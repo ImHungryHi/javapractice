@@ -27,5 +27,6 @@ public class Hello {
         //TestCase.compareFactorialTiming();
         //TestCase.compareFibonacciTiming();
         //TestCase.doBubbleRecursive();
+        TestCase.printFibonacciEven(20);
     }
 }
