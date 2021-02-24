@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Hello {
@@ -22,11 +23,13 @@ public class Hello {
         //TestCase.printFactorial(6);
         //TestCase.printFibonacci(100);
         //TestCase.printNFibonacci(5);
+        //TestCase.printFibonacciEven(20);
         //TestCase.compareBubbleSortTiming();
         //TestCase.compareEratosthenesTiming();
         //TestCase.compareFactorialTiming();
         //TestCase.compareFibonacciTiming();
         //TestCase.doBubbleRecursive();
-        TestCase.printFibonacciEven(20);
+        //System.out.println(TestCase.sumOf3And5Multiples(100));
+        //TestCase.compareNumericPalindromeTiming();
     }
 }

@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.math.BigInteger;
 import java.util.*;
 
 public class TestCase {
@@ -150,6 +151,64 @@ public class TestCase {
         return list;
     }
 
+    // kan wel nog optimaliseren door de eerste helft om te rekenen naar eenheden, tientallen enz en da te vergelijken me den tweede helft
+    public static ArrayList<Integer> palindromicNumbers(int limit) {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+
+        for (int x = 0; x <= limit; x++) {
+            ArrayList<Integer> digits = new ArrayList<Integer>();
+            long y = 1, rest = 0, tailingZeroes = 0;
+
+            while (true) {
+                long pow = (long)Math.pow(10, y++);   // 10 100 1000 ...
+                rest = x % pow;   // 0 90 890 ...
+
+                if (rest == 0) tailingZeroes++;
+
+                if (rest < 10) digits.add((int)rest);
+                else {
+                    int addable = (int)(rest / (pow / 10));
+                    digits.add(addable);
+                }
+
+                if (rest >= x) break;
+            }
+
+            int lastIndex = digits.size() - 1;
+            int reverse = 0;
+
+            // Cleanup
+            for (int z = lastIndex; z >= 0; z--) {
+                reverse += digits.get(z) * (int)Math.pow(10, (lastIndex - z));
+            }
+
+            int tailingComparable = (int)(x / (int)Math.pow(10, tailingZeroes));
+
+            if (tailingComparable == reverse) {
+                list.add(x);
+            }
+        }
+
+        return list;
+    }
+
+    public static ArrayList<Integer> palindromicNumbersString(int limit) {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+
+        for (int x = 0; x <= limit; x++) {
+            String sNum = Integer.toString(x);
+            StringBuilder reverse = new StringBuilder();
+
+            for (char cNum : sNum.toCharArray()) {
+                reverse.insert(0, cNum);
+            }
+
+            if (sNum.equals(reverse.toString())) list.add(x);
+        }
+
+        return list;
+    }
+
     public static Integer parseInteger(String s) {
         // There is no real performance difference between valueOf and parseInt.
         // The only difference you'll find is when you want the object Integer - use valueOf - and when you
@@ -201,6 +260,10 @@ public class TestCase {
         ArrayList<Integer> list = new ArrayList<Integer>();
         Recursive.fibonacciEven(n, list);
         System.out.println(list.toString());
+
+        int sum = 0;
+        for (int i : list) sum += i;
+        System.out.println("Sum of all even Fibonacci numbers = " + sum);
     }
 
     public static void printNFibonacci(int n) {
@@ -261,6 +324,20 @@ public class TestCase {
 
         HashMap<Character, Integer> counts = Utilities.countLettersAlternative(s);
         System.out.println(counts.toString());
+    }
+
+    public static int sumOf3And5Multiples(int limit) {
+        int sum = 0;
+
+        for (int x = 3; x < limit; x += 3) {
+            sum += x;
+        }
+
+        for (int x = 5; x <= limit; x += 5) {
+            if (x % 3 != 0) sum += x;
+        }
+
+        return sum;
     }
 
     public static void tafelVanTien() {
@@ -343,6 +420,19 @@ public class TestCase {
         long alternativeTime = Utilities.endTimer();
 
         System.out.println("\nMy time = " + myTime + "; Alternative time = " + alternativeTime + "\nDifference = " + (myTime - alternativeTime) + "\n");
+    }
+
+    public static void compareNumericPalindromeTiming() {
+        System.out.println("Palindrome comparison");
+
+        Utilities.startTimer();
+        ArrayList<Integer> nonString = palindromicNumbers(10000000); // 0s
+        long nonStringTime = Utilities.endTimer();
+        Utilities.startTimer();
+        ArrayList<Integer> stringCompared = palindromicNumbersString(10000000); // 0s
+        long stringTime = Utilities.endTimer();
+
+        System.out.println("\nNon-string time = " + nonStringTime + "; String time = " + stringTime + "\nDifference = " + (nonStringTime - stringTime) + "\n");
     }
 
     /*
