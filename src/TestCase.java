@@ -197,6 +197,10 @@ public class TestCase {
         System.out.println("\nBiggest Fibonacci number beneath " + n + " = " + fibo);
     }
 
+    public static void printNFibonacci(int n) {
+        System.out.println("\nNumber " + n + " in the sequence of fibonacci = " + Recursive.getNFibonacci(n));
+    }
+
     public static void sayHello() {
         System.out.println("Twas brillig and the slithy toves\n" +
                 "did gyre and gimble in the wabe.\n" +

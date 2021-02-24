@@ -21,6 +21,7 @@ public class Hello {
         //System.out.println(TestCase.sieveOfEratosthenes(100).toString());
         //TestCase.printFactorial(6);
         //TestCase.printFibonacci(100);
+        //TestCase.printNFibonacci(5);
         //TestCase.compareBubbleSortTiming();
         //TestCase.compareEratosthenesTiming();
         //TestCase.compareFactorialTiming();

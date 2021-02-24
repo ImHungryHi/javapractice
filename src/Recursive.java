@@ -52,6 +52,13 @@ public class Recursive {
         return (m <= limit) ? getFibonacci(m, (n + m), limit) : n;
     }
 
+    // N number of sequences
+    public static int getNFibonacci(int n) {
+        if (n < 1) return n + n + 1;
+        return getNFibonacci(n - 1) + getNFibonacci(n - 2);
+        // 0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610
+    }
+
     public static void bubbleSort(int[] arr, int n) {
         for (int j = 0; j <= n - 1; j++) {
             if (arr[j] > arr[j + 1]) {

@@ -1,4 +1,6 @@
 import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class AuthorizedPersonnelOnly {
     // This class contains code that may never - under any circumstance - generate detailed output towards the user
@@ -98,6 +100,53 @@ public class AuthorizedPersonnelOnly {
         }
         catch (Exception ex) {
             // Last ditch effort to catch any exceptions that weren't caught by the previous catches
+        }
+    }
+
+    public static void differentExceptions() {
+        try {
+            int a = 42 / 0;
+        }
+        catch (ArithmeticException ex) {
+            System.out.println(ex.getMessage());
+            System.out.println(ex.getClass().getCanonicalName());
+        }
+
+        try {
+            String s = null;
+            String m = s.toLowerCase();
+
+            // THIS ALSO THROWS NULLPOINTEREXCEPTIONS
+            HashMap<String, String> map = new HashMap<String, String>(null);
+            map.put(null, null);
+            map.remove(null);
+        }
+        catch (NullPointerException ex) {
+            System.out.println(ex.getClass().getCanonicalName());
+        }
+
+        try {
+            int[] m = new int[2];
+            m[8] = 5;
+        }
+        catch (ArrayIndexOutOfBoundsException ex) {
+            System.out.println(ex.getClass().getCanonicalName());
+        }
+
+        try {
+            ArrayList<String> list = new ArrayList<String>();
+            String s = list.get(18);
+        }
+        catch (IndexOutOfBoundsException ex) {
+            System.out.println(ex.getClass().getCanonicalName());
+        }
+
+        try {
+            int num = Integer.parseInt("XYZ");
+            System.out.println(num);
+        }
+        catch (NumberFormatException ex) {
+            System.out.println(ex.getClass().getCanonicalName());
         }
     }
 

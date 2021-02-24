@@ -1,50 +1,6 @@
 // This is a collection of things to sort
 
 /*
-	try {
-            int a = 42 / 0;
-        }
-        catch (ArithmeticException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println(ex.getClass().getCanonicalName());
-        }
-
-	try {
-            String s = null;
-            String m = s.toLowerCase();
-
-	    // THIS ALSO THROWS NULLPOINTEREXCEPTIONS
-	    HashMap<String, String> map = new HashMap<String, String>(null);
-            map.put(null, null);
-            map.remove(null);
-        }
-        catch (NullPointerException ex) {
-            System.out.println(ex.getClass().getCanonicalName());
-        }
-
-	try {
-            int[] m = new int[2];
-            m[8] = 5;
-        }
-        catch (ArrayIndexOutOfBoundsException ex) {
-            System.out.println(ex.getClass().getCanonicalName());
-        }
-
-	try {
-            ArrayList<String> list = new ArrayList<String>();
-            String s = list.get(18);
-        }
-        catch (IndexOutOfBoundsException ex) {
-            System.out.println(ex.getClass().getCanonicalName());
-        }
-
-	try {
-            int num = Integer.parseInt("XYZ");
-            System.out.println(num);
-        }
-        catch (NumberFormatException ex) {
-            System.out.println(ex.getClass().getCanonicalName());
-        }
 
 	// Checked vs unchecked exceptions (checked at compile time) - first 2 are examples of the former
 	static class MyException extends IOException {}
@@ -89,48 +45,48 @@
 	// ++++++++++++++++++++++++++++++++++++ //
 	// Catch, log, rethrow and catch again to log
 
-	public static StatelessBean BEAN = new StatelessBean();
+    public static StatelessBean BEAN = new StatelessBean();
 
-	    public static void main(String[] args) {
-	        try {
-	            handleExceptions();
-	        }
-	        catch (FileSystemException ex) {
-	            BEAN.log(ex);
-	        }
-	    }
+    public static void main(String[] args) {
+        try {
+            handleExceptions();
+        }
+        catch (FileSystemException ex) {
+            BEAN.log(ex);
+        }
+    }
 
-	    public static void handleExceptions() throws FileSystemException {
-	        try {
-	            BEAN.throwExceptions();
-	        }
-	        catch (FileSystemException ex) {
-	            BEAN.log(ex);
-	            throw ex;
-	        }
-	        catch (CharConversionException ex) {
-	            BEAN.log(ex);
-	        }
-	        catch (IOException ex) {
-	            BEAN.log(ex);
-	        }
-	    }
+    public static void handleExceptions() throws FileSystemException {
+        try {
+            BEAN.throwExceptions();
+        }
+        catch (FileSystemException ex) {
+            BEAN.log(ex);
+            throw ex;
+        }
+        catch (CharConversionException ex) {
+            BEAN.log(ex);
+        }
+        catch (IOException ex) {
+            BEAN.log(ex);
+        }
+    }
 
-	    public static class StatelessBean {
-	        public void log(Exception exception) {
-	            System.out.println(exception.getMessage() + ", " + exception.getClass().getSimpleName());
-	        }
+    public static class StatelessBean {
+        public void log(Exception exception) {
+            System.out.println(exception.getMessage() + ", " + exception.getClass().getSimpleName());
+        }
 
-	        public void throwExceptions() throws CharConversionException, FileSystemException, IOException {
-	            int i = (int) (Math.random() * 3);
-	            if (i == 0)
-	                throw new CharConversionException();
-	            if (i == 1)
-	                throw new FileSystemException("");
-	            if (i == 2)
-	                throw new IOException();
-	        }
-	    }
+        public void throwExceptions() throws CharConversionException, FileSystemException, IOException {
+            int i = (int) (Math.random() * 3);
+            if (i == 0)
+                throw new CharConversionException();
+            if (i == 1)
+                throw new FileSystemException("");
+            if (i == 2)
+                throw new IOException();
+        }
+    }
 
 	// ++++++++++++++++++++++++++++++++++ //
 */
