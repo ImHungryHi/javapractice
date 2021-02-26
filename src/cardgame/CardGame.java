@@ -6,6 +6,7 @@ public class CardGame {
         System.out.println(card);
 
         Deck deck = new Deck();
+        boolean stopHere = true;
 
         /*
         Card stringCard = new Card("King", "Hearts");

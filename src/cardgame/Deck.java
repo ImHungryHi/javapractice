@@ -6,12 +6,15 @@ public class Deck {
 
     public Deck() {
         this.cards = new Card[DECKSIZE];
+        int idx = 0;
 
-        for (int x = 0; x <= Suit.MAX; x++) {
-            for (int y = 0; y < Rank.MAX; y++) {
+        for (int x = Suit.MIN; x <= Suit.MAX; x++) {
+            for (int y = Rank.MIN; y <= Rank.MAX; y++) {
                 // We multiply the SUIT index with the RANK maximum to get to the following SUIT's first index
-                int idx = (x * Rank.MAX) + y;
-                this.cards[idx] = new Card((y + 1), x);
+                //int idx = (x * Rank.MAX) + (y - 1);
+
+                // Let's opt for the simpler index variable, less calculation power needed
+                this.cards[idx++] = new Card(y, x);
             }
         }
     }
