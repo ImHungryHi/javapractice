@@ -185,4 +185,14 @@ public class Utilities {
 
         return retValue;
     }
+
+    public static int indexOf(String needle, String[] haystack) {
+        for (int x = 0; x < haystack.length; x++) {
+            if (needle.equals(haystack[x])) {
+                return x;
+            }
+        }
+
+        return -1;
+    }
 }
