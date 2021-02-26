@@ -12,8 +12,8 @@ public class Card {
         this.rank = rank;
         this.suit = suit;
 
-        if (this.rank < Rank.MIN || this.rank > Rank.MAX) throw new IndexOutOfBoundsException("Could not find the input rank " + rank);
-        if (this.suit < Suit.MIN || this.suit > Suit.MAX) throw new IndexOutOfBoundsException("Could not find the input suit " + suit);
+        if (this.rank < Rank.MIN || this.rank > Rank.MAX) throw new IllegalArgumentException("Could not find the input rank " + rank);
+        if (this.suit < Suit.MIN || this.suit > Suit.MAX) throw new IllegalArgumentException("Could not find the input suit " + suit);
     }
 
     public Card(int rank, String suit) {
@@ -21,8 +21,8 @@ public class Card {
         //this.suit = Arrays.asList(Suit.NAMES).lastIndexOf(suit);
         this.suit = indexOf(suit, Suit.NAMES);
 
-        if (this.rank < Rank.MIN || this.rank > Rank.MAX) throw new IndexOutOfBoundsException("Could not find the input rank " + rank);
-        if (this.suit < Suit.MIN || this.suit > Suit.MAX) throw new IndexOutOfBoundsException("Could not find the input suit " + suit);
+        if (this.rank < Rank.MIN || this.rank > Rank.MAX) throw new IllegalArgumentException("Could not find the input rank " + rank);
+        if (this.suit < Suit.MIN || this.suit > Suit.MAX) throw new IllegalArgumentException("Could not find the input suit " + suit);
     }
 
     public Card(String rank, int suit) {
@@ -36,8 +36,8 @@ public class Card {
 
         this.suit = suit;
 
-        if (this.rank < Rank.MIN || this.rank > Rank.MAX) throw new IndexOutOfBoundsException("Could not find the input rank " + rank);
-        if (this.suit < Suit.MIN || this.suit > Suit.MAX) throw new IndexOutOfBoundsException("Could not find the input suit " + suit);
+        if (this.rank < Rank.MIN || this.rank > Rank.MAX) throw new IllegalArgumentException("Could not find the input rank " + rank);
+        if (this.suit < Suit.MIN || this.suit > Suit.MAX) throw new IllegalArgumentException("Could not find the input suit " + suit);
     }
 
     public Card(String rank, String suit) {
@@ -52,8 +52,8 @@ public class Card {
         //this.suit = Arrays.asList(Suit.NAMES).lastIndexOf(suit);
         this.suit = indexOf(suit, Suit.NAMES);
 
-        if (this.rank < Rank.MIN || this.rank > Rank.MAX) throw new IndexOutOfBoundsException("Could not find the input rank " + rank);
-        if (this.suit < Suit.MIN || this.suit > Suit.MAX) throw new IndexOutOfBoundsException("Could not find the input suit " + suit);
+        if (this.rank < Rank.MIN || this.rank > Rank.MAX) throw new IllegalArgumentException("Could not find the input rank " + rank);
+        if (this.suit < Suit.MIN || this.suit > Suit.MAX) throw new IllegalArgumentException("Could not find the input suit " + suit);
     }
 
     public int getRank() {

@@ -4,7 +4,7 @@ public class Deck {
     private Card[] cards;
     private final int DECKSIZE = 52;
 
-    public void initialize() {
+    public Deck() {
         this.cards = new Card[DECKSIZE];
 
         for (int x = 0; x <= Suit.MAX; x++) {
