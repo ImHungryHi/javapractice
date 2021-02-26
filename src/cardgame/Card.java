@@ -75,6 +75,49 @@ public class Card {
         return (Rank.NAMES[rank] + " of " + Suit.NAMES[suit]);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true; // Check reference
+        if (o == null || getClass() != o.getClass()) return false;
+        Card card = (Card) o;
+        return rank == card.rank && suit == card.suit;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(rank, suit);
+    }
+
+    /**
+     * Resulting in:
+     * -3 Invalid input
+     * -2 Different suit, lower rank
+     * -1 Same suit, lower rank
+     * 0 Same suit & rank
+     * 1 Same suit, higher rank
+     * 2 Different suit, higher rank
+     * 3 Different suit, same rank
+     * @param otherCard Card to compare to
+     * @return int
+     */
+    public int compareTo(Card otherCard) {
+        if (this.suit <= Suit.MAX && this.suit >= Suit.MIN && this.rank <= Rank.MAX && this.rank >= Rank.MIN &&
+                otherCard.suit <= Suit.MAX && otherCard.suit >= Suit.MIN && otherCard.rank <= Rank.MAX && otherCard.rank >= Rank.MIN) {
+            if (this.suit == otherCard.suit) {
+                if (this.rank > otherCard.rank) return 1;
+                else if (this.rank < otherCard.rank) return -1;
+                else return 0;
+            }
+            else {
+                if (this.rank > otherCard.rank) return 2;
+                else if (this.rank < otherCard.rank) return -2;
+                else return 3;
+            }
+        }
+
+        return -3;
+    }
+
     private int indexOf(String needle, String[] haystack) {
         for (int x = 0; x < haystack.length; x++) {
             boolean noNulls = needle != null && haystack[x] != null;
@@ -92,18 +135,5 @@ public class Card {
         }
 
         return -1;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true; // Check reference
-        if (o == null || getClass() != o.getClass()) return false;
-        Card card = (Card) o;
-        return rank == card.rank && suit == card.suit;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(rank, suit);
     }
 }
