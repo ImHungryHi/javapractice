@@ -13,7 +13,8 @@ public class Card {
 
     public Card(int rank, String suit) {
         this.rank = rank;
-        this.suit = Arrays.asList(Suit.NAMES).lastIndexOf(suit);
+        //this.suit = Arrays.asList(Suit.NAMES).lastIndexOf(suit);
+        this.suit = indexOf(suit, Suit.NAMES);
     }
 
     public Card(String rank, int suit) {
@@ -21,7 +22,8 @@ public class Card {
             this.rank = 1;
         }
         else {
-            this.rank = Arrays.asList(Rank.NAMES).lastIndexOf(rank);
+            //this.rank = Arrays.asList(Rank.NAMES).lastIndexOf(rank);
+            this.rank = indexOf(rank, Rank.NAMES);
         }
 
         this.suit = suit;
@@ -32,10 +34,12 @@ public class Card {
             this.rank = 1;
         }
         else {
-            this.rank = Arrays.asList(Rank.NAMES).lastIndexOf(rank);
+            //this.rank = Arrays.asList(Rank.NAMES).lastIndexOf(rank);
+            this.rank = indexOf(rank, Rank.NAMES);
         }
 
-        this.suit = Arrays.asList(Suit.NAMES).lastIndexOf(suit);
+        //this.suit = Arrays.asList(Suit.NAMES).lastIndexOf(suit);
+        this.suit = indexOf(suit, Suit.NAMES);
     }
 
     public String toString() {
@@ -58,6 +62,10 @@ public class Card {
 
     private int indexOf(String needle, String[] haystack) {
         for (int x = 0; x < haystack.length; x++) {
+            // Gives a NullPointerException for null values
+            //if (haystack[x].equals(needle)) System.out.println("I don't like null comparisons");
+
+            // Gives NO NullPointerException for null values
             if (needle.equals(haystack[x])) {
                 return x;
             }
