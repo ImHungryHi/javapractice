@@ -1,3 +1,5 @@
+package code;
+
 public class Checks {
     public static boolean isNumeric(String s) {
         try {

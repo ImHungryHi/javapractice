@@ -1,5 +1,8 @@
+import code.Collections;
+import code.Recursive;
+import code.Sorting;
+
 import java.awt.*;
-import java.math.BigInteger;
 import java.util.*;
 
 public class TestCase {
@@ -526,14 +529,14 @@ public class TestCase {
     }
 
     public static void hashSetDemo() {
-        Set<Collections.Cat> cats = Collections.createCats();
-        Set<Collections.Dog> dogs = Collections.createDogs();
+        Set<code.Collections.Cat> cats = code.Collections.createCats();
+        Set<code.Collections.Dog> dogs = code.Collections.createDogs();
 
         Set<Object> pets = Collections.join(cats, dogs);
-        Collections.printPets(pets);
+        code.Collections.printPets(pets);
 
-        Collections.removeCats(pets, cats);
-        Collections.printPets(pets);
+        code.Collections.removeCats(pets, cats);
+        code.Collections.printPets(pets);
     }
 
     public static int sumDigitsInNumber(int number) {
