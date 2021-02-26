@@ -4,8 +4,9 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class Card {
-    private int rank;
-    private int suit;
+    // Finals can still be initialized in a method. But once they are assigned, there is no more changing them.
+    private final int rank;
+    private final int suit;
 
     public Card(int rank, int suit) {
         this.rank = rank;
@@ -55,23 +56,17 @@ public class Card {
         if (this.suit < Suit.MIN || this.suit > Suit.MAX) throw new IndexOutOfBoundsException("Could not find the input suit " + suit);
     }
 
+    public int getRank() {
+        return rank;
+    }
+
+    public int getSuit() {
+        return suit;
+    }
+
     // Metadata annotations (gives info about the method below)
     @Override
     public String toString() {
-        if (suit > Suit.MAX) {
-            throw new IndexOutOfBoundsException("The current suit does not exist (index out of bounds suit " + suit + " < max " + Suit.MAX + ")");
-        }
-        else if (suit < Suit.MIN) {
-            throw new IndexOutOfBoundsException("The current suit does not exist (index out of bounds suit " + suit + " > min " + Suit.MIN + ")");
-        }
-
-        if (rank > Rank.MAX) {
-            throw new IndexOutOfBoundsException("The current rank does not exist (index out of bounds rank " + rank + " < max " + Rank.MAX + ")");
-        }
-        else if (rank < Rank.MIN) {
-            throw new IndexOutOfBoundsException("The current rank does not exist (index out of bounds rank " + rank + " > min " + Rank.MIN + ")");
-        }
-
         return (Rank.NAMES[rank] + " of " + Suit.NAMES[suit]);
     }
 
