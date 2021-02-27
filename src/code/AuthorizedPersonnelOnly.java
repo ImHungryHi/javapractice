@@ -258,4 +258,44 @@ public class AuthorizedPersonnelOnly {
         }
     }
     // ++++++++++++++++++++++++++++++++++ //
+
+    /*
+     * -----------------------------------------------------------------------------------------
+     * ----------------------------------- ACCESS MODIFIERS ------------------------------------
+     * -----------------------------------------------------------------------------------------
+     */
+    public static class A {
+        private int number = 7;
+
+        public A(int number) {
+            this.number = number;
+            writeStuff();   // If we left the private out and the protected writeStuff in, this call would use B.writeStuff()
+        }
+
+        // This will be overridden by any child class that has a protected (or otherwise) void writeStuff() method
+        /*
+        protected void writeStuff() {
+            System.out.println(this.number);
+        }
+        */
+
+        private void writeStuff() {
+            System.out.println(this.number);
+        }
+    }
+
+    public static class B extends A {
+        protected int number = 3;
+
+        public B(int number) {
+            super(number);
+            this.number += number;
+            writeStuff();
+        }
+
+        // This would override any protected, public or default methods up on top
+        protected void writeStuff() {
+            System.out.println(number);
+        }
+    }
 }
