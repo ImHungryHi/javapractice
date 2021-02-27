@@ -1,5 +1,6 @@
 package code;
 
+// Starting from chapter 16
 public class Multithreading {
     public static class ParallelloPipidoen implements Runnable {
         public void run() {
