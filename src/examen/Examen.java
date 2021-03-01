@@ -28,7 +28,13 @@ public class Examen {
         System.out.println("countTags:");
         System.out.println("p, does a \"p\" tag exists in this text?: " + countTags("p", "does a \"p\" tag exists in this text?"));
         System.out.println("p, <p>does a \"p\" tag exists in this text?</p>: " + countTags("p", "<p>does a \"p\" tag exists in this text?</p>"));
-        System.out.println("p: <p>does a \"p\" tag</p><p>exists in this text?</p>" + countTags("p", "<p>does a \"p\" tag</p><p>exists in this text?</p>"));
+        System.out.println("p: <p>does a \"p\" tag</p><p>exists in this text?</p>" + countTags("p", "<p>does a \"p\" tag</p><p>exists in this text?</p>"));*/
+
+        System.out.println("isBalanced:");
+        System.out.println("p, no problem here: " + isBalanced("p","no problem here"));
+        System.out.println("p, <p>oepsie: " + isBalanced("p","<p>oepsie"));
+        System.out.println("p, <p>ok,</p><p>all good</p>: " + isBalanced("p","<p>ok,</p><p>all good</p>"));
+        System.out.println("p, <p>so<p></p>bad</p>: " + isBalanced("p","<p>so<p></p>bad</p>"));/*
 
         System.out.println("findLargest:");
         System.out.println("{1,1,1,1}: " + findLargest(new int[]{1,1,1,1}));
@@ -36,12 +42,12 @@ public class Examen {
 
         System.out.println("makeSum:");
         System.out.println("{1,1,1,1}: " + makeSum(new int[]{1,1,1,1}));
-        System.out.println("{1,3,7,5}: " + makeSum(new int[]{1,3,7,5}));*/
+        System.out.println("{1,3,7,5}: " + makeSum(new int[]{1,3,7,5}));
 
         String[] input = {"zip","zap","zop","zep","zup","zep"};
         System.out.println("indexOf (\"zip\",\"zap\",\"zop\",\"zep\",\"zup\",\"zep\"):");
         System.out.println("zep: " + indexOf(input,"zep"));
-        System.out.println("zzepp: " + indexOf(input,"zzepp"));
+        System.out.println("zzepp: " + indexOf(input,"zzepp"));*/
     }
 
 
@@ -191,7 +197,24 @@ public class Examen {
         isBalanced("p","<p>ok,</p><p>all good</p>") -> true;
         isBalanced("p","<p>so<p></p>bad</p>") -> false;
          */
-        return true;
+        int iOpenTag = -1;
+
+        while (true) {
+            iOpenTag = text.indexOf("<" + tag + ">", (iOpenTag + 1));
+
+            if (iOpenTag < 0) {
+                return true;
+            }
+
+            int iSecondOpenTag = text.indexOf("<" + tag + ">", iOpenTag + 1);
+            int iCloseTag = text.indexOf("</" + tag + ">", (iOpenTag + 1));
+
+            if (iCloseTag < 0 || (iSecondOpenTag < iCloseTag && iSecondOpenTag >= 0)) {
+                return false;
+            }
+
+            iOpenTag = iCloseTag + 1;
+        }
     }
 
     public static int findLargest(int[] array) {
