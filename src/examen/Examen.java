@@ -32,15 +32,16 @@ public class Examen {
 
         System.out.println("findLargest:");
         System.out.println("{1,1,1,1}: " + findLargest(new int[]{1,1,1,1}));
-        System.out.println("{1,3,7,5}: " + findLargest(new int[]{1,3,7,5}));*/
+        System.out.println("{1,3,7,5}: " + findLargest(new int[]{1,3,7,5}));
 
         System.out.println("makeSum:");
         System.out.println("{1,1,1,1}: " + makeSum(new int[]{1,1,1,1}));
-        System.out.println("{1,3,7,5}: " + makeSum(new int[]{1,3,7,5}));/*
+        System.out.println("{1,3,7,5}: " + makeSum(new int[]{1,3,7,5}));*/
 
-        System.out.println(":");
-        System.out.println(": " + );
-        System.out.println(": " + );*/
+        String[] input = {"zip","zap","zop","zep","zup","zep"};
+        System.out.println("indexOf (\"zip\",\"zap\",\"zop\",\"zep\",\"zup\",\"zep\"):");
+        System.out.println("zep: " + indexOf(input,"zep"));
+        System.out.println("zzepp: " + indexOf(input,"zzepp"));
     }
 
 
@@ -240,6 +241,12 @@ public class Examen {
         indexOf(input,"zep") -> 3;
         indexOf(input,"zzepp") -> -1;
          */
+        for (int x = 0; x < array.length; x++) {
+            if (array[x] != null && array[x].equals(word)) {
+                return x;
+            }
+        }
+
         return -1;
     }
 }
