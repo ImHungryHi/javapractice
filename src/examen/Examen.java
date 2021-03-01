@@ -13,12 +13,22 @@ public class Examen {
         System.out.println("makeTags:");
         System.out.println("i, Yay: " + makeTags("i", "Yay"));
         System.out.println("i, Hello: " + makeTags("i", "Hello"));
-        System.out.println("cite, Yay: " + makeTags("cite", "Yay"));*/
+        System.out.println("cite, Yay: " + makeTags("cite", "Yay"));
 
         System.out.println("correctTag:");
         System.out.println("i, <i>Yay: " + correctTag("i", "<i>Yay"));
         System.out.println("i, <i>Hello</i>: " + correctTag("i", "<i>Hello</i>"));
-        System.out.println("cite, Yay: " + correctTag("cite", "Yay"));/*
+        System.out.println("cite, Yay: " + correctTag("cite", "Yay"));
+
+        System.out.println("getInner:");
+        System.out.println("i, <i>Yay: " + getInner("i", "<i>Yay"));
+        System.out.println("i, <i>Hello</i>: " + getInner("i", "<i>Hello</i>"));
+        System.out.println("cite, <cite>We say<i>Yay</i>!</cite>: " + getInner("cite", "<cite>We say<i>Yay</i>!</cite>"));*/
+
+        System.out.println("countTags:");
+        System.out.println("p, does a \"p\" tag exists in this text?: " + countTags("p", "does a \"p\" tag exists in this text?"));
+        System.out.println("p, <p>does a \"p\" tag exists in this text?</p>: " + countTags("p", "<p>does a \"p\" tag exists in this text?</p>"));
+        System.out.println("p: <p>does a \"p\" tag</p><p>exists in this text?</p>" + countTags("p", "<p>does a \"p\" tag</p><p>exists in this text?</p>"));/*
 
         System.out.println(":");
         System.out.println(": " + );
@@ -94,17 +104,43 @@ public class Examen {
         return text;
     }
 
-
     public static String getInner(String tag, String text) {
         /*
         if text is encapsulated with the given tag, return the text with the tags removed. Else return an empty string
 
         getInner("i", "<i>Yay") → ""
         getInner("i", "<i>Hello</i>") → "Hello"
-        makeInner("cite", "<cite>We say<i>Yay</i>!</cite>") → "We say<i>Yay</i>!"
+        getInner("cite", "<cite>We say<i>Yay</i>!</cite>") → "We say<i>Yay</i>!"
          */
 
-        return "";
+        int tagLength = tag.length() + 2;
+        int textLength = text.length();
+        String sStart = "", sEnd = "", sResult = "";
+        boolean firstRun = true;
+
+        while (true) {
+            int iFirst = text.indexOf("<" + tag + ">");
+
+            if (firstRun && iFirst < 0) {
+                sResult = text;
+                break;
+            }
+            else if (iFirst < 0) {
+                break;
+            }
+
+            if (firstRun && iFirst > 0) {
+                sResult += text.substring(0, iFirst);
+            }
+
+            int iSecond = text.indexOf("</" + tag + ">", (iFirst + 1));
+
+            if (iSecond < 0) {
+                sResult += text.substring(iFirst);
+            }
+        }
+
+        return sResult;
     }
 
     public static int countTags(String tag, String text) {
