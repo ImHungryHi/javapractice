@@ -1,8 +1,28 @@
 package examen;
 
 public class Examen {
-    public static void main(String[] args) {
+    public static void main(String[] args) {/*
+        System.out.println("makeHalf:");
+        System.out.println("3: " + makeHalf(3));
+        System.out.println("5: " + makeHalf(5));
 
+        System.out.println("addEuro:");
+        System.out.println("5, 7: " + addEuro(5, 7));
+        System.out.println("100, 100: " + addEuro(100, 100));
+
+        System.out.println("makeTags:");
+        System.out.println("i, Yay: " + makeTags("i", "Yay"));
+        System.out.println("i, Hello: " + makeTags("i", "Hello"));
+        System.out.println("cite, Yay: " + makeTags("cite", "Yay"));*/
+
+        System.out.println("correctTag:");
+        System.out.println("i, <i>Yay: " + correctTag("i", "<i>Yay"));
+        System.out.println("i, <i>Hello</i>: " + correctTag("i", "<i>Hello</i>"));
+        System.out.println("cite, Yay: " + correctTag("cite", "Yay"));/*
+
+        System.out.println(":");
+        System.out.println(": " + );
+        System.out.println(": " + );*/
     }
 
 
@@ -16,7 +36,7 @@ public class Examen {
         makeHalf(5) -> 2.5
          */
 
-        return a / 2;
+        return (double) a / 2;
     }
 
     public static String addEuro(int a,int b) {
@@ -27,10 +47,8 @@ public class Examen {
         addEuro(5,7) - > € 12
         addEuro(100,100) - > € 200
         */
-        return "€ " + a + b;
+        return "€ " + (a + b);
     }
-
-
 
     public static String makeTags(String tag, String text) {
         /*
@@ -42,7 +60,7 @@ public class Examen {
         makeTags("i", "Hello") → "<i>Hello</i>"
         makeTags("cite", "Yay") → "<cite>Yay</cite>"
          */
-        return "";
+        return "<" + tag +">" + text + "</" + tag + ">";
     }
 
     public static String correctTag(String tag, String text) {
@@ -54,7 +72,26 @@ public class Examen {
         correctTags("cite", "Yay") → "Yay"
          */
 
-        return "";
+        int tagLength = tag.length();
+        int textLength = text.length();
+        String sStart = "", sEnd = "";
+
+        if (textLength > (tagLength + 2)) {
+            sStart = text.substring(0, tagLength + 2);
+        }
+
+        if (textLength > (2 * tagLength + 5)) {
+            sEnd = text.substring(textLength - (tagLength + 3));
+        }
+
+        boolean startsWithTag = sStart.equals("<" + tag + ">");
+        boolean endsWithTag = sEnd.equals("</" + tag + ">");
+
+        if (startsWithTag && !endsWithTag) {
+            return text + "</" + tag + ">";
+        }
+
+        return text;
     }
 
 
