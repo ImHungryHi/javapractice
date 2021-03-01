@@ -23,12 +23,16 @@ public class Examen {
         System.out.println("getInner:");
         System.out.println("i, <i>Yay: " + getInner("i", "<i>Yay"));
         System.out.println("i, <i>Hello</i>: " + getInner("i", "<i>Hello</i>"));
-        System.out.println("cite, <cite>We say<i>Yay</i>!</cite>: " + getInner("cite", "<cite>We say<i>Yay</i>!</cite>"));*/
+        System.out.println("cite, <cite>We say<i>Yay</i>!</cite>: " + getInner("cite", "<cite>We say<i>Yay</i>!</cite>"));
 
         System.out.println("countTags:");
         System.out.println("p, does a \"p\" tag exists in this text?: " + countTags("p", "does a \"p\" tag exists in this text?"));
         System.out.println("p, <p>does a \"p\" tag exists in this text?</p>: " + countTags("p", "<p>does a \"p\" tag exists in this text?</p>"));
-        System.out.println("p: <p>does a \"p\" tag</p><p>exists in this text?</p>" + countTags("p", "<p>does a \"p\" tag</p><p>exists in this text?</p>"));/*
+        System.out.println("p: <p>does a \"p\" tag</p><p>exists in this text?</p>" + countTags("p", "<p>does a \"p\" tag</p><p>exists in this text?</p>"));*/
+
+        System.out.println("findLargest:");
+        System.out.println("{1,1,1,1}: " + findLargest(new int[]{1,1,1,1}));
+        System.out.println("{1,3,7,5}: " + findLargest(new int[]{1,3,7,5}));/*
 
         System.out.println(":");
         System.out.println(": " + );
@@ -191,7 +195,16 @@ public class Examen {
         findLargest(int[]{1,1,1,1}) -> 1
         findLargest(int[]{1,3,7,5}) -> 7
          */
-        return 0;
+
+        int largest = array[0];
+
+        for (int x = 1; x < array.length; x++) {
+            if (array[x] > largest) {
+                largest = array[x];
+            }
+        }
+
+        return largest;
     }
 
     public static int makeSum(int[] array) {
