@@ -22,4 +22,27 @@ public class Multithreading {
         thread.start();
         parallelThread.start();
     }
+
+    public static class SequentialThread implements Runnable {
+        private String name;
+
+        public SequentialThread(String name) {
+            this.name = name;
+        }
+
+        public void run() {
+            for (int x = 0; x < 10; x++) {
+                System.out.println(name + " " + x);
+            }
+        }
+    }
+
+    public static void sequentialThreading() throws InterruptedException {
+        Thread firstThread = new Thread(new SequentialThread("First"));
+        Thread secondThread = new Thread(new SequentialThread("Second"));
+        firstThread.start();
+        // Use the join command to run secondThread AFTER firstThread is entirely finished
+        firstThread.join();     // Throws an InterruptedException
+        secondThread.start();
+    }
 }
