@@ -18,23 +18,23 @@ public class Examen {
         System.out.println("correctTag:");
         System.out.println("i, <i>Yay: " + correctTag("i", "<i>Yay"));
         System.out.println("i, <i>Hello</i>: " + correctTag("i", "<i>Hello</i>"));
-        System.out.println("cite, Yay: " + correctTag("cite", "Yay"));
+        System.out.println("cite, Yay: " + correctTag("cite", "Yay"));*/
 
         System.out.println("getInner:");
-        System.out.println("i, <i>Yay: " + getInner("i", "<i>Yay"));
-        System.out.println("i, <i>Hello</i>: " + getInner("i", "<i>Hello</i>"));
-        System.out.println("cite, <cite>We say<i>Yay</i>!</cite>: " + getInner("cite", "<cite>We say<i>Yay</i>!</cite>"));
+        System.out.println("i, <i>Yay: \"" + getInner("i", "<i>Yay") + "\"");
+        System.out.println("i, <i>Hello</i>: \"" + getInner("i", "<i>Hello</i>") + "\"");
+        System.out.println("cite, <cite>We say<i>Yay</i>!</cite>: \"" + getInner("cite", "<cite>We say<i>Yay</i>!</cite>") + "\"");/*
 
         System.out.println("countTags:");
         System.out.println("p, does a \"p\" tag exists in this text?: " + countTags("p", "does a \"p\" tag exists in this text?"));
         System.out.println("p, <p>does a \"p\" tag exists in this text?</p>: " + countTags("p", "<p>does a \"p\" tag exists in this text?</p>"));
-        System.out.println("p: <p>does a \"p\" tag</p><p>exists in this text?</p>" + countTags("p", "<p>does a \"p\" tag</p><p>exists in this text?</p>"));*/
+        System.out.println("p: <p>does a \"p\" tag</p><p>exists in this text?</p>" + countTags("p", "<p>does a \"p\" tag</p><p>exists in this text?</p>"));
 
         System.out.println("isBalanced:");
         System.out.println("p, no problem here: " + isBalanced("p","no problem here"));
         System.out.println("p, <p>oepsie: " + isBalanced("p","<p>oepsie"));
         System.out.println("p, <p>ok,</p><p>all good</p>: " + isBalanced("p","<p>ok,</p><p>all good</p>"));
-        System.out.println("p, <p>so<p></p>bad</p>: " + isBalanced("p","<p>so<p></p>bad</p>"));/*
+        System.out.println("p, <p>so<p></p>bad</p>: " + isBalanced("p","<p>so<p></p>bad</p>"));
 
         System.out.println("findLargest:");
         System.out.println("{1,1,1,1}: " + findLargest(new int[]{1,1,1,1}));
@@ -127,35 +127,17 @@ public class Examen {
         getInner("i", "<i>Hello</i>") → "Hello"
         getInner("cite", "<cite>We say<i>Yay</i>!</cite>") → "We say<i>Yay</i>!"
          */
+        int iFirstTag = text.indexOf("<" + tag + ">");
 
-        int tagLength = tag.length() + 2;
-        int textLength = text.length();
-        String sStart = "", sEnd = "", sResult = "";
-        boolean firstRun = true;
+        if (iFirstTag >= 0) {
+            int iSecondTag = text.indexOf("</" + tag + ">", (iFirstTag + 1));
 
-        while (true) {
-            int iFirst = text.indexOf("<" + tag + ">");
-
-            if (firstRun && iFirst < 0) {
-                sResult = text;
-                break;
-            }
-            else if (iFirst < 0) {
-                break;
-            }
-
-            if (firstRun && iFirst > 0) {
-                sResult += text.substring(0, iFirst);
-            }
-
-            int iSecond = text.indexOf("</" + tag + ">", (iFirst + 1));
-
-            if (iSecond < 0) {
-                sResult += text.substring(iFirst);
+            if (iSecondTag > 0) {
+                return text.substring(iFirstTag + (2 + tag.length()), iSecondTag);
             }
         }
 
-        return sResult;
+        return "";
     }
 
     public static int countTags(String tag, String text) {
