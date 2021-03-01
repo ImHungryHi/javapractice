@@ -28,11 +28,15 @@ public class Examen {
         System.out.println("countTags:");
         System.out.println("p, does a \"p\" tag exists in this text?: " + countTags("p", "does a \"p\" tag exists in this text?"));
         System.out.println("p, <p>does a \"p\" tag exists in this text?</p>: " + countTags("p", "<p>does a \"p\" tag exists in this text?</p>"));
-        System.out.println("p: <p>does a \"p\" tag</p><p>exists in this text?</p>" + countTags("p", "<p>does a \"p\" tag</p><p>exists in this text?</p>"));*/
+        System.out.println("p: <p>does a \"p\" tag</p><p>exists in this text?</p>" + countTags("p", "<p>does a \"p\" tag</p><p>exists in this text?</p>"));
 
         System.out.println("findLargest:");
         System.out.println("{1,1,1,1}: " + findLargest(new int[]{1,1,1,1}));
-        System.out.println("{1,3,7,5}: " + findLargest(new int[]{1,3,7,5}));/*
+        System.out.println("{1,3,7,5}: " + findLargest(new int[]{1,3,7,5}));*/
+
+        System.out.println("makeSum:");
+        System.out.println("{1,1,1,1}: " + makeSum(new int[]{1,1,1,1}));
+        System.out.println("{1,3,7,5}: " + makeSum(new int[]{1,3,7,5}));/*
 
         System.out.println(":");
         System.out.println(": " + );
@@ -196,7 +200,11 @@ public class Examen {
         findLargest(int[]{1,3,7,5}) -> 7
          */
 
-        int largest = array[0];
+        int largest = 0;
+
+        if (array.length > 0) {
+            largest = array[0];
+        }
 
         for (int x = 1; x < array.length; x++) {
             if (array[x] > largest) {
@@ -213,7 +221,13 @@ public class Examen {
         makeSum(int[]{1,1,1,1}) -> 4
         makeSum(int[]{1,3,7,5}) -> 16
          */
-        return 0;
+        int sum = 0;
+
+        for (int n : array) {
+            sum += n;
+        }
+
+        return sum;
     }
 
     public static int indexOf(String[] array, String word) {
