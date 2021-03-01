@@ -151,7 +151,24 @@ public class Examen {
         CountTag("p", "<p>does a "p" tag exists in this text?</p>") -> 1;
         CountTag("p", "<p>does a "p" tag</p><p>exists in this text?</p>") -> 2;
          */
-        return 0;
+
+        int iTag = -2;
+        int counter = 0;
+
+        while (iTag != -1) {
+            if (iTag == -2) {
+                iTag = text.indexOf("<" + tag + ">");
+            }
+            else {
+                iTag = text.indexOf("<" + tag + ">", (iTag + 1));
+            }
+
+            if (iTag >= 0) {
+                counter++;
+            }
+        }
+
+        return counter;
     }
 
     public static boolean isBalanced(String tag, String text) {
