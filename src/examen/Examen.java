@@ -1,7 +1,7 @@
 package examen;
 
 public class Examen {
-    public static void main(String[] args) {/*
+    public static void main(String[] args) {
         System.out.println("makeHalf:");
         System.out.println("3: " + makeHalf(3));
         System.out.println("5: " + makeHalf(5));
@@ -18,12 +18,12 @@ public class Examen {
         System.out.println("correctTag:");
         System.out.println("i, <i>Yay: " + correctTag("i", "<i>Yay"));
         System.out.println("i, <i>Hello</i>: " + correctTag("i", "<i>Hello</i>"));
-        System.out.println("cite, Yay: " + correctTag("cite", "Yay"));*/
+        System.out.println("cite, Yay: " + correctTag("cite", "Yay"));
 
         System.out.println("getInner:");
         System.out.println("i, <i>Yay: \"" + getInner("i", "<i>Yay") + "\"");
         System.out.println("i, <i>Hello</i>: \"" + getInner("i", "<i>Hello</i>") + "\"");
-        System.out.println("cite, <cite>We say<i>Yay</i>!</cite>: \"" + getInner("cite", "<cite>We say<i>Yay</i>!</cite>") + "\"");/*
+        System.out.println("cite, <cite>We say<i>Yay</i>!</cite>: \"" + getInner("cite", "<cite>We say<i>Yay</i>!</cite>") + "\"");
 
         System.out.println("countTags:");
         System.out.println("p, does a \"p\" tag exists in this text?: " + countTags("p", "does a \"p\" tag exists in this text?"));
@@ -47,9 +47,8 @@ public class Examen {
         String[] input = {"zip","zap","zop","zep","zup","zep"};
         System.out.println("indexOf (\"zip\",\"zap\",\"zop\",\"zep\",\"zup\",\"zep\"):");
         System.out.println("zep: " + indexOf(input,"zep"));
-        System.out.println("zzepp: " + indexOf(input,"zzepp"));*/
+        System.out.println("zzepp: " + indexOf(input,"zzepp"));
     }
-
 
     public static double makeHalf(int a) {
         /*
