@@ -191,6 +191,11 @@ public class Multithreading {
                 try {
                     System.out.println("he-he");
                     Thread.sleep(500);
+
+                    // Get info from the thread in which this object was passed
+                    Thread currentThread = Thread.currentThread();
+                    String threadName = currentThread.getName();
+                    boolean isThisInterrupted = currentThread.isInterrupted();
                 } catch (InterruptedException e) {
                 }
             }
