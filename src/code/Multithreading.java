@@ -164,4 +164,50 @@ public class Multithreading {
         Thread.sleep(10000);
         timer.stopMyTimer();
     }
+
+    /*
+     * ------------- Different means of interrupting a thread.sleep inside a thread -------------
+     */
+    public static void main(String[] args) throws InterruptedException {
+        Thread t = new Thread(new TestThread());
+        t.start();
+        Thread.sleep(3000);
+        ourInterrupt(); // method 1
+        OtherThread tThread = new OtherThread();
+        tThread.start();
+        Thread.sleep(4000);
+        tThread.interrupt();    // method 2
+    }
+
+    public static void ourInterrupt() {
+        TestThread.runnable = false;
+    }
+
+    public static class TestThread implements Runnable {
+        public static boolean runnable = true;
+
+        public void run() {
+            while (runnable) {
+                try {
+                    System.out.println("he-he");
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                }
+            }
+        }
+    }
+
+    public static class OtherThread extends Thread {
+        public void run() {
+            while (true) {
+                try {
+                    System.out.println("Ha-ha");
+                    Thread.sleep(1000);
+                }
+                catch (InterruptedException ex) {
+                    System.out.println("Oh noes, you stopped me in my tracks!");
+                }
+            }
+        }
+    }
 }
