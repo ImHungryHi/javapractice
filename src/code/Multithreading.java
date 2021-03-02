@@ -52,6 +52,22 @@ public class Multithreading {
         secondThread.start();
     }
 
+    public static void aufgepasst() throws InterruptedException {
+        for (int i = 0; i < 3; i++) {
+            // Watch out when calling the currentThread method - it doesn't get the OtherThread object's thread but rather the "main" one
+            // In this case, you call the thread from the Multithreading class, but this doesn't implement or inherit any threading capabilities.
+            new OtherThread();
+            Thread.currentThread().join();
+            // Use this instead, you'll actually join OtherThread's thread instance.
+            new OtherThread().join();
+            // Although I would prefer declaring and initializing an object
+            OtherThread t = new OtherThread();
+            t.join();
+
+            // Keep this in mind to avoid infinite loops and other shenanigans.
+        }
+    }
+
     /*
      * ------------- Horse join example -------------
      */
