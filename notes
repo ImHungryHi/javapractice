@@ -13,3 +13,12 @@ public      x                       x                       x                   
 /*
 
 */
+
+
+// Database notes
+/*
+
+file system storage vs (relational) database management systems - file system storage is usually unrelated data stored directly in files while dbms is usually ordered in relational structures
+    (also in files if you want to be specific and look into the backend operations)
+
+*/
