@@ -113,6 +113,23 @@ public class Card {
         return -3;
     }
 
+    public int compareTo(Card that, boolean dummy) {
+        if (this.suit < that.suit) {
+            return -1;
+        }
+        if (this.suit > that.suit) {
+            return 1;
+        }
+        if (this.rank < that.rank) {
+            return -1;
+        }
+        if (this.rank > that.rank) {
+            return -1;
+        }
+
+        return 0;
+    }
+
     private int indexOf(String needle, String[] haystack) {
         for (int x = 0; x < haystack.length; x++) {
             boolean noNulls = needle != null && haystack[x] != null;
