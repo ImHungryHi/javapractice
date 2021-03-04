@@ -1,7 +1,7 @@
 package examen;
 
 public class Examen {
-    public static void main(String[] args) {
+    public static void main(String[] args) {/*
         System.out.println("makeHalf:");
         System.out.println("3: " + makeHalf(3));
         System.out.println("5: " + makeHalf(5));
@@ -28,13 +28,13 @@ public class Examen {
         System.out.println("countTags:");
         System.out.println("p, does a \"p\" tag exists in this text?: " + countTags("p", "does a \"p\" tag exists in this text?"));
         System.out.println("p, <p>does a \"p\" tag exists in this text?</p>: " + countTags("p", "<p>does a \"p\" tag exists in this text?</p>"));
-        System.out.println("p: <p>does a \"p\" tag</p><p>exists in this text?</p>" + countTags("p", "<p>does a \"p\" tag</p><p>exists in this text?</p>"));
+        System.out.println("p: <p>does a \"p\" tag</p><p>exists in this text?</p>" + countTags("p", "<p>does a \"p\" tag</p><p>exists in this text?</p>"));*/
 
         System.out.println("isBalanced:");
-        System.out.println("p, no problem here: " + isBalanced("p","no problem here"));
-        System.out.println("p, <p>oepsie: " + isBalanced("p","<p>oepsie"));
-        System.out.println("p, <p>ok,</p><p>all good</p>: " + isBalanced("p","<p>ok,</p><p>all good</p>"));
-        System.out.println("p, <p>so<p></p>bad</p>: " + isBalanced("p","<p>so<p></p>bad</p>"));
+        System.out.println("p, no problem here: " + isBalancedNesting("p","no problem here"));
+        System.out.println("p, <p>oepsie: " + isBalancedNesting("p","<p>oepsie"));
+        System.out.println("p, <p>ok,</p><p>all good</p>: " + isBalancedNesting("p","<p>ok,</p><p>all good</p>"));
+        System.out.println("p, <p>so<p></p>bad</p>: " + isBalancedNesting("p","<p>so<p></p>bad</p>"));/*
 
         System.out.println("findLargest:");
         System.out.println("{1,1,1,1}: " + findLargest(new int[]{1,1,1,1}));
@@ -47,7 +47,7 @@ public class Examen {
         String[] input = {"zip","zap","zop","zep","zup","zep"};
         System.out.println("indexOf (\"zip\",\"zap\",\"zop\",\"zep\",\"zup\",\"zep\"):");
         System.out.println("zep: " + indexOf(input,"zep"));
-        System.out.println("zzepp: " + indexOf(input,"zzepp"));
+        System.out.println("zzepp: " + indexOf(input,"zzepp"));*/
     }
 
     public static double makeHalf(int a) {
@@ -196,6 +196,87 @@ public class Examen {
 
             iOpenTag = iCloseTag + 1;
         }
+    }
+
+    public static boolean isBalancedAlt(String tag, String text) {
+        String open = "<" + tag + ">";
+        String close = "</" + tag + ">";
+        int lenOpen = open.length();
+        int lenClose = close.length();
+        int lenText = text.length();
+        int counter = 0;
+        int idxOpen = text.indexOf(open);
+        int idxClose = text.indexOf(close);
+
+        if (idxOpen > idxClose) {
+            return false;
+        }
+        else if (idxOpen < 0 && idxClose < 0) {
+            return true;
+        }
+        else if ((idxOpen < 0 | idxClose < 0) && (idxOpen != idxClose)) {
+            return false;
+        }
+
+        for (int x = 0; x < lenText; x++) {
+            idxOpen = text.indexOf(open, x);
+
+            if (text.indexOf(open, x) >= 0) {
+                if (++counter > 1) return false;
+                x = lenOpen + idxOpen - 1;
+            }
+
+            idxClose = text.indexOf(close, x);
+
+            if (text.indexOf(close, x) >= 0) {
+                if (--counter < 0) return false;
+                x = lenClose + idxClose - 1;
+            }
+        }
+
+        return counter == 0;
+    }
+
+    public static boolean isBalancedNesting(String tag, String text) {
+        String open = "<" + tag + ">";
+        String close = "</" + tag + ">";
+        int lenOpen = open.length();
+        int lenClose = close.length();
+        int lenText = text.length();
+        int counter = 0;
+        int idxOpen = text.indexOf(open);
+        int idxClose = text.indexOf(close);
+
+        if (idxOpen > idxClose) {
+            return false;
+        }
+        else if (idxOpen < 0 && idxClose < 0) {
+            return true;
+        }
+        else if ((idxOpen < 0 | idxClose < 0) && (idxOpen != idxClose)) {
+            return false;
+        }
+
+        for (int x = 0; x < lenText; x++) {
+            idxOpen = text.indexOf(open, x);
+            idxClose = text.indexOf(close, x);
+
+            if (idxOpen >= 0 && idxOpen < idxClose) {
+                counter++;
+                x = lenOpen + idxOpen - 1;
+            }
+
+            if (idxClose >= 0 && idxOpen > idxClose) {
+                counter--;
+                x = lenClose + idxClose - 1;
+            }
+
+            if (idxOpen < 0 && idxClose < 0) {
+                break;
+            }
+        }
+
+        return counter == 0;
     }
 
     public static int findLargest(int[] array) {
