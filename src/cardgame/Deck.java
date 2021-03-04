@@ -29,6 +29,14 @@ public class Deck {
 
     private static int randomInt(int low, int high) {
         Random r = new Random();
-        return r.nextInt(low, high);
+        // Set a low bounds by returning a random + low and
+        //   deduct low from high to set a high to get the random between low and high
+        return r.nextInt(high - low) + low;
+    }
+
+    private void swapCards(int i, int j) {
+        Card temp = cards[i];
+        cards[i] = cards[j];
+        cards[j] = temp;
     }
 }
