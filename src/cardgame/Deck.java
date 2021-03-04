@@ -39,4 +39,10 @@ public class Deck {
         cards[i] = cards[j];
         cards[j] = temp;
     }
+
+    public void shuffle() {
+        for (int x = 0; x < cards.length; x++) {
+            swapCards(x, randomInt(x, (cards.length - 1)));
+        }
+    }
 }
