@@ -84,12 +84,42 @@ public class AuthorizedPersonnelOnly {
         // Catch multiple exceptions like this
         try {
             // I solemnly swear that I'm up to no good
+            int a = 42 / 0; // ArithmeticException
+
+            // 2 examples of NullPointerException
+            String s = null, m = s.toLowerCase();
+            HashMap<String, String> map = new HashMap<String, String>(null);
+            map.put(null, null);
+            map.remove(null);
+
+            // ArrayIndexOutOfBoundsException
+            int[] arr = new int[2];
+            arr[8] = 5;
+
+            // IndexOutOfBoundsException
+            ArrayList<String> list = new ArrayList<String>();
+            String str = list.get(18);
+
+            // NumberFormatException
+            int num = Integer.parseInt("XYZ");
+            System.out.println(num);
+        }
+        catch (ArithmeticException ex) {
+            // Just don't divide by 0 4Head
+            System.out.println(ex.getMessage());
+            System.out.println(ex.getClass().getCanonicalName());
         }
         catch (NullPointerException ex) {
             // Do whatever you want to do when a null pointer was encountered
         }
-        catch (ArithmeticException ex) {
-            // Just don't divide by 0 4Head
+        catch (ArrayIndexOutOfBoundsException ex) {
+            // Yep
+        }
+        catch (IndexOutOfBoundsException ex) {
+            // Nope
+        }
+        catch (NumberFormatException ex) {
+            System.out.println(ex.getClass().getCanonicalName());
         }
         catch (Exception ex) {
             // Last ditch effort to catch any exceptions that weren't caught by the previous catches

@@ -14,6 +14,25 @@ public      x                       x                       x                   
 
 */
 
+// Java notes
+/*
+@Override is an optional annotation, although it does help prevent errors in your code. It overrides a method of the same signature in
+    a superclass. In most cases, it's a politeness towards your compiler.
+Double literals
+    double price = 25.75;
+    double price = 25d;
+    double coeff = 23_456.75_01;    // Underscores in numeric literals only help readability and serve no other purpose
+    double val = 5.015E15;  // 5.015 * 10^15
+Literal annotations
+    0 prefix = octal; int i = 0156 => 110 decimal
+    0x prefix = hex; int i = 0x15 => 21 decimal (0001 0101 binary = 1 5 hex)
+    0b prefix = binary; int i = 0b110 => 6 decimal
+    d suffix = double; double i = 110d => 110.0 decimal
+    f suffix = float; float f = 20f;
+    l suffix = long; long l = 200l;
+
+
+*/
 
 // Database notes
 /*
