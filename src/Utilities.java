@@ -195,4 +195,29 @@ public class Utilities {
 
         return -1;
     }
+
+    public static byte[] extendedMultiplication(byte[] a, int b) {
+        ArrayList<Byte> list = new ArrayList<Byte>();
+
+        for (int x = 0; x < a.length; x++) {
+            String sProduct = (a[x] * b) + "";
+            int iLength = sProduct.length();
+
+            for (int y = 0; y < iLength; y++) {
+                int idx = x + y;
+
+                if (list.size() > idx) {
+                    byte sum = (byte)(list.get(idx) + (sProduct.charAt(y) - 48));
+                }
+            }
+        }
+
+        byte[] arr = new byte[list.size()];
+
+        for (int x = 0; x < arr.length; x++) {
+            arr[x] = list.get(x);
+        }
+
+        return arr;
+    }
 }
