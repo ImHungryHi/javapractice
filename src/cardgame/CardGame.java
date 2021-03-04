@@ -2,11 +2,9 @@ package cardgame;
 
 public class CardGame {
     public static void main(String[] args) {
-        Card card = new Card(Rank.ACE, Suit.SPADES);
-        System.out.println(card);
-
         Deck deck = new Deck();
-        boolean stopHere = true;
+        deck.shuffle();
+        deck.showDeck();
 
         /*
         Card stringCard = new Card("King", "Hearts");
