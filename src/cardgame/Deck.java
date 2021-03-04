@@ -45,4 +45,51 @@ public class Deck {
             swapCards(x, randomInt(x, (cards.length - 1)));
         }
     }
+
+    public void shuffle(int seconds) {
+        TimingUtil timing = new TimingUtil(seconds);
+
+        while (!timing.isFinished()) {
+            int random1 = randomInt(1, cards.length - 1);
+            int random2 = -1;
+
+            while (true) {
+                if (random2 < 0 || random2 == random1) {
+                    random2 = randomInt(1, cards.length - 1);
+                }
+                else {
+                    break;
+                }
+            }
+
+            swapCards(random1, random2);
+        }
+    }
+
+    private static class TimingUtil extends Thread {
+        private long time = 0;
+        private boolean finished = false;
+
+        public TimingUtil(int time) {
+            this.time = time * 1000;
+        }
+
+        public void run() {
+            if (time == 0) {
+                time = 5000;
+            }
+
+            try {
+                Thread.sleep(time);
+            } catch (InterruptedException e) {
+                //e.printStackTrace();
+            }
+
+            finished = true;
+        }
+
+        public boolean isFinished() {
+            return finished;
+        }
+    }
 }
