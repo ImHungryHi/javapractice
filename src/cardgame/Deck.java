@@ -1,5 +1,7 @@
 package cardgame;
 
+import java.util.Random;
+
 public class Deck {
     private Card[] cards;
     private final int DECKSIZE = 52;
@@ -17,5 +19,16 @@ public class Deck {
                 this.cards[idx++] = new Card(y, x);
             }
         }
+    }
+
+    public void showDeck() {
+        for (Card c : this.cards) {
+            System.out.println(c);
+        }
+    }
+
+    private static int randomInt(int low, int high) {
+        Random r = new Random();
+        return r.nextInt(low, high);
     }
 }
