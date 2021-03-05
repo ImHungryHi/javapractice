@@ -42,12 +42,13 @@ public class Deck {
 
     public void shuffle() {
         for (int x = 0; x < cards.length; x++) {
-            swapCards(x, randomInt(x, (cards.length - 1)));
+            swapCards(x, randomInt(1, (cards.length - 1)));
         }
     }
 
     public void shuffle(int seconds) {
         TimingUtil timing = new TimingUtil(seconds);
+        timing.start();
 
         while (!timing.isFinished()) {
             int random1 = randomInt(1, cards.length - 1);

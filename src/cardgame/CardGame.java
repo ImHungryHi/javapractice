@@ -3,7 +3,7 @@ package cardgame;
 public class CardGame {
     public static void main(String[] args) {
         Deck deck = new Deck();
-        deck.shuffle();
+        deck.shuffle(5);
         deck.showDeck();
 
         /*
