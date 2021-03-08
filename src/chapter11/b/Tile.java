@@ -23,7 +23,7 @@ public class Tile {
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Tile)) {
-            throw new InvalidParameterException("Please feed me a Tile object. Love, Tile.equals method");
+            return false;
         }
 
         Tile tile = (Tile) obj;
