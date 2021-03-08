@@ -1,3 +1,5 @@
+import code.Sorting;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,5 +33,34 @@ public class Hello {
         //TestCase.doBubbleRecursive();
         //System.out.println(TestCase.sumOf3And5Multiples(100));
         //TestCase.compareNumericPalindromeTiming();
+
+        ArrayList<ArrayList<Integer>> lstList = new ArrayList<ArrayList<Integer>>() {{
+           add(new ArrayList<Integer>() {{
+               add(4);
+               add(9);
+               add(20);
+               add(34);
+               add(39);
+           }});
+           add(new ArrayList<Integer>() {{
+               add(1);
+               add(2);
+               add(5);
+               add(16);
+               add(18);
+               add(21);
+               add(22);
+           }});
+           add(new ArrayList<Integer>() {{
+               add(3);
+               add(6);
+               add(7);
+               add(10);
+               add(15);
+               add(19);
+           }});
+        }};
+
+        Sorting.mergeSort(lstList);
     }
 }

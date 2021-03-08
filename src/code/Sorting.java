@@ -108,11 +108,49 @@ public class Sorting {
         System.out.println(Arrays.toString(list));
     }
 
-    /* SO CALLED OPTIMAL SORTING METHOD
-    public static void mergeSort() {
-        //
+    // SO CALLED OPTIMAL SORTING METHOD
+    public static void mergeSort(ArrayList<ArrayList<Integer>> lstList) {
+        ArrayList<Integer> lstResult = new ArrayList<>();
+        ArrayList<Integer> lstLowest = new ArrayList<>();
+        int total = 0;
+        int lowList = 0;
+        int a = 0;
+        int b = 0;
+
+        for (ArrayList<Integer> list : lstList) {
+            total += list.size();
+        }
+
+        for (int x = 0; x < total; x++) {
+            lowList = 0;
+
+            for (int y = 1; y < lstList.size(); y++) {
+                a = lstList.get(y).get(0);
+                b = lstList.get(lowList).get(0);
+
+                if (a < b) {
+                    lowList = y;
+                }
+            }
+
+            lstLowest = lstList.get(lowList);
+            lstResult.add(lstLowest.get(0));
+            lstLowest.remove(0);
+
+            if (lstLowest.size() > 0) {
+                lstList.set(lowList, lstLowest);
+            }
+            else {
+                lstList.remove(lowList);
+            }
+        }
+
+        for (int n : lstResult) {
+            System.out.println(n);
+        }
     }
 
+    /*
     public static void quickSort() {
         //
     }
