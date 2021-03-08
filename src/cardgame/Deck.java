@@ -69,12 +69,11 @@ public class Deck {
     }
 
     public void selectionSort() {
-        for (int x = 0; x < (cards.length - 1); x++) {
-            int lowest = indexLowest(x, (cards.length - 1));
+        int lowest; // best practice, less declarations
 
-            if (lowest > x) {
-                swapCards(x, lowest);
-            }
+        for (int x = 0; x < (cards.length - 1); x++) {
+            lowest = indexLowest(x, (cards.length - 1));
+            if (x != lowest) swapCards(x, lowest);
         }
     }
 
