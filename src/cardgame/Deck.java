@@ -116,7 +116,7 @@ public class Deck {
     public static Deck merge(Deck d1, Deck d2) {
         int n = 0;
         int m = 0;
-        int totalSize = (d1.cards.length + d2.cards.length) - 1;
+        int totalSize = d1.cards.length + d2.cards.length;
         Deck d3 = new Deck(totalSize);
 
         for (int x = 0; x < totalSize; x++) {
