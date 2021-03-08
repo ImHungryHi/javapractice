@@ -267,4 +267,24 @@ public class Multithreading {
             System.out.println("The note [" + note + "] has been altered");
         }
     }
+
+    /*
+     * -------------------------- Locking a singleton with a synchronized block inside a static block --------------------------
+     */
+    public static class OurPresident {
+        private static OurPresident president;
+
+        static {
+            synchronized(OurPresident.class) {
+                president = new OurPresident();
+            }
+        }
+
+        private OurPresident() {
+        }
+
+        public static OurPresident getOurPresident() {
+            return president;
+        }
+    }
 }
