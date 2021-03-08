@@ -36,6 +36,10 @@ public class Deck {
     }
 
     private void swapCards(int i, int j) {
+        if (i == j) {
+            return;
+        }
+
         Card temp = cards[i];
         cards[i] = cards[j];
         cards[j] = temp;
@@ -73,7 +77,7 @@ public class Deck {
 
         for (int x = 0; x < (cards.length - 1); x++) {
             lowest = indexLowest(x, (cards.length - 1));
-            if (x != lowest) swapCards(x, lowest);
+            swapCards(x, lowest);
         }
     }
 
