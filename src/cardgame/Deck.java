@@ -114,7 +114,7 @@ public class Deck {
     }
 
     public static Deck merge(Deck d1, Deck d2) {
-        int totalSize = d1.cards.length + d2.cards.length;
+        int totalSize = (d1.cards.length + d2.cards.length) - 1;
         int n = 0;
         int m = 0;
         Deck d3 = new Deck(totalSize);
@@ -124,13 +124,20 @@ public class Deck {
             first = d1.cards[n];
             second = d2.cards[m];
 
-            if (first.compareTo(second, true) <= 0) {
+            if (n >= d1.cards.length) {
+                d3.cards[x] = second;
+            }
+            else if (m >= d2.cards.length) {
                 d3.cards[x] = first;
-                n++;
             }
             else {
-                d3.cards[x] = second;
-                m++;
+                if (first.compareTo(second, true) <= 0) {
+                    d3.cards[x] = first;
+                    n++;
+                } else {
+                    d3.cards[x] = second;
+                    m++;
+                }
             }
         }
 
