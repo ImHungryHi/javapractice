@@ -138,6 +138,20 @@ public class Deck {
         return d3;
     }
 
+    public Deck mergeRecursive() {
+        int length = cards.length;
+
+        if (length <= 1) {
+            return this;
+        }
+        else {
+            int mid = length / 2;
+            Deck first = subDeck(0, mid - 1).mergeRecursive();
+            Deck second = subDeck(mid, length - 1).mergeRecursive();
+            return merge(first, second);
+        }
+    }
+
     public Deck subDeck(int low, int high) {
         Deck sub = new Deck((high - low) + 1);
 
