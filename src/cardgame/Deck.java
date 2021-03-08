@@ -81,6 +81,22 @@ public class Deck {
         }
     }
 
+    public void mergeSort(Card[] arrFirst, Card[] arrSecond) {
+        int totalSize = arrFirst.length + arrSecond.length:
+        int n = 0;
+        int m = 0;
+        Card[] arrResult = new Card[totalSize];
+
+        for (int x = 0; x < totalSize; x++) {
+            if (arrFirst[n].compareTo(arrSecond[m]) <= 0) {
+                arrResult[x] = arrFirst[n++];
+            }
+            else {
+                arrResult[x] = arrSecond[m++];
+            }
+        }
+    }
+
     private int indexLowest(int low, int high) {
         int lowest = low;
 
