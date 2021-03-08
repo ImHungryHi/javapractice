@@ -73,9 +73,7 @@ public class Deck {
             int lowest = indexLowest(x, (cards.length - 1));
 
             if (lowest > x) {
-                Card temp = cards[x];
-                cards[x] = cards[lowest];
-                cards[lowest] = temp;
+                swapCards(x, lowest);
             }
         }
     }
