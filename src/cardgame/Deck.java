@@ -138,7 +138,7 @@ public class Deck {
         return d3;
     }
 
-    public Deck cutCards(int low, int high) {
+    public Deck subDeck(int low, int high) {
         Deck sub = new Deck((high - low) + 1);
 
         for (int x = 0; x < sub.cards.length; x++) {
