@@ -69,10 +69,18 @@ public class Deck {
     }
 
     public void selectionSort() {
+        for (int x = 0; x < (cards.length - 1); x++) {
+            int lowest = indexLowest(x, (cards.length - 1));
 
+            if (lowest > x) {
+                Card temp = cards[x];
+                cards[x] = cards[lowest];
+                cards[lowest] = temp;
+            }
+        }
     }
 
-    public int indexLowest(int low, int high) {
+    private int indexLowest(int low, int high) {
         int lowest = low;
 
         for (int x = low; x <= high; x++) {
