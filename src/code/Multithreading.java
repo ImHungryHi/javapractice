@@ -231,4 +231,40 @@ public class Multithreading {
             }
         }
     }
+
+    /*
+     * -------------------------- Different means of locking threads --------------------------
+     */
+    public static class Note {
+        public final List<String> notes = new ArrayList<>();
+
+        public void addNote(int index, String note) {
+            System.out.println("A note [" + note + "] will now be added at position " + index);
+
+            // The entire object instance of Note will be locked during the run cycle of the code in this block
+            synchronized(this) {
+                notes.add(index, note);
+            }
+
+            System.out.println("The note [" + note + "] has already been added");
+        }
+
+        public void removeNote(int index) {
+            System.out.println("A note will now be deleted from position " + index);
+            String note = "";
+
+            // This will lock only the notes arraylist, not the output on screen or declaration of note (outside of the synchronized block)
+            synchronized(notes) {
+                note = notes.remove(index);
+            }
+            System.out.println("The note [" + note + "] has already been deleted from position " + index);
+        }
+
+        // This will lock the entire method (prints and arraylist manipulation)
+        public synchronized void alterNote(int index, String note) {
+            System.out.println("A note will now be altered at position " + index);
+            notes.set(index, note);
+            System.out.println("The note [" + note + "] has been altered");
+        }
+    }
 }
