@@ -4,10 +4,11 @@ import java.util.Random;
 
 public class Deck {
     private Card[] cards;
-    private final int DECKSIZE = 52;
+    private int decksize;
 
     public Deck() {
-        this.cards = new Card[DECKSIZE];
+        decksize = 52;
+        this.cards = new Card[decksize];
         int idx = 0;
 
         for (int x = Suit.MIN; x <= Suit.MAX; x++) {
@@ -17,6 +18,21 @@ public class Deck {
 
                 // Let's opt for the simpler index variable, less calculation power needed
                 this.cards[idx++] = new Card(y, x);
+            }
+        }
+    }
+
+    public Deck(int decksize) {
+        this.decksize = decksize;
+        this.cards = new Card[decksize];
+        int idx = 0;
+
+        for (int x = Suit.MIN; x <= Suit.MAX; x++) {
+            for (int y = Rank.MIN; y <= Rank.MAX; y++) {
+                this.cards[idx++] = new Card(y, x);
+                if (idx >= decksize) {
+                    return;
+                }
             }
         }
     }
@@ -82,7 +98,7 @@ public class Deck {
     }
 
     public void mergeSort(Card[] arrFirst, Card[] arrSecond) {
-        int totalSize = arrFirst.length + arrSecond.length:
+        int totalSize = arrFirst.length + arrSecond.length;
         int n = 0;
         int m = 0;
         Card[] arrResult = new Card[totalSize];
@@ -95,6 +111,30 @@ public class Deck {
                 arrResult[x] = arrSecond[m++];
             }
         }
+    }
+
+    public static Deck merge(Deck d1, Deck d2) {
+        int totalSize = d1.cards.length + d2.cards.length;
+        int n = 0;
+        int m = 0;
+        Deck d3 = new Deck(totalSize);
+        Card first, second;
+
+        for (int x = 0; x < totalSize; x++) {
+            first = d1.cards[n];
+            second = d2.cards[m];
+
+            if (first.compareTo(second, true) <= 0) {
+                d3.cards[x] = first;
+                n++;
+            }
+            else {
+                d3.cards[x] = second;
+                m++;
+            }
+        }
+
+        return d3;
     }
 
     private int indexLowest(int low, int high) {
