@@ -124,7 +124,7 @@ public class Card {
             return -1;
         }
         if (this.rank > that.rank) {
-            return -1;
+            return 1;
         }
 
         return 0;

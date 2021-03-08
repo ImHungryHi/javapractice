@@ -22,8 +22,9 @@ public class Deck {
     }
 
     public void showDeck() {
-        for (Card c : this.cards) {
-            System.out.println(c);
+        //for (Card c : this.cards) {
+        for (int x = 0; x < this.cards.length; x++) {
+            System.out.println("[" + x + "] = " + this.cards[x]);
         }
     }
 
@@ -65,6 +66,22 @@ public class Deck {
 
             swapCards(random1, random2);
         }
+    }
+
+    public void selectionSort() {
+
+    }
+
+    public int indexLowest(int low, int high) {
+        int lowest = low;
+
+        for (int x = low; x <= high; x++) {
+            if (cards[lowest].compareTo(cards[x], true) > 0) {
+                lowest = x;
+            }
+        }
+
+        return lowest;
     }
 
     private static class TimingUtil extends Thread {

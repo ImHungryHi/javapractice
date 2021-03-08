@@ -5,6 +5,7 @@ public class CardGame {
         Deck deck = new Deck();
         deck.shuffle(5);
         deck.showDeck();
+        System.out.println(deck.indexLowest(45, 51));
 
         /*
         Card stringCard = new Card("King", "Hearts");
