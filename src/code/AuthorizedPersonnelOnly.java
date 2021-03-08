@@ -290,6 +290,58 @@ public class AuthorizedPersonnelOnly {
     // ++++++++++++++++++++++++++++++++++ //
 
     /*
+     * --------- Creating your own exceptions, inheriting other Exception classes ---------
+     */
+    public static class ThreadUnhandledExceptionHandler {
+        public static Thread.UncaughtExceptionHandler handler = new OurUncaughtExceptionHandler();
+
+        public static void startHandling() {
+            TestedThread commonThread = new TestedThread(handler);
+
+            Thread threadA = new Thread(commonThread, "Thread 1");
+            Thread threadB = new Thread(commonThread, "Thread 2");
+
+            threadA.start();
+            threadB.start();
+
+            threadA.interrupt();
+            threadB.interrupt();
+        }
+
+        public static class TestedThread extends Thread {
+            public TestedThread(Thread.UncaughtExceptionHandler handler) {
+                // !!!! CAREFUL HERE !!!! //
+                // There are 3 commands for uncaught exception handling at different levels...
+                // --- For a single Thread: ---
+                // Thread.setUncaughtExceptionHandler(handler)
+                // --- For a ThreadGroup: ---
+                // ThreadGroup.uncaughtException(handler)
+                // --- For the whole Java Runtime: ---
+                setDefaultUncaughtExceptionHandler(handler);
+                start();
+            }
+
+            public void run() {
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException("My exception message");
+                }
+            }
+        }
+
+        public static class OurUncaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
+            @Override
+            public void uncaughtException(Thread t, Throwable e) {
+                System.out.println(t.getName() + ": " + e.getMessage());
+            }
+        }
+    }
+    /*
+     * --------- ---------------------------------------------------------------- ---------
+     */
+
+    /*
      * -----------------------------------------------------------------------------------------
      * ----------------------------------- ACCESS MODIFIERS ------------------------------------
      * -----------------------------------------------------------------------------------------
