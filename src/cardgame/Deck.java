@@ -114,9 +114,9 @@ public class Deck {
     }
 
     public static Deck merge(Deck d1, Deck d2) {
-        int totalSize = (d1.cards.length + d2.cards.length) - 1;
         int n = 0;
         int m = 0;
+        int totalSize = (d1.cards.length + d2.cards.length) - 1;
         Deck d3 = new Deck(totalSize);
 
         for (int x = 0; x < totalSize; x++) {
@@ -136,6 +136,16 @@ public class Deck {
         }
 
         return d3;
+    }
+
+    public Deck cutCards(int low, int high) {
+        Deck sub = new Deck((high - low) + 1);
+
+        for (int x = 0; x < sub.cards.length; x++) {
+            sub.cards[x] = this.cards[low + x];
+        }
+
+        return sub;
     }
 
     private int indexLowest(int low, int high) {
