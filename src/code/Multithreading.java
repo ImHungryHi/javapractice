@@ -290,8 +290,12 @@ public class Multithreading {
 
     public static class IMF {
         private static IMF imf;
+        // Introducing "volatile" - this keeps the program from caching the values in this variable.
+        // Meaning: every thread can access this information in the main memory instead of having their own instance cached.
+        public volatile ArrayList<Integer> sharedMoneyCache = new ArrayList<>();
 
         public static IMF getFund() {
+            // Another example of a singleton synchronization
             synchronized(IMF.class) {
                 if (imf == null) {
                     imf = new IMF();
