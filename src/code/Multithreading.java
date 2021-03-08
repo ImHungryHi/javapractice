@@ -292,6 +292,7 @@ public class Multithreading {
         private static IMF imf;
         // Introducing "volatile" - this keeps the program from caching the values in this variable.
         // Meaning: every thread can access this information in the main memory instead of having their own instance cached.
+        // Also works as shared if there are child "thread" classes using this variable (eg IMFTellerThread, ...)
         public volatile ArrayList<Integer> sharedMoneyCache = new ArrayList<>();
 
         public static IMF getFund() {
