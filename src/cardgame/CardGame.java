@@ -3,9 +3,12 @@ package cardgame;
 public class CardGame {
     public static void main(String[] args) {
         Deck deck = new Deck();
+
+        /*
         deck.shuffle();
         deck = deck.mergeRecursive();
         deck.showDeck();
+        */
 
         /*
         Card stringCard = new Card("King", "Hearts");
