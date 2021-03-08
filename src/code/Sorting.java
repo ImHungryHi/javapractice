@@ -123,13 +123,28 @@ public class Sorting {
 
     public static void insertionSort() {
         //
+    }*/
+
+    public static void selectionSort(int[] array) {
+        int idxStart = 1;
+        int idxLowest = 0;
+
+        for (int x = 0; x < array.length; x++) {
+            for (int y = idxStart; y < array.length; y++) {
+                if (array[idxLowest] > array[y]) {
+                    idxLowest = y;
+                }
+            }
+
+            if (array[x] > array[idxLowest]) {
+                int temp = array[x];
+                array[x] = array[idxLowest];
+                array[idxLowest] = temp;
+            }
+        }
     }
 
-    public static void selectionSort() {
-        //
-    }
-
-    public static void countingSort() {
+    /*public static void countingSort() {
         //
     }
 
