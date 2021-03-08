@@ -118,25 +118,19 @@ public class Deck {
         int n = 0;
         int m = 0;
         Deck d3 = new Deck(totalSize);
-        Card first, second;
 
         for (int x = 0; x < totalSize; x++) {
-            first = d1.cards[n];
-            second = d2.cards[m];
-
             if (n >= d1.cards.length) {
-                d3.cards[x] = second;
+                d3.cards[x] = d2.cards[m++];
             }
             else if (m >= d2.cards.length) {
-                d3.cards[x] = first;
+                d3.cards[x] = d1.cards[n++];
             }
             else {
-                if (first.compareTo(second, true) <= 0) {
-                    d3.cards[x] = first;
-                    n++;
+                if (d1.cards[n].compareTo(d2.cards[m], true) <= 0) {
+                    d3.cards[x] = d1.cards[n++];
                 } else {
-                    d3.cards[x] = second;
-                    m++;
+                    d3.cards[x] = d2.cards[m++];
                 }
             }
         }
