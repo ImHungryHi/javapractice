@@ -2,7 +2,9 @@ package cardgame;
 
 public class CardGame {
     public static void main(String[] args) {
-        Deck deck = new Deck();
+        //Deck deck = new Deck();
+        War war = new War();
+        war.play();
 
         /*
         deck.shuffle();

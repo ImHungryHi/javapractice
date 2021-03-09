@@ -200,4 +200,8 @@ public class Deck {
             return finished;
         }
     }
+
+    public Card[] getCards() {
+        return this.cards;
+    }
 }
