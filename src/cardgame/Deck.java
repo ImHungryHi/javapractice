@@ -1,15 +1,14 @@
 package cardgame;
 
+import java.util.ArrayList;
 import java.util.Random;
 
-public class Deck {
-    private Card[] cards;
+public class Deck extends CardCollection {
     private int decksize;
 
     public Deck() {
+        super("deck");
         decksize = 52;
-        this.cards = new Card[decksize];
-        int idx = 0;
 
         for (int x = Suit.MIN; x <= Suit.MAX; x++) {
             for (int y = Rank.MIN; y <= Rank.MAX; y++) {
@@ -17,19 +16,53 @@ public class Deck {
                 //int idx = (x * Rank.MAX) + (y - 1);
 
                 // Let's opt for the simpler index variable, less calculation power needed
-                this.cards[idx++] = new Card(y, x);
+                addCard(new Card(y, x));
+            }
+        }
+    }
+
+    public Deck(String label) {
+        super(label);
+        decksize = 52;
+
+        for (int x = Suit.MIN; x <= Suit.MAX; x++) {
+            for (int y = Rank.MIN; y <= Rank.MAX; y++) {
+                // We multiply the SUIT index with the RANK maximum to get to the following SUIT's first index
+                //int idx = (x * Rank.MAX) + (y - 1);
+
+                // Let's opt for the simpler index variable, less calculation power needed
+                addCard(new Card(y, x));
             }
         }
     }
 
     public Deck(int decksize) {
+        super("deck");
         this.decksize = decksize;
-        this.cards = new Card[decksize];
         int idx = 0;
 
         for (int x = Suit.MIN; x <= Suit.MAX; x++) {
             for (int y = Rank.MIN; y <= Rank.MAX; y++) {
-                this.cards[idx++] = new Card(y, x);
+                addCard(new Card(y, x));
+                idx++;
+
+                if (idx >= decksize) {
+                    return;
+                }
+            }
+        }
+    }
+
+    public Deck(int decksize, String label) {
+        super(label);
+        this.decksize = decksize;
+        int idx = 0;
+
+        for (int x = Suit.MIN; x <= Suit.MAX; x++) {
+            for (int y = Rank.MIN; y <= Rank.MAX; y++) {
+                addCard(new Card(y, x));
+                idx++;
+
                 if (idx >= decksize) {
                     return;
                 }
@@ -38,9 +71,9 @@ public class Deck {
     }
 
     public void showDeck() {
-        //for (Card c : this.cards) {
-        for (int x = 0; x < this.cards.length; x++) {
-            System.out.println("[" + x + "] = " + this.cards[x]);
+        //for (Card c : cards) {
+        for (int x = 0; x < size(); x++) {
+            System.out.println("[" + x + "] = " + getCard(x));
         }
     }
 
@@ -51,14 +84,16 @@ public class Deck {
         return r.nextInt(high - low) + low;
     }
 
-    private void swapCards(int i, int j) {
+    /*private void swapCards(int i, int j) {
         if (i == j) {
             return;
         }
 
-        Card temp = cards[i];
-        cards[i] = cards[j];
-        cards[j] = temp;
+        ArrayList<Card> cards = getCards();
+
+        Card temp = cards.get(i);
+        cards.set(i, cards.get(j));
+        cards.set(j, temp);
     }
 
     public void shuffle() {
@@ -86,13 +121,14 @@ public class Deck {
 
             swapCards(random1, random2);
         }
-    }
+    }*/
 
     public void selectionSort() {
+        int cardsSize = size() - 1;
         int lowest; // best practice, less declarations
 
-        for (int x = 0; x < (cards.length - 1); x++) {
-            lowest = indexLowest(x, (cards.length - 1));
+        for (int x = 0; x < cardsSize; x++) {
+            lowest = indexLowest(x, cardsSize);
             swapCards(x, lowest);
         }
     }
@@ -116,21 +152,21 @@ public class Deck {
     public static Deck merge(Deck d1, Deck d2) {
         int n = 0;
         int m = 0;
-        int totalSize = d1.cards.length + d2.cards.length;
+        int totalSize = d1.size() + d2.size();
         Deck d3 = new Deck(totalSize);
 
         for (int x = 0; x < totalSize; x++) {
-            if (n >= d1.cards.length) {
-                d3.cards[x] = d2.cards[m++];
+            if (n >= d1.size()) {
+                d3.setCard(x, d2.getCard(m++));
             }
-            else if (m >= d2.cards.length) {
-                d3.cards[x] = d1.cards[n++];
+            else if (m >= d2.size()) {
+                d3.setCard(x, d1.getCard(n++));
             }
             else {
-                if (d1.cards[n].compareTo(d2.cards[m], true) <= 0) {
-                    d3.cards[x] = d1.cards[n++];
+                if (d1.getCard(n).compareTo(d2.getCard(m), true) <= 0) {
+                    d3.setCard(x, d1.getCard(n++));
                 } else {
-                    d3.cards[x] = d2.cards[m++];
+                    d3.setCard(x, d2.getCard(m++));
                 }
             }
         }
@@ -139,7 +175,7 @@ public class Deck {
     }
 
     public Deck mergeRecursive() {
-        int length = cards.length;
+        int length = size();
 
         if (length <= 1) {
             return this;
@@ -155,8 +191,8 @@ public class Deck {
     public Deck subDeck(int low, int high) {
         Deck sub = new Deck((high - low) + 1);
 
-        for (int x = 0; x < sub.cards.length; x++) {
-            sub.cards[x] = this.cards[low + x];
+        for (int x = 0; x < sub.size(); x++) {
+            sub.setCard(x, getCard(low + x));
         }
 
         return sub;
@@ -166,7 +202,7 @@ public class Deck {
         int lowest = low;
 
         for (int x = low; x <= high; x++) {
-            if (cards[lowest].compareTo(cards[x], true) > 0) {
+            if (getCard(lowest).compareTo(getCard(x), true) > 0) {
                 lowest = x;
             }
         }
@@ -199,9 +235,5 @@ public class Deck {
         public boolean isFinished() {
             return finished;
         }
-    }
-
-    public Card[] getCards() {
-        return this.cards;
     }
 }
