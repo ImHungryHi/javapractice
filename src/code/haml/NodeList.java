@@ -2,13 +2,7 @@ package code.haml;
 
 import java.util.*;
 
-public class NodeList {
-    private ArrayList<Node> nodes;
-
-    public NodeList() {
-        nodes = new ArrayList<>();
-    }
-
+public class NodeList extends ArrayList<Node> {
     public void fillExample() {
         Node html = new Node();
 
@@ -47,33 +41,31 @@ public class NodeList {
         phone.addAttribute("class", "split.like.so");
         phone.addAttribute("id", "noSplitting");
 
-        nodes = new ArrayList<Node>() {{
-            add(html);
-            add(head);
-            add(body);
-            add(pageTitle);
-            add(meta);
-            add(script);
-            add(css);
-            add(mainTitle);
-            add(navList);
-            add(homeListItem);
-            add(homeAnchor);
-            add(profileListItem);
-            add(profileAnchor);
-            add(aboutListItem);
-            add(aboutAnchor);
-            add(mainContent);
-            add(subTitle);
-            add(footer);
-            add(infoList);
-            add(copyListItem);
-            add(copyright);
-            add(taxListItem);
-            add(tax);
-            add(phoneListItem);
-            add(phone);
-        }};
+        add(html);
+        add(head);
+        add(body);
+        add(pageTitle);
+        add(meta);
+        add(script);
+        add(css);
+        add(mainTitle);
+        add(navList);
+        add(homeListItem);
+        add(homeAnchor);
+        add(profileListItem);
+        add(profileAnchor);
+        add(aboutListItem);
+        add(aboutAnchor);
+        add(mainContent);
+        add(subTitle);
+        add(footer);
+        add(infoList);
+        add(copyListItem);
+        add(copyright);
+        add(taxListItem);
+        add(tax);
+        add(phoneListItem);
+        add(phone);
 
         for (int x = 0; x < 10; x++) {
             Node article = new Node(mainContent);
@@ -81,10 +73,10 @@ public class NodeList {
             Node articleDescription = new Node(article);
             Node articleLink = new Node(article);
 
-            nodes.add(article);
-            nodes.add(articleTitle);
-            nodes.add(articleDescription);
-            nodes.add(articleLink);
+            add(article);
+            add(articleTitle);
+            add(articleDescription);
+            add(articleLink);
         }
     }
 }
