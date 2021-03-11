@@ -7,6 +7,10 @@ public class Node extends HashMap<String, String> {
     private Node parent;
     //private HashMap<String, String> attributes;
 
+    public Node() {
+        super();
+    }
+
     public Node(Node parent) {
         //this.attributes = new HashMap<>();
         super();
