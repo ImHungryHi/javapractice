@@ -34,7 +34,7 @@ public class Hello {
         //System.out.println(TestCase.sumOf3And5Multiples(100));
         //TestCase.compareNumericPalindromeTiming();
 
-        ArrayList<ArrayList<Integer>> lstList = new ArrayList<ArrayList<Integer>>() {{
+        /*ArrayList<ArrayList<Integer>> lstList = new ArrayList<ArrayList<Integer>>() {{
            add(new ArrayList<Integer>() {{
                add(4);
                add(9);
@@ -61,6 +61,12 @@ public class Hello {
            }});
         }};
 
-        Sorting.mergeSort(lstList);
+        Sorting.mergeSort(lstList);*/
+
+        code.haml.NodeList nodeList = new code.haml.NodeList();
+        nodeList.fillExample();
+        for (code.haml.Node node : nodeList) {
+            System.out.println(node.get("tagName")+ ";" + node.getChildren());
+        }
     }
 }

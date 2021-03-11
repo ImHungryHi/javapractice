@@ -6,16 +6,28 @@ import java.util.HashMap;
 
 public class Node extends HashMap<String, String> {
     private Node parent;
-    private ArrayList<Node> children = new ArrayList<>();   // added for querying ease
+    private NodeList children = new NodeList();   // added for querying ease
     //private HashMap<String, String> attributes;
 
-    public Node() {
+    public Node(String tagName) {
         super();
+        put("tagName", tagName);
+        //put("address", this.toString());
     }
 
+    // Only divs are allowed here, and divs aren't root elements...
     public Node(Node parent) {
+        super();
+        put("tagName", "div");
+        //put("address", this.toString());
+        setParent(parent);
+    }
+
+    public Node(String tagName, Node parent) {
         //this.attributes = new HashMap<>();
         super();
+        put("tagName", tagName);
+        //put("address", this.toString());
         setParent(parent);
     }
 
@@ -66,6 +78,10 @@ public class Node extends HashMap<String, String> {
 
     public Node getParent() {
         return this.parent;
+    }
+
+    public NodeList getChildren() {
+        return this.children;
     }
 
     public String getContent() {

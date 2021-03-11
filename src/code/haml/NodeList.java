@@ -4,37 +4,38 @@ import java.util.*;
 
 public class NodeList extends ArrayList<Node> {
     public void fillExample() {
-        Node html = new Node();
+        Node html = new Node("html");
 
-        Node head = new Node(html);
-        Node pageTitle = new Node(head);
-        Node meta = new Node(head);
-        Node script = new Node(head);
-        Node css = new Node(head);
+        Node head = new Node("head", html);
+        Node pageTitle = new Node("title", head);
+        Node meta = new Node("meta", head);
+        Node script = new Node("script", head);
+        Node css = new Node("style", head);
 
-        Node body = new Node(html);
-        Node bannerSection = new Node(body);
-        Node mainTitle = new Node(bannerSection);
-        Node navList = new Node(bannerSection);
-        Node homeListItem = new Node(navList);
-        Node homeAnchor = new Node(homeListItem);
-        Node profileListItem = new Node(navList);
-        Node profileAnchor = new Node(profileListItem);
-        Node aboutListItem = new Node(navList);
-        Node aboutAnchor = new Node(aboutListItem);
+        Node body = new Node("body", html);
+        Node bannerSection = new Node("header", body);
+        Node mainTitle = new Node("h1", bannerSection);
+        Node navList = new Node("ul", bannerSection);
+        Node homeListItem = new Node("li", navList);
+        Node homeAnchor = new Node("a", homeListItem);
+        Node profileListItem = new Node("li", navList);
+        Node profileAnchor = new Node("a", profileListItem);
+        Node aboutListItem = new Node("li", navList);
+        Node aboutAnchor = new Node("a", aboutListItem);
 
-        Node mainContent = new Node(body);
-        Node subTitle = new Node(mainContent);
+        Node mainContent = new Node("section", body);
+        Node subTitle = new Node("h2", mainContent);
         // See end of method for addition of articles
 
-        Node footer = new Node(body);
-        Node infoList = new Node(footer);
-        Node copyListItem = new Node(infoList);
-        Node copyright = new Node(copyListItem);
-        Node taxListItem = new Node(infoList);
-        Node tax = new Node(taxListItem);
-        Node phoneListItem = new Node(infoList);
-        Node phone = new Node(phoneListItem);
+        Node footer = new Node("footer", body);
+        Node footerDiv = new Node(footer);
+        Node infoList = new Node("ul", footerDiv);
+        Node copyListItem = new Node("li", infoList);
+        Node copyright = new Node("p", copyListItem);
+        Node taxListItem = new Node("li", infoList);
+        Node tax = new Node("p", taxListItem);
+        Node phoneListItem = new Node("li", infoList);
+        Node phone = new Node("p", phoneListItem);
 
         // One example of many possibilities...
         phone.addAttribute("content", "0412 34 56 78");
@@ -68,10 +69,10 @@ public class NodeList extends ArrayList<Node> {
         add(phone);
 
         for (int x = 0; x < 10; x++) {
-            Node article = new Node(mainContent);
-            Node articleTitle = new Node(article);
-            Node articleDescription = new Node(article);
-            Node articleLink = new Node(article);
+            Node article = new Node("article", mainContent);
+            Node articleTitle = new Node("h2", article);
+            Node articleDescription = new Node("p", article);
+            Node articleLink = new Node("a", article);
 
             add(article);
             add(articleTitle);
