@@ -25,4 +25,21 @@ public class Dates {
 
         return false;
     }
+
+    public static String toMetricString(Date date) {
+        SimpleDateFormat df = new SimpleDateFormat("dd  mm yyyy");
+        return df.format(date);
+    }
+
+    public static Date toDate(String s) {
+        try {
+            SimpleDateFormat df = new SimpleDateFormat("dd  mm yyyy");
+            return df.parse(s);
+        }
+        catch (Exception ex) {
+            // Nope
+        }
+
+        return null;
+    }
 }
