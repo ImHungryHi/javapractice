@@ -16,7 +16,7 @@ public class Node extends HashMap<String, String> {
     public Node(Node parent) {
         //this.attributes = new HashMap<>();
         super();
-        this.parent = parent;
+        setParent(parent);
     }
 
     public void addAttribute(String key, String value) {
@@ -46,6 +46,12 @@ public class Node extends HashMap<String, String> {
             throw new InvalidParameterException("A node can't be its own child, dingus!");
         }
 
+        Node nodeParent = node.getParent();
+
+        if (nodeParent == null || !nodeParent.equals(this)) {
+            node.setParent(this);
+        }
+
         children.add(node);
     }
 
@@ -55,6 +61,11 @@ public class Node extends HashMap<String, String> {
         }
 
         this.parent = node;
+        this.parent.addChild(this);
+    }
+
+    public Node getParent() {
+        return this.parent;
     }
 
     public String getContent() {
