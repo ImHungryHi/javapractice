@@ -1,6 +1,7 @@
 package code;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class IO {
     public static void readFromConsoleAndCapitalize() {
@@ -43,6 +44,21 @@ public class IO {
         catch (Exception ex) {
             // Sup?
         }
+    }
+
+    public static void readLinesFromFile(String fileName) {
+        try {
+            ArrayList<String> content = new ArrayList<>();
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            String input = reader.readLine();
+
+            while (input != null) {
+                content.add(input);
+                input = reader.readLine();
+            }
+
+            reader.close();
+        } catch (Exception ex) {}
     }
 
     public static void writeFileFromConsole() {
