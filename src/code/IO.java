@@ -83,4 +83,26 @@ public class IO {
             System.out.println(ex.getMessage());
         }
     }
+
+    public static void getFilesMinByte() {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String fileName = reader.readLine();
+        reader.close();
+
+        try (FileInputStream fileStream = new FileInputStream(fileName)) {
+            byte minByte = 127;
+            byte curByte = (byte) fileStream.read();
+
+            while (curByte != -1) {
+                if (curByte < minByte) {
+                    minByte = curByte;
+                    curByte = (byte) fileStream.read();
+                }
+            }
+
+            fileStream.close();
+
+            System.out.println(minByte);
+        }
+    }
 }
