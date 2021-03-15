@@ -44,7 +44,7 @@ public class Node extends HashMap<String, String> {
     }
 
     public ArrayList<String> getAttributeNames() {
-        ArrayList<String> result = new ArrayList<String>();
+        ArrayList<String> result = new ArrayList<>();
 
         for (String key : keySet()) {
             result.add(key);
@@ -76,6 +76,14 @@ public class Node extends HashMap<String, String> {
         this.parent.addChild(this);
     }
 
+    public int getLevel() {
+        if (parent == null) {
+            return 0;
+        }
+
+        return parent.getLevel() + 1;
+    }
+
     public Node getParent() {
         return this.parent;
     }
@@ -84,7 +92,5 @@ public class Node extends HashMap<String, String> {
         return this.children;
     }
 
-    public String getContent() {
-        return getValue("content");
-    }
+    public String getContent() { return getValue("content"); }
 }
