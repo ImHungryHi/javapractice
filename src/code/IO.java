@@ -84,7 +84,7 @@ public class IO {
         }
     }
 
-    public static void getFilesMinByte() {
+    public static void getFilesMinByte() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String fileName = reader.readLine();
         reader.close();
