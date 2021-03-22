@@ -14,6 +14,14 @@ public      x                       x                       x                   
 
 */
 
+// What to study for interviews
+/*
+- polymorphism vs encapsulation
+    encapsulation: setting access modifiers for methods/attributes to have them closed off or open from other classes
+    polymorphism: extending a class' functionalities to multiple/another class(es)
+        eg (enclosure contains an animal - either monkey, bird, ... which inherit from the animal class; typeof functionality)
+*/
+
 // Java notes
 /*
 @Override is an optional annotation, although it does help prevent errors in your code. It overrides a method of the same signature in
@@ -31,7 +39,6 @@ Literal annotations
     f suffix = float; float f = 20f;
     l suffix = long; long l = 200l;
 
-
 */
 
 // Database notes
@@ -39,5 +46,16 @@ Literal annotations
 
 file system storage vs (relational) database management systems - file system storage is usually unrelated data stored directly in files while dbms is usually ordered in relational structures
     (also in files if you want to be specific and look into the backend operations)
+
+SELECT COUNT(*) FROM orders
+        INNER JOIN order_details
+                ON orders.order_id = order_details.order_id
+        WHERE orders.ship_name = 'QUICK-Stop'
+                AND order_details.product_id = 40;
+SELECT company_name FROM customers;
+SELECT COUNT(*) FROM suppliers
+        INNER JOIN products
+                ON suppliers.supplier_id = products.supplier_id
+        WHERE country = 'USA';
 
 */
