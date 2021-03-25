@@ -11,7 +11,14 @@ public      x                       x                       x                   
 // This is a collection of things to sort
 
 /*
-
+%title> Title
+    removes whitespace within a tag
+    <title>    Title    </title> becomes
+    <title>Title</title>
+%dingen<
+%dongen
+    becomes
+    <dingen></dingen><dongen></dongen>
 */
 
 // What to study for interviews
@@ -20,6 +27,7 @@ public      x                       x                       x                   
     encapsulation: setting access modifiers for methods/attributes to have them closed off or open from other classes
     polymorphism: extending a class' functionalities to multiple/another class(es)
         eg (enclosure contains an animal - either monkey, bird, ... which inherit from the animal class; typeof functionality)
+        more specifically: declaring and object and initiating it with one of its inheriting classes
 */
 
 // Java notes
@@ -39,11 +47,32 @@ Literal annotations
     f suffix = float; float f = 20f;
     l suffix = long; long l = 200l;
 
+Have a look at interfaces and the (implicitly public) default keyword, or even static
+    both add the ability to add funtionality in the interface, without having to write a method in the implementing class
+    refrain from instantiating static constant variables in interfaces (use enum instead)
+Final keyword in the case of a class definition: prohibits inheritance from this class; eg:
+    public final class Childless {}
+    public class Child extends Childless {} -> becomes impossible
+Interesting to implement is the use of this() in class constructors, this way, you can implement default (or calculated) values for more specific constructors eg:
+    public Booze(int glasses) {
+        this(glasses, "Beer"); // Default the amount of glasses to beer
+    }
+    public Booze(int glasses, String name) {
+        this.glasses = glasses;
+        this.name = name;
+    }
+	// Keep in mind that this() statements have to be on top of the constructor! Same with super()
+	// Also keep in mind that java automatically fills in no-param constructors that call super() in case no constructor was defined
+	//  and that super() is automatically called as the first line of a constructor when the user doesn't implement it
+All final attributes must be assigned a value by the time the constructor has finished its lines
+
+Formatting strings to create a cutoff or other parsing:
+	// 30 characters + " " + 8 characters + " " + 4 characters
+	fileContent.add(String.format("%-30s%-8s%-4s",args[1],args[2],args[3]));
 */
 
 // Database notes
 /*
-
 file system storage vs (relational) database management systems - file system storage is usually unrelated data stored directly in files while dbms is usually ordered in relational structures
     (also in files if you want to be specific and look into the backend operations)
 
@@ -57,5 +86,4 @@ SELECT COUNT(*) FROM suppliers
         INNER JOIN products
                 ON suppliers.supplier_id = products.supplier_id
         WHERE country = 'USA';
-
 */
