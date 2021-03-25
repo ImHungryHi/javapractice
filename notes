@@ -48,7 +48,7 @@ Literal annotations
     l suffix = long; long l = 200l;
 
 Have a look at interfaces and the (implicitly public) default keyword, or even static
-    both add the ability to add funtionality in the interface, without having to write a method in the implementing class
+    both add the ability to add funtionality in the interfaceexercises, without having to write a method in the implementing class
     refrain from instantiating static constant variables in interfaces (use enum instead)
 Final keyword in the case of a class definition: prohibits inheritance from this class; eg:
     public final class Childless {}

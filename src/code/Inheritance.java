@@ -220,9 +220,9 @@ public class Inheritance {
     }
 
     /*
-     * -- Implementation of an interface and identification of which child + acting on methods --
+     * -- Implementation of an interfaceexercises and identification of which child + acting on methods --
      */
-    public interface Person {
+    public interfaceexercises Person {
         class User implements Person {
             void live() {
                 System.out.println("I usually just live.");
