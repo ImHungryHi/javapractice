@@ -2,7 +2,7 @@ package abstractexercises;
 
 public class Main {
     public static void main(String[] args) {
-        Shape rectangle = new Rectangle();
+        Rectangle rectangle = new Rectangle(2, 3);  // Rectangle because Shape doesn't implement IResizable
         Shape triangle = new RtTriangle();
 
         // Print sides per object
@@ -16,5 +16,10 @@ public class Main {
         // Print shapes' perimeters
         System.out.println("Rectangle perimeter = " + rectangle.getPerimeter());
         System.out.println("Triangle perimeter = " + triangle.getPerimeter());
+
+        // Resize rectangle and print
+        rectangle.resize(2);
+        System.out.println("Rectangle resized surface = " + rectangle.getArea());
+        System.out.println("Rectangle resized perimeter = " + rectangle.getPerimeter());
     }
 }
