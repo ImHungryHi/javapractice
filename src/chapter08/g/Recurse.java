@@ -8,8 +8,8 @@ public class Recurse {
         System.out.println("abberwocky = " + rest(s));
         System.out.println("abberwock = " + middle(s));
         System.out.println("11 = " + length(s));
-        //printString(s);
-        //printBackward(s);
+        printString(s);
+        printBackward(s);
         System.out.println("ykcowrebbaJ = " + reverseString(s));
         System.out.println("Soup is no palindrome: soup = " + isPalindrome("soup"));
         System.out.println("Sirup is no palindrome either: sirup = " + isPalindrome("sirup"));
