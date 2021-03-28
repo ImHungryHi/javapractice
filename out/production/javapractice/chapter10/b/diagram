@@ -1,0 +1,48 @@
+/**
+ * Just before findCenter returns, variables contain:
+ *  inside main:
+ *    blank = { x=5, y=8 }
+ *    rect = { x=0, y=2, width=4, height=4 }
+ *  inside findCenter:
+ *    box = { x=0, y=2, width=4, height=4 }      // Points to same reference as "rect" in the main method
+ *    x = 0 + 4 / 2 = 2                          // New variable
+ *    y = 2 + 4 / 2 = 4                          // New variable
+ *    return value = Point { x=2, y=4 };         // New variable
+ * ----------------------------
+ * Just before distance returns, variables contain:Just before findCenter returns, variables contain:
+ *  inside main:
+ *    blank = { x=5, y=8 }
+ *    rect = { x=0, y=2, width=4, height=4 }
+ *    center = { x=2, y=4 }
+ *  inside distance:
+ *    p1 = { x=2, y=4 }      // Points to same reference as "rect" in the main method
+ *    p2 = { x=5, y=8 }      // Points to same reference as "rect" in the main method
+ *    dx = 5 - 2 = 3         // New variable
+ *    dy = 8 - 4 = 4         // New variable
+ *    return value = Math.sqrt(9 + 16) = 5.0;
+ * ----------------------------
+ * What is the output?
+ *  -> 5.0
+ */
+
+public static void main(String[] args) {
+    Point blank = new Point(5, 8);
+
+    Rectangle rect = new Rectangle(0, 2, 4, 4);
+    Point center = findCenter(rect);
+
+    double dist = distance(center, blank);
+    System.out.println(dist);
+}
+
+public static double distance(Point p1, Point p2) {
+    int dx = p2.x - p1.x;
+    int dy = p2.y - p1.y;
+    return Math.sqrt(dx * dx + dy * dy);
+}
+
+public static Point findCenter(Rectangle box) {
+    int x = box.x + box.width / 2;
+    int y = box.y + box.height / 2;
+    return new Point(x, y);
+}
