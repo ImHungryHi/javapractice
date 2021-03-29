@@ -1,5 +1,6 @@
 package chapter13.c;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Deck {
@@ -84,37 +85,7 @@ public class Deck {
         return merge(d1, d2);
     }
 
-    public Deck mergeSort() {
-        if (cards.length <= 1) {
-            return this;
-        }
-
-        int halfway = cards.length / 2;
-        Deck d1 = subDeck(0, halfway - 1);
-        Deck d2 = subDeck(halfway, cards.length - 1);
-
-        d1 = d1.mergeSort();
-        d2 = d2.mergeSort();
-
-        Deck d3;
-
-        if (d1.cards[d1.cards.length - 1].compareTo(d2.cards[0]) > 0) {
-            d3 = merge(d2, d1);
-        }
-        else {
-            d3 = merge(d1, d2);
-        }
-
-        for (int x = 1; x < d3.cards.length; x++) {
-            if (d3.cards[x - 1].compareTo(d3.cards[x]) > 0) {
-                d3 = d3.mergeSort();
-            }
-        }
-
-        return d3;
-    }
-
-    public Card[] mergeSort(Card[] arrFirst, Card[] arrSecond) {
+    /*public Card[] mergeSort(Card[] arrFirst, Card[] arrSecond) {
         int totalSize = arrFirst.length + arrSecond.length;
         int n = 0;
         int m = 0;
@@ -130,16 +101,19 @@ public class Deck {
         }
 
         return arrResult;
-    }
+    }*/
 
-    public Deck subDeck(int low, int high) {
-        Deck sub = new Deck((high - low) + 1);
-
-        for (int x = 0; x < sub.cards.length; x++) {
-            sub.cards[x] = this.cards[low + x];
+    public void mergeSort() {
+        if (cards.length <= 1) {
+            return;
         }
 
-        return sub;
+        int halfway = cards.length / 2;
+        Deck d1 = subDeck(0, halfway - 1);
+        Deck d2 = subDeck(halfway, cards.length - 1);
+        d1.mergeSort();
+        d2.mergeSort();
+        this.cards = merge(d1, d2).cards;
     }
 
     public static Deck merge(Deck d1, Deck d2) {
@@ -165,6 +139,16 @@ public class Deck {
         }
 
         return d3;
+    }
+
+    public Deck subDeck(int low, int high) {
+        Deck sub = new Deck((high - low) + 1);
+
+        for (int x = 0; x < sub.cards.length; x++) {
+            sub.cards[x] = this.cards[low + x];
+        }
+
+        return sub;
     }
 
     public String toString() {
