@@ -68,5 +68,17 @@ public class Hello {
         for (code.haml.Node node : nodeList) {
             System.out.println(node.get("tagName")+ ";" + node.getChildren());
         }*/
+        Superb s = new Beta(2);
+        System.out.println(s.someInt);
+    }
+
+    public static class Superb {
+        int someInt;
+    }
+    public static class Beta extends Superb {
+        int someInt;
+        public Beta(int someInt) {
+            super.someInt = someInt;
+        }
     }
 }

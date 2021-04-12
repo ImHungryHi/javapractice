@@ -28,6 +28,16 @@ public class Interpreter {
         }
     }
 
+    public void readFromFile(String fileName) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        String input = reader.readLine();
+
+        while(reader != null) {
+            lines.add(input);
+            input = reader.readLine();
+        }
+    }
+
     public void parse() {
         String line = "",
                 tagName = "",
@@ -100,7 +110,7 @@ public class Interpreter {
             else {
                 tagName = "div";
             }
-            // Here ends the tagname search, on to the
+            // Here ends the tagname search, on to the parsing
         }
     }
 
