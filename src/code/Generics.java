@@ -16,34 +16,34 @@ public class Generics {
         return results;
     }
 
-    public static <E> void setValue(Class<E> obj, Field field, byte[] value) throws IllegalAccessException{
+    public static <E> void setValue(Class<E> objInstance, Field field, byte[] value) throws IllegalAccessException{
         switch(field.getType().getSimpleName()) {
             case "int":
-                field.setInt(obj, ByteBuffer.wrap(value).getInt());
+                field.setInt(objInstance, ByteBuffer.wrap(value).getInt());
                 break;
             case "double":
-                field.setDouble(obj, ByteBuffer.wrap(value).getDouble());
+                field.setDouble(objInstance, ByteBuffer.wrap(value).getDouble());
                 break;
             case "short":
-                field.setShort(obj, ByteBuffer.wrap(value).getShort());
+                field.setShort(objInstance, ByteBuffer.wrap(value).getShort());
                 break;
             case "long":
-                field.setLong(obj, ByteBuffer.wrap(value).getLong());
+                field.setLong(objInstance, ByteBuffer.wrap(value).getLong());
                 break;
             case "boolean":
-                field.setBoolean(obj, (ByteBuffer.wrap(value).getInt() == 1));
+                field.setBoolean(objInstance, (ByteBuffer.wrap(value).getInt() == 1));
                 break;
             case "float":
-                field.setFloat(obj, ByteBuffer.wrap(value).getFloat());
+                field.setFloat(objInstance, ByteBuffer.wrap(value).getFloat());
                 break;
             case "char":
-                field.setChar(obj, ByteBuffer.wrap(value).getChar());
+                field.setChar(objInstance, ByteBuffer.wrap(value).getChar());
                 break;
             case "byte":
-                field.setByte(obj, ByteBuffer.wrap(value).get());
+                field.setByte(objInstance, ByteBuffer.wrap(value).get());
                 break;
             case "String":
-                field.set(obj, new String(value));
+                field.set(objInstance, new String(value));
                 break;
             default:
                 // Let's not transform byte arrays to random objects such as Person, Car, etc...
