@@ -29,7 +29,7 @@ public class NeuralNetwork {
     private double l_rate = 0.01; // Learning rate - controls the learning steps during optimization of weights
 
     public NeuralNetwork(int inputs, int hiddens, int outputs) {
-        weights_ih = new Matrix(inputs, hiddens);
+        weights_ih = new Matrix(hiddens, inputs);
         weights_ho = new Matrix(outputs, hiddens);
         bias_h = new Matrix(hiddens, 1);
         bias_o = new Matrix(outputs, 1);
@@ -111,7 +111,7 @@ public class NeuralNetwork {
     public void fit(double[][] x, double[][] y, int epochs) throws Exception {
         for (int i = 0; i < epochs; i++) {
             int sampleN = (int)(Math.random() * x.length);
-            train(x[sampleN], y[sampleN]);
+            this.train(x[sampleN], y[sampleN]);
         }
     }
 }
