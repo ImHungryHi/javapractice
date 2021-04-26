@@ -4,6 +4,39 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class IO {
+    public static class GrepInfo {
+        public String lineText;
+        public int lineId;
+        public int colId;
+
+        public GrepInfo(String lineText, int lineId, int colId) {
+            this.lineText = lineText;
+            this.lineId = lineId;
+            this.colId = colId;
+        }
+    }
+
+    public static ArrayList<GrepInfo> grep(String haystack, String needle) throws IOException {
+        ArrayList<GrepInfo> matches = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader(haystack));
+
+        for (int x = 0;; x++) {
+            String input = reader.readLine();
+
+            if (input == null) {
+                break;
+            }
+
+            int idxMatch = input.indexOf(needle);
+
+            if (idxMatch >= 0) {
+                matches.add(new GrepInfo(input, x, idxMatch));
+            }
+        }
+
+        return matches;
+    }
+
     public static void readFromConsoleAndCapitalize() {
         try {
             // Capitalize substrings from an input & skip double spaces
