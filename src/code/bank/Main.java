@@ -9,12 +9,21 @@ public class Main {
         Client mrFreeman = bank.addClient("Mr Freeman");
         Account freeman1 = bank.addAccount(mrFreeman, Currency.EURO);
         Account freeman2 = bank.addAccount(mrFreeman, Currency.CARDANO);
+        bank.deposit(freeman1, 500d);
+        bank.deposit(freeman2, 200d);
 
         System.out.println(mrFreeman);
+        System.out.println("--- Wiring money from Mr Freeman to Agent Smith ---");
 
         Client agentSmith = bank.addClient("Agent Smith");
         bank.transferAccount(freeman1, agentSmith);
+        bank.transferMoney(100d, freeman1, freeman2);
 
+        System.out.println(mrFreeman);
+        System.out.println(agentSmith);
+        System.out.println("--- Wiring money from Agent Smith to Mr Freeman ---");
+
+        bank.transferMoney(100d, freeman2, freeman1);
         System.out.println(mrFreeman);
         System.out.println(agentSmith);
 

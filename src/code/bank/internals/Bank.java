@@ -34,6 +34,26 @@ public class Bank {
     }
 
     public void transferAccount(Account account, Client newOwner) {
-        account.transfer(newOwner);
+        Client owner = account.getOwner();
+        account.setOwner(newOwner);
+        owner.removeAccount(account);
+        newOwner.addAccount(account);
+    }
+
+    public void deposit(Account account, double amount) {
+        account.deposit(amount);
+    }
+
+    public void withdraw(Account account, double amount) {
+        account.withdraw(amount);
+    }
+
+    public void transferMoney(double amount, Account from, Account to) {
+        double fromCurrency = from.getCurrencyValue();
+        double toCurrency = to.getCurrencyValue();
+        from.withdraw(amount);
+
+        amount = (amount / fromCurrency) * toCurrency;
+        to.deposit(amount);
     }
 }

@@ -1,9 +1,10 @@
 package code.bank.internals;
 
 public class Account {
+    private final String number;
+    private final Currency currency;
     private Client owner;
-    private String number;
-    private Currency currency;
+    private double balance = 0d;
 
     Account(String number, Client owner, Currency currency) {
         this.number = number;
@@ -12,24 +13,39 @@ public class Account {
         this.currency = currency;
     }
 
-    void transfer(Client otherClient) {
-        this.owner.removeAccount(this);
-        this.owner = otherClient;
-        this.owner.addAccount(this);
+    void withdraw(double amount) {
+        this.balance -= amount;
     }
 
-    Client getOwner() {
-        return owner;
+    void deposit(double amount) {
+        this.balance += amount;
+    }
+
+    Currency getCurrency() {
+        return currency;
+    }
+
+    double getCurrencyValue() {
+        return currency.getValue();
     }
 
     String getNumber() {
         return number;
     }
 
+    Client getOwner() {
+        return owner;
+    }
+
+    void setOwner(Client newOwner) {
+        this.owner = newOwner;
+    }
+
     @Override
     public String toString() {
         return "Account { id => \'" + number + "\', " +
-                "owner => \'" + owner.getAlias() + "\' " +
+                "owner => \'" + owner.getAlias() + "\', " +
+                "balance => " + balance + " " +
                 "}";
     }
 }
