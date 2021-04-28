@@ -1,4 +1,4 @@
-package code.bank;
+package code.bank.internals;
 
 import java.util.ArrayList;
 import java.util.Random;

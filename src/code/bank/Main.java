@@ -1,10 +1,11 @@
 package code.bank;
-
-import java.util.ArrayList;
+import code.bank.internals.*;
 
 public class Main {
     public static void main(String[] args) {
         Bank bank = new Bank();
+
+        // Before adding classes to internals package
         Client mrFreeman = bank.addClient("Mr Freeman");
         Account freeman1 = bank.addAccount(mrFreeman, Currency.EURO);
         Account freeman2 = bank.addAccount(mrFreeman, Currency.CARDANO);
@@ -16,6 +17,8 @@ public class Main {
 
         System.out.println(mrFreeman);
         System.out.println(agentSmith);
+
+        // Before optimizations
         /*Client client = new Client();
         Account account = new Account(client);
         bank.accounts.add(account);

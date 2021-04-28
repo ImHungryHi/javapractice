@@ -1,4 +1,4 @@
-package code.bank;
+package code.bank.internals;
 
 public class Account {
     private Client owner;

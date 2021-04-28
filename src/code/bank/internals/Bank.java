@@ -1,4 +1,5 @@
-package code.bank;
+package code.bank.internals;
+
 import java.util.*;
 
 public class Bank {
@@ -8,7 +9,7 @@ public class Bank {
     private final HashMap<String, Client> clients = new HashMap<>();
     private final int UID_LENGTH = 9;
 
-    Client addClient(String alias) {
+    public Client addClient(String alias) {
         String uid;
 
         do {
@@ -20,7 +21,7 @@ public class Bank {
         return client;
     }
 
-    Account addAccount(Client owner, Currency currency) {
+    public Account addAccount(Client owner, Currency currency) {
         String uid;
 
         do {
@@ -32,7 +33,7 @@ public class Bank {
         return account;
     }
 
-    void transferAccount(Account account, Client newOwner) {
+    public void transferAccount(Account account, Client newOwner) {
         account.transfer(newOwner);
     }
 }
