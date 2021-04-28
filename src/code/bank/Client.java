@@ -2,7 +2,7 @@ package code.bank;
 import java.util.*;
 
 public class Client {
-    private List<Account> accounts = new ArrayList<>();
+    private HashMap<String, Account> accounts = new HashMap<>();
     private String uid;
     private String alias;
 
@@ -12,11 +12,11 @@ public class Client {
     }
 
     public void addAccount(Account account) {
-        accounts.add(account);
+        accounts.put(account.getNumber(), account);
     }
 
     public void removeAccount(Account account) {
-        accounts.remove(account);
+        accounts.remove(account.getNumber());
     }
 
     public String getAlias() {
@@ -25,9 +25,23 @@ public class Client {
 
     @Override
     public String toString() {
+        StringBuilder myFormat = new StringBuilder();
+        boolean first = true;
+
+        for (Map.Entry<String, Account> account : accounts.entrySet()) {
+            if (!first) {
+                myFormat.append(", ");
+            }
+            else {
+                first = false;
+            }
+
+            myFormat.append(account.getValue().toString());
+        }
+
         return "Client { id => \'" + uid + "\', " +
                 "alias => \'" + alias + "\', " +
-                "accounts => " + accounts.toString() + " " +
+                "accounts => [ " + myFormat + " ] " +
                 "}";
     }
 }

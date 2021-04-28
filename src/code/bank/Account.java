@@ -22,6 +22,10 @@ public class Account {
         return owner;
     }
 
+    String getNumber() {
+        return number;
+    }
+
     @Override
     public String toString() {
         return "Account { id => \'" + number + "\', " +
