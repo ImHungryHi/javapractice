@@ -48,7 +48,7 @@ public class Bank {
         account.withdraw(amount);
     }
 
-    public void transferMoney(double amount, Account from, Account to) {
+    public void transferCurrency(double amount, Account from, Account to) {
         double fromCurrency = from.getCurrencyValue();
         double toCurrency = to.getCurrencyValue();
         from.withdraw(amount);

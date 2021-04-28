@@ -17,13 +17,13 @@ public class Main {
 
         Client agentSmith = bank.addClient("Agent Smith");
         bank.transferAccount(freeman1, agentSmith);
-        bank.transferMoney(100d, freeman1, freeman2);
+        bank.transferCurrency(100d, freeman1, freeman2);
 
         System.out.println(mrFreeman);
         System.out.println(agentSmith);
         System.out.println("--- Wiring money from Agent Smith to Mr Freeman ---");
 
-        bank.transferMoney(100d, freeman2, freeman1);
+        bank.transferCurrency(100d, freeman2, freeman1);
         System.out.println(mrFreeman);
         System.out.println(agentSmith);
 
