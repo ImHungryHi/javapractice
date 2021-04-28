@@ -1,5 +1,0 @@
-package code.bank;
-
-public enum Currency {
-    BITCOIN, CHILIZ, ETHEREUM, DOGECOIN, CARDANO, DOLLAR, EURO, FRANC, RUBL, RUPI, PESO, PESETA, LIRA, YEN
-}
