@@ -6,20 +6,20 @@ public class Client {
     private String uid;
     private String alias;
 
-    public Client(String uid, String alias) {
+    Client(String uid, String alias) {
         this.uid = uid;
         this.alias = alias;
     }
 
-    public void addAccount(Account account) {
+    void addAccount(Account account) {
         accounts.put(account.getNumber(), account);
     }
 
-    public void removeAccount(Account account) {
+    void removeAccount(Account account) {
         accounts.remove(account.getNumber());
     }
 
-    public String getAlias() {
+    String getAlias() {
         return alias;
     }
 

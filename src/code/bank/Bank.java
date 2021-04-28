@@ -8,7 +8,7 @@ public class Bank {
     private final HashMap<String, Client> clients = new HashMap<>();
     private final int UID_LENGTH = 9;
 
-    public Client addClient(String alias) {
+    Client addClient(String alias) {
         String uid;
 
         do {
@@ -20,7 +20,7 @@ public class Bank {
         return client;
     }
 
-    public Account addAccount(Client owner, Currency currency) {
+    Account addAccount(Client owner, Currency currency) {
         String uid;
 
         do {
@@ -32,7 +32,7 @@ public class Bank {
         return account;
     }
 
-    public void transferAccount(Account account, Client newOwner) {
+    void transferAccount(Account account, Client newOwner) {
         account.transfer(newOwner);
     }
 }

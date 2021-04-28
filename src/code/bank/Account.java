@@ -5,20 +5,20 @@ public class Account {
     private String number;
     private Currency currency;
 
-    public Account(String number, Client owner, Currency currency) {
+    Account(String number, Client owner, Currency currency) {
         this.number = number;
         this.owner = owner;
         this.owner.addAccount(this);
         this.currency = currency;
     }
 
-    public void transfer(Client otherClient) {
+    void transfer(Client otherClient) {
         this.owner.removeAccount(this);
         this.owner = otherClient;
         this.owner.addAccount(this);
     }
 
-    public Client getOwner() {
+    Client getOwner() {
         return owner;
     }
 
