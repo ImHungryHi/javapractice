@@ -3,10 +3,12 @@ import java.util.*;
 
 public class Client {
     private List<Account> accounts = new ArrayList<>();
-    private String name;
+    private String uid;
+    private String alias;
 
-    public Client() {
-        name = "Client " + SingletonIdentifier.getInstance().getIdentifier();
+    public Client(String uid, String alias) {
+        this.uid = uid;
+        this.alias = alias;
     }
 
     public void addAccount(Account account) {
@@ -17,8 +19,15 @@ public class Client {
         accounts.remove(account);
     }
 
+    public String getAlias() {
+        return alias;
+    }
+
     @Override
     public String toString() {
-        return name;
+        return "Client { id => \'" + uid + "\', " +
+                "alias => \'" + alias + "\', " +
+                "accounts => \'" + accounts.toString() + "\' " +
+                "}";
     }
 }

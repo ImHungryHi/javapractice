@@ -2,12 +2,12 @@ package code.bank;
 
 public class Account {
     private Client owner;
-    private String name;
+    private String number;
 
-    public Account(Client owner) {
+    public Account(String number, Client owner) {
+        this.number = number;
         this.owner = owner;
         this.owner.addAccount(this);
-        name = "Account " + SingletonIdentifier.getInstance().getIdentifier();
     }
 
     public void transfer(Client otherClient) {
@@ -22,6 +22,8 @@ public class Account {
 
     @Override
     public String toString() {
-        return name;
+        return "Account { id => \'" + number + "\', " +
+                "owner => \'" + owner.getAlias() + "\' " +
+                "}";
     }
 }
