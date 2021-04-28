@@ -20,14 +20,14 @@ public class Bank {
         return client;
     }
 
-    public Account addAccount(Client owner) {
+    public Account addAccount(Client owner, Currency currency) {
         String uid;
 
         do {
             uid = SingletonIdentifier.getInstance().generateUid(UID_LENGTH);
         } while (accounts.containsKey(uid));
 
-        Account account = new Account(uid, owner);
+        Account account = new Account(uid, owner, currency);
         accounts.put(uid, account);
         return account;
     }

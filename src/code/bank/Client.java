@@ -27,7 +27,7 @@ public class Client {
     public String toString() {
         return "Client { id => \'" + uid + "\', " +
                 "alias => \'" + alias + "\', " +
-                "accounts => \'" + accounts.toString() + "\' " +
+                "accounts => " + accounts.toString() + " " +
                 "}";
     }
 }

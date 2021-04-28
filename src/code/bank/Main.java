@@ -6,6 +6,16 @@ public class Main {
     public static void main(String[] args) {
         Bank bank = new Bank();
         Client mrFreeman = bank.addClient("Mr Freeman");
+        Account freeman1 = bank.addAccount(mrFreeman, Currency.EURO);
+        Account freeman2 = bank.addAccount(mrFreeman, Currency.CARDANO);
+
+        System.out.println(mrFreeman);
+
+        Client agentSmith = bank.addClient("Agent Smith");
+        bank.transferAccount(freeman1, agentSmith);
+
+        System.out.println(mrFreeman);
+        System.out.println(agentSmith);
         /*Client client = new Client();
         Account account = new Account(client);
         bank.accounts.add(account);
