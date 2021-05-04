@@ -12,6 +12,11 @@ public enum Enums {
         return n;
     }
 
+    String getName() {
+        // Don't do this, just use the ".name()" function on this instance somewhere else
+        return name();
+    }
+
     @Override
     public String toString() {
         String s = "I'm the ";
@@ -28,5 +33,30 @@ public enum Enums {
         }
 
         return s;
+    }
+
+    public static enum SubEnum {
+        DOLLAR {
+            @Override
+            double getEuroValue() {
+                return 1.21;
+            }
+        },
+        RUBLE {
+            @Override
+            double getEuroValue() {
+                return 90.33;
+            }
+        },
+        YEN {
+            @Override
+            double getEuroValue() {
+                return 131.52;
+            }
+        };
+
+        double getEuroValue() {
+            return 1d;
+        }
     }
 }
