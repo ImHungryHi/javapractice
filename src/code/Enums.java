@@ -17,6 +17,13 @@ public enum Enums {
         return name();
     }
 
+    // Do this somewhere else
+    void printSubs() {
+        for (SubEnum sub : SubEnum.values()) {
+            System.out.println(sub.name() + "=" + sub.getEuroValue());
+        }
+    }
+
     @Override
     public String toString() {
         String s = "I'm the ";
@@ -47,16 +54,28 @@ public enum Enums {
             double getEuroValue() {
                 return 90.33;
             }
+
+            @Override
+            double getDollarValue() {
+                return 75.21;
+            }
         },
         YEN {
             @Override
             double getEuroValue() {
                 return 131.52;
             }
+
+            @Override
+            double getDollarValue() {
+                return 109.34;
+            }
         };
 
-        double getEuroValue() {
-            return 1d;
+        abstract double getEuroValue();
+
+        double getDollarValue() {
+            return 1.0;
         }
     }
 }
