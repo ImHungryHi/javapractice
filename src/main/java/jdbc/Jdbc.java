@@ -3,24 +3,35 @@ package jdbc;
 import java.sql.*;
 
 public class Jdbc {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         String url = "jdbc:mysql://ID109462_crud.db.webhosting.be:3306/ID109462_crud",
                 user = "ID109462_crud",
-                passwd = "code4croissants";
-        select(url, user, passwd);
+                passwd = "code4croissants",
+                query = "SELECT * FROM jordiquotes";
+        //select(url, user, passwd, query);
+
+        query = "INSERT INTO jordiquotes(author, quote) VALUES(?, ?)";
+        String[] params = { "Chris", "Unix is user friendly. It's just very particular about who its friends are."};
+        //insert(url, user, passwd, query, params);
+
+        query = "UPDATE jordiquotes SET quote = ? WHERE ID = ?";
+        //update(url, user, passwd, query, "Unix is simple. It just takes a genius to understand its simplicity.", 200);
+
+        query = "DELETE FROM jordiquotes WHERE ID = ?";
+        //update(url, user, passwd, query, 300);
+
+        query = "SELECT * FROM jordiquotes";
+        select(url, user, passwd, query);
     }
 
-    public static void select(String url, String user, String passwd) {
-        String query = "SELECT * FROM jordiquotes";
-
+    public static void select(String url, String user, String passwd, String query) {
         // Use this type of structure if there are multiple pieces of code within each level of try-blocks
         try (Connection conn = DriverManager.getConnection(url, user, passwd)) {
             try (PreparedStatement stmt = conn.prepareStatement(query)) {
                 try (ResultSet result = stmt.executeQuery()) {
-
                     while (result.next()) {
                         // Column name should be given
-                        System.out.println(result.getString("author") + " said \"" + result.getString("quote") + "\"");
+                        System.out.println(result.getString("ID") + " : " + result.getString("author") + " said \"" + result.getString("quote") + "\"");
                     }
 
                     // In a try-catch statement, these would be executed on a fail if you put a try with resources
@@ -31,6 +42,60 @@ public class Jdbc {
                 catch (SQLException ex) {
                     // Do some debug dumps
                 }
+            }
+            catch (SQLException ex) {
+                // Do some debug dumps
+            }
+        }
+        catch (SQLException ex) {
+            // Do some debug dumps
+        }
+    }
+
+    public static void insert(String url, String user, String passwd, String query, String[] params) {
+        try (Connection conn = DriverManager.getConnection(url, user, passwd)) {
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                for (int x = 0; x < params.length; x++) {
+                    stmt.setString(x + 1, params[x]);
+                }
+
+                int inserted = stmt.executeUpdate();
+                System.out.println("Inserted number of rows = " + inserted);
+            }
+            catch (SQLException ex) {
+                // Do some debug dumps
+            }
+        }
+        catch (SQLException ex) {
+            // Do some debug dumps
+        }
+    }
+
+    public static void update(String url, String user, String passwd, String query, String newQuote, int rowId) {
+        try (Connection conn = DriverManager.getConnection(url, user, passwd)) {
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setString(1, newQuote);
+                stmt.setInt(2, rowId);
+
+                int updated = stmt.executeUpdate();
+                System.out.println("Updated number of rows = " + updated);
+            }
+            catch (SQLException ex) {
+                // Do some debug dumps
+            }
+        }
+        catch (SQLException ex) {
+            // Do some debug dumps
+        }
+    }
+
+    public static void delete(String url, String user, String passwd, String query, int rowId) {
+        try (Connection conn = DriverManager.getConnection(url, user, passwd)) {
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setInt(1, rowId);
+
+                int deleted = stmt.executeUpdate();
+                System.out.println("Deleted number of rows = " + deleted);
             }
             catch (SQLException ex) {
                 // Do some debug dumps
