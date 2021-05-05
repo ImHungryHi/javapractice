@@ -11,7 +11,8 @@ public class Jdbc {
         //select(url, user, passwd, query);
 
         query = "INSERT INTO jordiquotes(author, quote) VALUES(?, ?)";
-        String[] params = { "Chris", "Unix is user friendly. It's just very particular about who its friends are."};
+        //String[] params = { "Chris", "Unix is user friendly. It's just very particular about who its friends are." };
+        String[] params = { "Douglas Adams", "The answer to life, the universe and everything is... 42." };
         //insert(url, user, passwd, query, params);
 
         query = "UPDATE jordiquotes SET quote = ? WHERE ID = ?";
@@ -54,13 +55,21 @@ public class Jdbc {
 
     public static void insert(String url, String user, String passwd, String query, String[] params) {
         try (Connection conn = DriverManager.getConnection(url, user, passwd)) {
-            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            try (PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
                 for (int x = 0; x < params.length; x++) {
                     stmt.setString(x + 1, params[x]);
                 }
 
                 int inserted = stmt.executeUpdate();
-                System.out.println("Inserted number of rows = " + inserted);
+
+                try (ResultSet results = stmt.getGeneratedKeys()) {
+                    if (results.next()) {
+                        System.out.println("Inserted row = " + results.getInt(1));
+                    }
+                }
+                catch (SQLException ex) {
+                    // Do some debug dumps
+                }
             }
             catch (SQLException ex) {
                 // Do some debug dumps
