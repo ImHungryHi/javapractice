@@ -1,5 +1,7 @@
 package jdbc.jordiquotes.model;
+import lombok.Data;
 
+@Data
 public class Quote {
     private int id;
     private String author;
@@ -15,6 +17,7 @@ public class Quote {
         this.dislikes = dislikes;
     }
 
+    /* deprecated with lombok
     public int getId() {
         return id;
     }
@@ -34,4 +37,5 @@ public class Quote {
     public int getDislikes() {
         return dislikes;
     }
+    */
 }
