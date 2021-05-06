@@ -5,6 +5,7 @@ import jdbc.jordiquotes.daoimpl.QuoteDaoMySQL;
 import jdbc.jordiquotes.model.Quote;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
@@ -16,6 +17,26 @@ public class App {
         String[] cowArgs = new String[]{"-f", cow, quote.getAuthor() + " Says: " + quote.getQuote()};
         String result = Cowsay.say(cowArgs);
         System.out.println(result);
+        System.out.println("Do you like this one? (Y/N)");
+        Scanner scanner = new Scanner(System.in);
+
+        for (;;) {
+            String input = scanner.nextLine();
+
+            if (input.equalsIgnoreCase("y")) {
+                quoteEngine.likeQuote(quote);
+                System.out.println("What are we holding on to, Sam? - That there's some good in this world, Mr. Frodo. And it's worth fighting for.");
+                break;
+            }
+            else if (input.equalsIgnoreCase("n")) {
+                quoteEngine.dislikeQuote(quote);
+                System.out.println("Don't blame you. *Starts counting 597 thousand million sheep*");
+                break;
+            }
+            else {
+                System.out.println("I only know how to respond to y or n...");
+            }
+        }
     }
 
     private static ArrayList<String> getCows() {
