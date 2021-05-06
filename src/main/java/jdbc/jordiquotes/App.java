@@ -12,7 +12,7 @@ public class App {
         QuoteDaoMySQL quoteEngine = new QuoteDaoMySQL();
         quoteEngine.debug();
 
-        //generateCowQuote();
+        generateCowQuote();
     }
 
     private static void generateCowQuote() {
