@@ -1,4 +1,5 @@
 package jdbc.jordiquotes.model;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -6,7 +7,7 @@ import lombok.Setter;
 // Data - all lombok getters, setters, metadata and other parapfernalia
 //@Data
 //@Getter @Setter
-@Getter
+@Getter @AllArgsConstructor
 public class Quote {
     private int id;
     private String author;
@@ -14,6 +15,7 @@ public class Quote {
     private int likes;
     private int dislikes;
 
+    /* deprecated with lombok
     public Quote(int id, String author, String quote, int likes, int dislikes) {
         this.id = id;
         this.author = author;
@@ -22,7 +24,6 @@ public class Quote {
         this.dislikes = dislikes;
     }
 
-    /* deprecated with lombok
     public int getId() {
         return id;
     }
