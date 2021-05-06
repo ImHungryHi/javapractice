@@ -1,7 +1,12 @@
 package jdbc.jordiquotes.model;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+// Data - all lombok getters, setters, metadata and other parapfernalia
+//@Data
+//@Getter @Setter
+@Getter
 public class Quote {
     private int id;
     private String author;
