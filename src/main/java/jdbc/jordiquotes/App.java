@@ -9,6 +9,13 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
+        QuoteDaoMySQL quoteEngine = new QuoteDaoMySQL();
+        quoteEngine.debug();
+
+        //generateCowQuote();
+    }
+
+    private static void generateCowQuote() {
         ArrayList<String> cows = getCows();
         Random random = new Random();
         QuoteDao quoteEngine = new QuoteDaoMySQL();
