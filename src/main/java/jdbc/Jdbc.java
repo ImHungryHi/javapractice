@@ -19,7 +19,7 @@ public class Jdbc {
         //update(url, user, passwd, query, "Unix is simple. It just takes a genius to understand its simplicity.", 200);
 
         query = "DELETE FROM jordiquotes WHERE ID = ?";
-        //update(url, user, passwd, query, 300);
+        //delete(url, user, passwd, query, 300);
 
         query = "SELECT * FROM jordiquotes";
         select(url, user, passwd, query);
