@@ -1,7 +1,7 @@
 package jdbc.jordiquotes;
 import com.github.ricksbrown.cowsay.Cowsay;
 import jdbc.jordiquotes.dao.QuoteDao;
-import jdbc.jordiquotes.daoimpl.QuoteDaoImpl;
+import jdbc.jordiquotes.daoimpl.QuoteDaoMySQL;
 import jdbc.jordiquotes.model.Quote;
 import java.util.ArrayList;
 import java.util.Random;
@@ -10,7 +10,7 @@ public class App {
     public static void main(String[] args) {
         ArrayList<String> cows = getCows();
         Random random = new Random();
-        QuoteDao quoteEngine = new QuoteDaoImpl();
+        QuoteDao quoteEngine = new QuoteDaoMySQL();
         Quote quote = quoteEngine.getRandomQuote();
         String cow = cows.get(random.nextInt(cows.size()));
         String[] cowArgs = new String[]{"-f", cow, quote.getAuthor() + " Says: " + quote.getQuote()};
