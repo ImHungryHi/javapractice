@@ -3,16 +3,25 @@ import com.github.ricksbrown.cowsay.Cowsay;
 import jdbc.jordiquotes.dao.QuoteDao;
 import jdbc.jordiquotes.daoimpl.QuoteDaoMySQL;
 import jdbc.jordiquotes.model.Quote;
+import org.jasypt.util.text.StrongTextEncryptor;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        QuoteDaoMySQL quoteEngine = new QuoteDaoMySQL();
-        quoteEngine.debug();
+        //QuoteDaoMySQL quoteEngine = new QuoteDaoMySQL();
+        //quoteEngine.debug();
 
-        generateCowQuote();
+        StrongTextEncryptor encryptor = new StrongTextEncryptor();
+        encryptor.setPassword("feeduscroissants");
+        String clearText = "code4croissants";
+        String encrypted = encryptor.encrypt(clearText);
+        String decrypted = encryptor.decrypt(encrypted);
+        System.out.println(clearText + "\n" + encrypted+ "\n"+ decrypted);
+
+        //generateCowQuote();
     }
 
     private static void generateCowQuote() {
