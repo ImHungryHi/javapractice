@@ -1,5 +1,4 @@
 import code.neurals.*;
-
 import java.util.List;
 
 public class Neurals {
@@ -20,14 +19,20 @@ public class Neurals {
 
         // Let's create a neural network to unleash and train on this data
         NeuralNetwork neuralNet = new NeuralNetwork(2,10,1);
-        neuralNet.fit(xorIn, xorOut, 50000);
-
         double[][] input = {{0, 0}, {0, 1}, {1, 0}, {1, 1}};
         List<Double> output;
 
-        for (double[] row : input) {
-            output = neuralNet.predict(row);
-            System.out.println(output.toString());
+        // We first fit input and example output into a neural net and then loop through every input
+        //   to predict its outcome. Do this over and over with the same data and we'll narrow it down.
+        for (int x = 0; x < 10000; x++) {
+            neuralNet.fit(xorIn, xorOut, 50000);
+
+            for (double[] row : input) {
+                output = neuralNet.predict(row);
+                System.out.println("[" + (int) row[0] + ", " + (int) row[1] + "] " + output.toString());
+            }
+
+            System.out.println("=============================================");
         }
     }
 }
