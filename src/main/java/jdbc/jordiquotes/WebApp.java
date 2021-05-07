@@ -3,6 +3,7 @@ import jdbc.jordiquotes.webserver.*;
 import com.sun.net.httpserver.*;
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -25,5 +26,16 @@ public class WebApp {
         //server.setExecutor(null);
         server.start();
         System.out.println("Server started on port " + PORT);
+        Scanner scanner = new Scanner(System.in);
+        String input = "";
+
+        for (;;) {
+            input = scanner.nextLine();
+
+            if (input.equalsIgnoreCase("exit")) {
+                server.stop(0);
+                System.exit(0);
+            }
+        }
     }
 }
