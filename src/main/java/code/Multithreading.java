@@ -107,7 +107,6 @@ public class Multithreading {
     }
 
     public static class Horse extends Thread {
-
         private boolean isFinished;
 
         public Horse(String name) {
