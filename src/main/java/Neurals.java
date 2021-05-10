@@ -32,7 +32,7 @@ public class Neurals {
                 System.out.println("[" + (int) row[0] + ", " + (int) row[1] + "] " + output.toString());
             }
 
-            System.out.println("=============================================");
+            System.out.println("============================= [" + String.format("%05d", x + 1) + "/10000]=============================");
         }
     }
 }
