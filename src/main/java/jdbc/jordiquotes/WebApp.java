@@ -27,7 +27,7 @@ public class WebApp {
         server.start();
         System.out.println("Server started on port " + PORT);
         Scanner scanner = new Scanner(System.in);
-        String input = "";
+        String input;
 
         for (;;) {
             input = scanner.nextLine();
