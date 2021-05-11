@@ -138,4 +138,8 @@ public class IO {
             System.out.println(minByte);
         }
     }
+
+    public static String getWorkingDirectory() {
+        return System.getProperty("user.dir");
+    }
 }
