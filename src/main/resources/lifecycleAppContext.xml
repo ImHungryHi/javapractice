@@ -6,9 +6,12 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:annotation-config />
     <bean id="statelessBean"
           class="spring.scope.StatelessBean"
-          init-method="init">
+          init-method="init"
+          destroy-method="cleanup">
+          <!-- scope="prototype" --> <!-- adding this property disables the destructor -->
     </bean>
     <bean id="person"
           class="spring.scope.Person"
