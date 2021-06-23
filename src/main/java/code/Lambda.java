@@ -30,4 +30,31 @@ public class Lambda {
         // Sorting lambda style
         lst.sort((o1, o2) -> o1.getDepartment().compareTo(o2.getDepartment()));
     }
+
+    // Other lambda expressions:
+    //  parameter -> expression
+    //  (parameter1, parameter2) -> expression
+    //  (parameter1, parameter2) -> { code block }
+
+    // Helper interfaces
+    public interface StringFunction { String run(String s); }
+
+    public static void differentTypes() {
+        // Simple String lambdas
+        StringFunction exclaim = (s) -> s + "!";
+        StringFunction question = (s) -> s + "?";
+        System.out.println(exclaim.run("Hello"));   // prints Hello!
+        System.out.println(question.run("Hello"));  // prints Hello?
+
+        // Simple function in a lambda
+        List<Integer> numbers = new ArrayList<>();
+        java.util.function.Consumer<Integer> functionalOne = (n) -> { System.out.println(n); };
+
+        for (int x = 1; x <= 10; x++) {
+            numbers.add(x);
+        }
+
+        numbers.forEach(functionalOne);
+        numbers.forEach((n) -> System.out.println(n));  // Same thing, without intermediary step
+    }
 }
