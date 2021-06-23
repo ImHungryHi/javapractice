@@ -48,4 +48,17 @@ class ExercisesTest {
         assertEquals(Arrays.toString(c), Arrays.toString(g));
         assertEquals(Arrays.toString(d), Arrays.toString(h));
     }
+
+    @Test
+    void isMatch() {
+        assertEquals(false, Exercises.isMatch("aa", "a"));
+        assertEquals(true, Exercises.isMatch("aa", "a*"));
+        // the below .* matches both a and b, meaning "start.*end" would match "start qdskfljhqsdflhsqdfkljh end"
+        assertEquals(true, Exercises.isMatch("ab", ".*"));
+        assertEquals(true, Exercises.isMatch("aab", "c*a*b"));
+        assertEquals(false, Exercises.isMatch("mississippi", "mis*is*p*."));    // Missing the i before p
+        assertEquals(true, Exercises.isMatch("aaa", "a*a"));
+        assertEquals(true, Exercises.isMatch("mississippi", "mis*is*ip*."));
+        assertEquals(true, Exercises.isMatch("aaa", "a.a"));
+    }
 }
