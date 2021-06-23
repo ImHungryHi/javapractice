@@ -118,7 +118,7 @@ public class Collections {
      * --- PERFORMANCE ON LinkedList OR ArrayList CAN VARY DEPENDING ON THE TYPE OF OPERATION --
      * -----------------------------------------------------------------------------------------
      */
-    // Getting or setting a list is faster with ArrayList
+    // ----- Getting or setting on a list is faster with ArrayList, as well as searching ----- //
     public static List getListForGet() {
         return new ArrayList();
     }
@@ -127,7 +127,10 @@ public class Collections {
         return new ArrayList();
     }
 
-    // While adding, inserting and removing is faster on a LinkedList
+    // Getting an element is a direct link to a place in memory, whereas a LinkedList has to go over every element
+    public static List getListForSearch() { return new ArrayList(); }
+
+    // ----- While adding, inserting and removing is faster on a LinkedList ----- //
     public static List getListForAddOrInsert() {
         return new LinkedList();
     }
@@ -135,6 +138,9 @@ public class Collections {
     public static List getListForRemove() {
         return new LinkedList();
     }
+
+    // ArrayList requires extra memory for indexes and element data
+    public static List getListForMemoryOverhead() { return new LinkedList(); }
 
     /*
      * -----------------------------------------------------------------------------------------
@@ -226,6 +232,48 @@ public class Collections {
         while (iter.hasNext()) {
             Object pet = iter.next();
             System.out.println(pet);
+        }
+    }
+
+    /*
+     * -----------------------------------------------------------------------------------------
+     * ---------------------------------- Classroom iterators ----------------------------------
+     * -----------------------------------------------------------------------------------------
+     */
+    public static class ArrayListIterator {
+        public static void main(String[] args) {
+            List<Integer> numbers = Arrays.asList(10, 20, 30, 40, 50);
+            Iterator it = numbers.iterator();   // Alternative is listIterator which moves bidirectionally
+
+            while (it.hasNext()) {
+                System.out.println(it.next());
+            }
+
+            // This works the same behind the curtains
+            for (Integer el : numbers) {
+                System.out.println(el);
+            }
+        }
+    }
+
+    public static class LinkedListIterator {
+        public static void main(String[] args) {
+            List<String> list = new LinkedList<>();
+            list.add("Take");
+            list.add("me");
+            list.add("to");
+            list.add("your");
+            list.add("leader");
+
+            System.out.println("List is: " + list);
+            Iterator<String> it = list.iterator();
+
+            while (it.hasNext()) {
+                System.out.println(it.next());
+            }
+
+            it.remove();
+            System.out.println("After deletion: " + list);
         }
     }
 }
