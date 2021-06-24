@@ -56,5 +56,13 @@ public class Lambda {
 
         numbers.forEach(functionalOne);
         numbers.forEach((n) -> System.out.println(n));  // Same thing, without intermediary step
+
+
+        // Map example
+        HashMap<String, String> map = new HashMap<>();
+        map.put("De Smedt", "Chris");
+        map.put("Vermeulen", "Joske");
+        map.put("Knievel", "Weevil");
+        map.forEach((key, value) -> System.out.println(key));
     }
 }
