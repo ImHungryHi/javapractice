@@ -1,11 +1,8 @@
 package code;
-
 import code.neurals.Matrix;
 import org.junit.jupiter.api.Test;
-
 import java.awt.*;
 import java.util.Map;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class GenericsTest {
