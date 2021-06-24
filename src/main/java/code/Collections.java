@@ -5,6 +5,20 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class Collections {
+    // Lists are your everyday basic collections, contains a number of rows filled with (possibly duplicate) data
+    List<String> exampleAList = new ArrayList<>();  // When in doubt, pick ArrayList - most use, usually most performant
+    List<String> exampleLList = new LinkedList<>(); // For your specific needs
+    // Sets are collections in which no duplicate data is allowed - duplicates are dropped and original data is kept
+    Set<String> exampleTSet = new TreeSet<>();          // Stores data in a naturally sorted hierarchical order (LT or GT branching); alternatively sorted with a comparator param
+    Set<String> exampleHSet = new HashSet<>();          // Best performance, stores data in a hash table
+                                                        //  (not unlike a hashmap with hash strings as secondary param)
+                                                        //  can temporarily remain in a certain order, without guarantee
+    Set<String> exampleLHSet = new LinkedHashSet<>();   // Like hashset, stored in hash table - with addition of the sequential order of a linked list
+    // Maps are like dictionaries in C# - they contain key-value pairs
+    Map<String, String> exampleHMap = new HashMap<>();          // Keys should be unique, newer values with a duplicate key will overwrite existing values
+    Map<String, String> exampleTMap = new TreeMap<>();          // Stores pairs in ascending order, possibly useful for iterator-heavy maps
+    Map<String, String> exampleLHMap = new LinkedHashMap<>();   // Stores pairs in insertion order
+
     public static HashMap<String, String> createHashMap() {
         HashMap<String, String> map = new HashMap<String, String>();
 
