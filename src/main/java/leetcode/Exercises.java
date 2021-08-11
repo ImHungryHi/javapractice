@@ -1,6 +1,62 @@
 package leetcode;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+
 public class Exercises {
+    public int[] twoSumV1(int[] nums, int target) {
+        for (int x = 0; x < nums.length; x++) {
+            for (int y = x + 1; y < nums.length; y++) {
+                if ((nums[x] + nums[y]) == target) {
+                    return new int[] {x, y};
+                }
+            }
+        }
+
+        return new int[0];
+    }
+
+    public int[] twoSumV2(int[] nums, int target) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (int x = 0; x < nums.length; x++) {
+            int targetClause = target - x;
+
+            if (map.containsKey(targetClause)) {
+                return new int[] { map.get(targetClause), x};
+            }
+
+            if (!map.containsKey(nums[x])) {
+                map.put(nums[x], x);
+            }
+        }
+
+        return new int[0];
+    }
+
+    public int[] twoSumV3(int[] nums, int target) {
+        HashMap<Integer, List<Integer>> map = new HashMap<>();
+
+        for (int x = 0; x < nums.length; x++) {
+            int targetClause = target - x;
+
+            if (map.containsKey(targetClause)) {
+                return new int[] { map.get(targetClause).get(0), x};
+            }
+
+            if (map.containsKey(nums[x])) {
+                map.get(nums[x]).add(x);
+            }
+            else {
+                map.put(nums[x], Arrays.asList(x));
+            }
+        }
+
+        return new int[0];
+    }
+
     /*
     ======================= START MEDIAN OF INT ARRAYS =======================
         -> median of odd elements = middle element after sort

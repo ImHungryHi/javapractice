@@ -1,8 +1,8 @@
 package code;
-
 import java.lang.reflect.Field;
 import java.nio.ByteBuffer;
 import java.util.HashMap;
+import java.util.List;
 
 public class Generics {
     public static <E> HashMap<String, String> getObjectFields(Class<E> genClass) {
@@ -49,5 +49,19 @@ public class Generics {
                 // Let's not transform byte arrays to random objects such as Person, Car, etc...
                 break;
         }
+    }
+
+    public static float upperBoundedWildcardTotal(List<? extends Number> numbers) {
+        float total = 0;
+
+        for (Number number : numbers) {
+            total += number.floatValue();
+        }
+
+        return total;
+    }
+
+    public static void lowerBoundedWildcard(List<? super String> list) {
+        list.add("Yo");
     }
 }
