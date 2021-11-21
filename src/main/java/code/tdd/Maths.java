@@ -27,16 +27,17 @@ public class Maths {
 
     public static List<Integer> PrimeFactorsOf_V4(int n) {
         List<Integer> result = new ArrayList<>();
+        int remainder = n;
 
-        if (n > 1) {
-            if (n % 2 == 0) {
+        if (remainder > 1) {
+            if (remainder % 2 == 0) {
                 result.add(2);
-                n /= 2;
+                remainder /= 2;
             }
-
-            if (n > 1)
-                result.add(n);
         }
+
+        if (remainder > 1)
+            result.add(remainder);
 
         return result;
     }
