@@ -45,4 +45,16 @@ class MathsTest {
         assertEquals(PrimeFactorsOf_V4(3), Arrays.asList(3));
         assertEquals(PrimeFactorsOf_V4(4), Arrays.asList(2, 2));
     }
+
+    @Test
+    void shouldReturn_PrimeFactorList_V5() {
+        assertEquals(PrimeFactorsOf_V5(1), new ArrayList<>());
+        assertEquals(PrimeFactorsOf_V5(2), Arrays.asList(2));
+        assertEquals(PrimeFactorsOf_V5(3), Arrays.asList(3));
+        assertEquals(PrimeFactorsOf_V5(4), Arrays.asList(2, 2));
+        assertEquals(PrimeFactorsOf_V5(5), Arrays.asList(5));       // 5 doesn't change much to our test at this point, move onto 6
+        assertEquals(PrimeFactorsOf_V5(6), Arrays.asList(2, 3));    // 6 coincidentally doesn't fail as we add 2, divide by 2 and are left with 3
+        assertEquals(PrimeFactorsOf_V5(7), Arrays.asList(7));       // 7 doesn't change anything either
+        assertEquals(PrimeFactorsOf_V5(8), Arrays.asList(2, 2, 2)); // This is where it gets interesting - we need an extra step now
+    }
 }

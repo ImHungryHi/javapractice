@@ -41,4 +41,21 @@ public class Maths {
 
         return result;
     }
+
+    public static List<Integer> PrimeFactorsOf_V5(int n) {
+        List<Integer> result = new ArrayList<>();
+        int remainder = n;
+
+        if (remainder > 1) {
+            while (remainder % 2 == 0) {    // imagine a while loop saving our lives
+                result.add(2);
+                remainder /= 2;
+            }
+        }
+
+        if (remainder > 1)
+            result.add(remainder);
+
+        return result;
+    }
 }
