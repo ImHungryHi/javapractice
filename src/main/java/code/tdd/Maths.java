@@ -16,4 +16,14 @@ public class Maths {
 
         return result;
     }
+
+    public static List<Integer> PrimeFactorsOf_V3(int n) {
+        List<Integer> result = new ArrayList<>();
+
+        if (n > 1) {
+            result.add(n);  // Fails if n == 3, so add n (for now)
+        }
+
+        return result;
+    }
 }

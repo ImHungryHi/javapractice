@@ -30,4 +30,11 @@ class MathsTest {
         assertEquals(PrimeFactorsOf_V2(1), new ArrayList<>());
         assertEquals(PrimeFactorsOf_V2(2), Arrays.asList(2));   // This would fail without changing the Maths class
     }
+
+    @Test
+    void shouldReturn_PrimeFactorList_V3() {
+        assertEquals(PrimeFactorsOf_V3(1), new ArrayList<>());
+        assertEquals(PrimeFactorsOf_V3(2), Arrays.asList(2));
+        assertEquals(PrimeFactorsOf_V3(3), Arrays.asList(3));
+    }
 }
