@@ -57,4 +57,22 @@ class MathsTest {
         assertEquals(PrimeFactorsOf_V5(7), Arrays.asList(7));       // 7 doesn't change anything either
         assertEquals(PrimeFactorsOf_V5(8), Arrays.asList(2, 2, 2)); // This is where it gets interesting - we need an extra step now
     }
+
+    @Test
+    void shouldReturn_PrimeFactorList_V6() {
+        assertEquals(PrimeFactorsOf_V6(1), new ArrayList<>());
+        assertEquals(PrimeFactorsOf_V6(2), Arrays.asList(2));
+        assertEquals(PrimeFactorsOf_V6(3), Arrays.asList(3));
+        assertEquals(PrimeFactorsOf_V6(4), Arrays.asList(2, 2));
+        assertEquals(PrimeFactorsOf_V6(5), Arrays.asList(5));
+        assertEquals(PrimeFactorsOf_V6(6), Arrays.asList(2, 3));
+        assertEquals(PrimeFactorsOf_V6(7), Arrays.asList(7));
+        assertEquals(PrimeFactorsOf_V6(8), Arrays.asList(2, 2, 2));
+        assertEquals(PrimeFactorsOf_V6(9), Arrays.asList(3, 3));    // We don't have anything to divide by 3 yet - oops
+
+        // Since the function is finished at this point, put it through its paces one last time
+        assertEquals(
+                PrimeFactorsOf_V6(2 * 2 * 3 * 3 * 5 * 7 * 11 * 11 * 13),
+                Arrays.asList(2, 2, 3, 3, 5, 7, 11, 11, 13));
+    }
 }

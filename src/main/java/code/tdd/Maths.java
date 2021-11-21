@@ -58,4 +58,24 @@ public class Maths {
 
         return result;
     }
+
+    // At this point the function supports all rational numbers as input and can divide by 2, 3 and higher
+    //  if it weren't already covered. This means our function is pretty much done.
+    // Also... comments = bad - this is purely for the sake of education
+    public static List<Integer> PrimeFactorsOf_V6(int n) {
+        List<Integer> result = new ArrayList<>();
+        int remainder = n;
+        int divisor = 2;
+
+        while (remainder > 1) {
+            while (remainder % divisor == 0) {
+                result.add(divisor);
+                remainder /= divisor;
+            }
+
+            divisor++;
+        }
+
+        return result;
+    }
 }
