@@ -2,7 +2,9 @@ package leetcode;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -60,5 +62,16 @@ class ExercisesTest {
         assertEquals(true, Exercises.isMatch("aaa", "a*a"));
         assertEquals(true, Exercises.isMatch("mississippi", "mis*is*ip*."));
         assertEquals(true, Exercises.isMatch("aaa", "a.a"));
+    }
+
+    @Test
+    void testing() {
+        List<String> ding = Arrays.asList("This", "Is", "A", "Filled", "List");
+        List<String> dong = new ArrayList<>();
+
+        String dinger = ding.stream().findFirst().orElse("Oops, this shouldn't happen");
+        String donger = dong.stream().findFirst().orElse("Well, what did you expect?");
+
+        System.out.println(dinger + "\n" + donger);
     }
 }
