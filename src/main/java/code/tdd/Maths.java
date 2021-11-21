@@ -10,9 +10,8 @@ public class Maths {
     public static List<Integer> PrimeFactorsOf_V2(int n) {
         List<Integer> result = new ArrayList<>();
 
-        if (n > 1) {
+        if (n > 1)
             result.add(2);  // Ooooh, the frustration... But the test will pass and return empty for 1 and asList(2) for 2
-        }
 
         return result;
     }
@@ -20,8 +19,23 @@ public class Maths {
     public static List<Integer> PrimeFactorsOf_V3(int n) {
         List<Integer> result = new ArrayList<>();
 
-        if (n > 1) {
+        if (n > 1)
             result.add(n);  // Fails if n == 3, so add n (for now)
+
+        return result;
+    }
+
+    public static List<Integer> PrimeFactorsOf_V4(int n) {
+        List<Integer> result = new ArrayList<>();
+
+        if (n > 1) {
+            if (n % 2 == 0) {
+                result.add(2);
+                n /= 2;
+            }
+
+            if (n > 1)
+                result.add(n);
         }
 
         return result;

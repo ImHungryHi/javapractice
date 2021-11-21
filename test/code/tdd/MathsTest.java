@@ -37,4 +37,12 @@ class MathsTest {
         assertEquals(PrimeFactorsOf_V3(2), Arrays.asList(2));
         assertEquals(PrimeFactorsOf_V3(3), Arrays.asList(3));
     }
+
+    @Test
+    void shouldReturn_PrimeFactorList_V4() {
+        assertEquals(PrimeFactorsOf_V4(1), new ArrayList<>());
+        assertEquals(PrimeFactorsOf_V4(2), Arrays.asList(2));
+        assertEquals(PrimeFactorsOf_V4(3), Arrays.asList(3));
+        assertEquals(PrimeFactorsOf_V4(4), Arrays.asList(2, 2));
+    }
 }
