@@ -5,6 +5,26 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Generics {
+    public static boolean validateFieldsForValue(Object haystack, List<String> fieldNames, String needle) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+        boolean resultFound = false;
+
+        for (Field field : haystack.getClass().getDeclaredFields()) {
+            for (String fieldName : fieldNames) {
+                if (field.getType().isAssignableFrom(String.class) && field.getName().contains(fieldName)) {
+                    Method method = haystack.getClass().getDeclaredMethod("get" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1));
+                    Object[] args = new Object[0];
+                    String value = (String) method.invoke(haystack, args);
+
+                    if (value != null && value.equals(needle)) {
+                        resultFound = true;
+                    }
+                }
+            }
+        }
+
+        return resultFound;
+    }
+    
     public static <E> HashMap<String, String> getObjectFields(Class<E> genClass) {
         HashMap<String, String> results = new HashMap<>();
         Field[] fields = genClass.getDeclaredFields();
